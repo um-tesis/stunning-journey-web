@@ -1,6 +1,21 @@
-import '@/styles/globals.css'
-import type { AppProps } from 'next/app'
+import './styles.scss';
+import Head from 'next/head';
+import type {AppProps} from 'next/app';
+import ErrorBoundary from '@/lib/utils/error-boundary';
 
-export default function App({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+export default function MyApp({Component, pageProps}: AppProps) {
+  const Main = () => (
+    <div id='portal'>
+      <Head>
+        <title>Libera</title>
+      </Head>
+      <Component {...pageProps} />
+    </div>
+  );
+
+  return (
+    <ErrorBoundary>
+      <Main />
+    </ErrorBoundary>
+  );
 }
