@@ -2,6 +2,8 @@ import './styles.scss';
 import Head from 'next/head';
 import type {AppProps} from 'next/app';
 import ErrorBoundary from '@/lib/utils/error-boundary';
+import theme from '@styles/theme';
+import {ThemeProvider} from '@mui/material';
 
 export default function MyApp({Component, pageProps}: AppProps) {
   const Main = () => (
@@ -9,7 +11,9 @@ export default function MyApp({Component, pageProps}: AppProps) {
       <Head>
         <title>Libera</title>
       </Head>
-      <Component {...pageProps} />
+      <ThemeProvider theme={theme}>
+        <Component {...pageProps} />
+      </ThemeProvider>
     </div>
   );
 
