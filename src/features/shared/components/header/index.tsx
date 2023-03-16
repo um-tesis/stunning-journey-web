@@ -10,13 +10,16 @@ import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import VerifiedIcon from '@mui/icons-material/Verified';
+import {serverHealthCheck} from '@/lib/utils/api-settings';
+import PrimaryButton from '../primary-button';
 
 const pages = ['Home', 'About', 'Projects', 'Contact'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const projects = ['Tacuru', 'Teleton', 'UM'];
 
 function Header() {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
+  const [isProjectsMenuOpen, setIsProjectsMenuOpen] = React.useState(false);
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
@@ -31,6 +34,14 @@ function Header() {
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
+  };
+
+  const healthCheck = async () => {
+    await serverHealthCheck();
+  };
+
+  const toogleProjectsMenuOpen = () => {
+    setIsProjectsMenuOpen(!isProjectsMenuOpen);
   };
 
   return (
@@ -113,27 +124,23 @@ function Header() {
               LIBERA
             </Typography>
           </Box>
-          <Box sx={{flexGrow: 0, display: 'flex'}}>
+          <Box
+            sx={{
+              flexGrow: 0,
+              display: 'flex',
+              '& > *': {
+                mr: 2,
+                mt: 2,
+              },
+            }}
+          >
             {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={() => console.log('clicked')}
-                sx={{
-                  my: 2,
-                  color: '#5d5a88',
-                  display: 'block',
-                  textTransform: 'none',
-                  px: 2,
-                  borderRadius: '30px',
-                  mr: 2,
-                }}
-              >
+              <PrimaryButton key={page} inverted hideOutlined onClick={() => console.log('click')}>
                 {page}
                 {page === 'Projects' && (
                   <Menu
-                    sx={{mt: '45px'}}
+                    sx={{mt: '55px', ml: '-320px'}}
                     id='menu-appbar'
-                    anchorEl={anchorElUser}
                     anchorOrigin={{
                       vertical: 'top',
                       horizontal: 'right',
@@ -143,50 +150,22 @@ function Header() {
                       vertical: 'top',
                       horizontal: 'right',
                     }}
-                    open={Boolean(anchorElUser)}
+                    open={isProjectsMenuOpen}
                     onClose={handleCloseUserMenu}
                   >
-                    {settings.map((setting) => (
-                      <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                        <Typography textAlign='center'>{setting}</Typography>
+                    {projects.map((project) => (
+                      <MenuItem key={project} onClick={handleCloseUserMenu}>
+                        <Typography textAlign='center'>{project}</Typography>
                       </MenuItem>
                     ))}
                   </Menu>
                 )}
-              </Button>
+              </PrimaryButton>
             ))}
-            <Button
-              variant='outlined'
-              onClick={() => console.log('clicked')}
-              sx={{
-                my: 2,
-                color: '#5d5a88',
-                display: 'block',
-                textTransform: 'none',
-                border: '1px solid #5d5a88',
-                px: 2,
-                borderRadius: '30px',
-                mr: 2,
-              }}
-            >
+            <PrimaryButton onClick={healthCheck} inverted>
               Login
-            </Button>
-            <Button
-              variant='outlined'
-              onClick={() => console.log('clicked')}
-              sx={{
-                my: 2,
-                color: '#5d5a88',
-                display: 'block',
-                textTransform: 'none',
-                border: '1px solid #5d5a88',
-                px: 2,
-                borderRadius: '30px',
-                mr: 2,
-              }}
-            >
-              Get Started
-            </Button>
+            </PrimaryButton>
+            <PrimaryButton onClick={() => console.log('clicked')}>Get Started</PrimaryButton>
           </Box>
         </Toolbar>
       </Container>

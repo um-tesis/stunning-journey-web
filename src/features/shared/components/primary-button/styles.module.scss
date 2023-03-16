@@ -1,0 +1,32 @@
+.primaryButton {
+  color: #fff;
+  background-color: #5d5a88;
+  display: block;
+  text-transform: none;
+  border: 1px solid #5d5a88;
+  border-radius: 30px;
+  padding: 0 16px;
+  height: 44px;
+  width: fit-content;
+
+  &:hover {
+    background-color: #fff;
+    color: #5d5a88;
+    border-color: #5d5a88;
+  }
+
+  &.inverted {
+    background-color: #fff;
+    color: #5d5a88;
+    border-color: #5d5a88;
+    &:hover {
+      background-color: #5d5a88;
+      color: #fff;
+      border-color: #5d5a88;
+    }
+  }
+
+  &.hideOutlined {
+    border: none;
+  }
+}

@@ -1,0 +1,46 @@
+.mainHomeContainer {
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  color: #fff;
+  .homeFirstSection {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10%;
+
+    .homeFirstSectionContent {
+      & > * {
+        margin-bottom: 45px;
+      }
+
+      h1 {
+        font-weight: 700;
+        font-size: 56px;
+        line-height: 66px;
+        width: 650px;
+      }
+      p {
+        font-style: normal;
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 30px;
+        width: 600px;
+      }
+
+      .buttonsContainer {
+        display: flex;
+        width: 400px;
+        justify-content: space-between;
+        button {
+          width: 170px;
+          height: 66px;
+          font-size: 20px;
+          margin-right: 40px;
+        }
+      }
+    }
+  }
+}
