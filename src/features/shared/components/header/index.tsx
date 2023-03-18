@@ -129,8 +129,8 @@ function Header() {
               flexGrow: 0,
               display: 'flex',
               '& > *': {
-                mr: 2,
-                mt: 2,
+                mr: 3,
+                mt: 1,
               },
             }}
           >

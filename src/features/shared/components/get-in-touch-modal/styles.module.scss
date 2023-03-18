@@ -1,0 +1,34 @@
+.getInTouchModal {
+  position: absolute;
+  left: 10%;
+  top: 5%;
+  width: 40%;
+  height: 90%;
+  padding: 2% 4%;
+  color: #5d5a88;
+  background: #f2f1fa;
+  border-radius: 25px;
+  .title {
+    font-weight: 700;
+    font-size: 48px;
+  }
+  .subtitle {
+    font-weight: 400;
+    font-size: 18px;
+    color: #9795b5;
+  }
+  .formContainer {
+    display: flex;
+    flex-direction: column;
+    margin-top: 40px;
+    & > * {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 30px;
+    }
+  }
+  .submitButton {
+    position: absolute;
+    bottom: 10%;
+  }
+}
