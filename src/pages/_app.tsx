@@ -4,6 +4,10 @@ import type {AppProps} from 'next/app';
 import ErrorBoundary from '@/lib/utils/error-boundary';
 import theme from '@styles/theme';
 import {ThemeProvider} from '@mui/material';
+import {ApolloProvider} from '@apollo/client';
+import client from '../apollo-client';
+import {Toaster} from 'react-hot-toast';
+import {toastOptions} from '@utils/ui-helper';
 
 export default function MyApp({Component, pageProps}: AppProps) {
   const Main = () => (
@@ -18,8 +22,11 @@ export default function MyApp({Component, pageProps}: AppProps) {
   );
 
   return (
-    <ErrorBoundary>
-      <Main />
-    </ErrorBoundary>
+    <ApolloProvider client={client}>
+      <ErrorBoundary>
+        <Main />
+        <Toaster position='bottom-right' toastOptions={toastOptions} />
+      </ErrorBoundary>
+    </ApolloProvider>
   );
 }

@@ -5,10 +5,11 @@ import styles from './styles.module.scss';
 
 type ButtonProps = {
   children: React.ReactNode;
-  onClick: () => void;
+  onClick?: () => void;
   inverted?: boolean;
   auxClassNames?: string;
   hideOutlined?: boolean;
+  [key: string]: any;
 };
 
 export default function PrimaryButton({
@@ -17,6 +18,7 @@ export default function PrimaryButton({
   hideOutlined,
   onClick,
   auxClassNames,
+  ...otherProps
 }: ButtonProps) {
   return (
     <Button
@@ -29,6 +31,7 @@ export default function PrimaryButton({
         hideOutlined && styles.hideOutlined,
         auxClassNames ?? ''
       )}
+      {...otherProps}
     >
       {children}
     </Button>

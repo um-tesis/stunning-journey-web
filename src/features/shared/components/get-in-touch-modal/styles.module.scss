@@ -24,11 +24,20 @@
     & > * {
       display: flex;
       justify-content: space-between;
-      margin-bottom: 30px;
+      margin-bottom: 40px;
     }
   }
   .submitButton {
     position: absolute;
-    bottom: 10%;
+    bottom: 2%;
+  }
+
+  .messageTextArea {
+    width: 100%;
+    min-height: 100px;
+    padding: 24px 24px 0px;
+    resize: none;
+    background: #ffffff;
+    border-radius: 20px;
   }
 }

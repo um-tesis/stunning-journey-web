@@ -55,7 +55,7 @@ export const serverHealthCheck = (): Promise<any> => {
   return axios({
     method: 'get',
     url: '/health',
-    baseURL: 'http://localhost:5001',
+    baseURL: process.env.NEXT_PUBLIC_API_URL?.replace('/graphql', ''),
     headers: {
       'Content-Type': 'application/json',
     },
