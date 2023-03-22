@@ -1,7 +1,6 @@
 import useAsync from '@/lib/hooks/useAsync';
 import {capitalizeTheFirstLetterOfEachWord} from '@/lib/utils/ui-helper';
 import {TextareaAutosize, TextField, Typography} from '@mui/material';
-import {useRouter} from 'next/router';
 import {useEffect} from 'react';
 import {useForm} from 'react-hook-form';
 import {toast} from 'react-hot-toast';
@@ -22,8 +21,7 @@ type GetInTouchForm = {
 };
 
 export default function GetInTouchModal({}: Props) {
-  const router = useRouter();
-  const [postContactForm, {data, loading, error}] = useMutation(GET_IN_TOUCH);
+  const [postContactForm, {}] = useMutation(GET_IN_TOUCH);
 
   const emptyForm: GetInTouchForm = {
     name: '',
@@ -40,7 +38,7 @@ export default function GetInTouchModal({}: Props) {
   const sendGetInTouch = useAsync(async () => {
     const formValues = form.getValues();
     form.setValue('name', capitalizeTheFirstLetterOfEachWord(formValues.name));
-    const response = await postContactForm({
+    await postContactForm({
       variables: {
         input: {
           name: formValues.name,
@@ -51,22 +49,15 @@ export default function GetInTouchModal({}: Props) {
         },
       },
     });
-    console.log('response', response);
-    return response;
   }, false);
 
-  const {
-    register,
-    handleSubmit,
-    formState: {errors},
-    watch,
-  } = form;
+  const {handleSubmit, watch} = form;
 
   // Effect to handle sendGetInTouch request status
   useEffect(() => {
     if (sendGetInTouch.status === 'success') {
+      form.reset(emptyForm);
       toast.success('Thank you for your message!');
-      router.replace(router.asPath);
     }
     if (sendGetInTouch.status === 'error') {
       toast.error(sendGetInTouch.error);

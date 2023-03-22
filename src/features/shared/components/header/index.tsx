@@ -7,16 +7,19 @@ import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
-import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import VerifiedIcon from '@mui/icons-material/Verified';
 import {serverHealthCheck} from '@/lib/utils/api-settings';
 import PrimaryButton from '../primary-button';
+import {useRouter} from 'next/router';
+import styles from './styles.module.scss';
 
-const pages = ['Home', 'About', 'Projects', 'Contact'];
+const pages = ['Home', 'About', 'Projects', 'Our-Work'];
 const projects = ['Tacuru', 'Teleton', 'UM'];
 
 function Header() {
+  const router = useRouter();
+
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
   const [isProjectsMenuOpen, setIsProjectsMenuOpen] = React.useState(false);
@@ -129,14 +132,22 @@ function Header() {
               flexGrow: 0,
               display: 'flex',
               '& > *': {
-                mr: 3,
+                mr: 1.6,
                 mt: 1,
               },
             }}
           >
             {pages.map((page) => (
-              <PrimaryButton key={page} inverted hideOutlined onClick={() => console.log('click')}>
-                {page}
+              <PrimaryButton
+                key={page}
+                inverted
+                hideOutlined
+                onClick={() => {
+                  if (page !== 'Projects') router.push(`/${page.toLowerCase()}`);
+                }}
+                auxClassNames={router && router.pathname.includes(page.toLowerCase()) ? styles.active : ''}
+              >
+                {page.split('-').join(' ')}
                 {page === 'Projects' && (
                   <Menu
                     sx={{mt: '55px', ml: '-320px'}}

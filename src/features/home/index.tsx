@@ -1,6 +1,7 @@
 import {classNamesFilter} from '@/lib/utils/ui-helper';
 import {Box, Button} from '@mui/material';
 import Image from 'next/image';
+import Footer from '../shared/components/footer';
 import Header from '../shared/components/header';
 import PrimaryButton from '../shared/components/primary-button';
 import GetInTouchSection from './components/get-in-touch-section';
@@ -41,6 +42,7 @@ export default function Home() {
           </div>
         </div>
         <GetInTouchSection />
+        <Footer />
       </div>
     </Box>
   );
