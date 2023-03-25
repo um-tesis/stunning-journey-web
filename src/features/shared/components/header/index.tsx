@@ -143,7 +143,7 @@ function Header() {
                 inverted
                 hideOutlined
                 onClick={() => {
-                  if (page !== 'Projects') router.push(`/${page.toLowerCase()}`);
+                  router.push(`/${page.toLowerCase()}`);
                 }}
                 auxClassNames={router && router.pathname.includes(page.toLowerCase()) ? styles.active : ''}
               >

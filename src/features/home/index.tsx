@@ -1,5 +1,5 @@
 import {classNamesFilter} from '@/lib/utils/ui-helper';
-import {Box, Button} from '@mui/material';
+import {Box} from '@mui/material';
 import Image from 'next/image';
 import Footer from '../shared/components/footer';
 import Header from '../shared/components/header';
@@ -13,10 +13,10 @@ export default function Home() {
       <div className={styles.mainHomeContainer}>
         <Header />
         <div className={styles.homeSection}>
-          <h1>A dedicated team to help organizations grow</h1>
+          <h1>Join the Libera community</h1>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipiscing eli mattis sit phasellus mollis sit aliquam sit
-            nullam neque ultrices.
+            With Libera, you can donate safely and effectively to charitable organizations that are making a
+            real difference in the world
           </p>
           <div className={styles.buttonsContainer}>
             <PrimaryButton inverted onClick={() => {}}>
@@ -29,10 +29,7 @@ export default function Home() {
           <Image src='/collaboration.jpeg' width={500} height={350} alt='image' />
           <div className={styles.sectionRightContent}>
             <h1>Create your account today and get started for free!</h1>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipiscing elit dolor semper at ac tempus enim laoreet
-              massa non.
-            </p>
+            <p>Together we can unleash the potential of charitable organizations with Libera.</p>
             <div className={styles.buttonsContainer}>
               <PrimaryButton inverted onClick={() => {}}>
                 Get Started

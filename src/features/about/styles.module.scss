@@ -1,0 +1,36 @@
+.us {
+  height: 80%;
+  width: 100%;
+  padding: 3% 10%;
+  display: flex;
+
+  .imageSection {
+    width: 50%;
+    height: 100%;
+    img {
+      width: 80%;
+      height: 80%;
+    }
+
+    .name {
+      margin-top: 20px;
+      width: 82%;
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+
+  .about {
+    width: 50%;
+    height: 100%;
+    .title {
+      display: flex;
+    }
+    .aboutSection {
+      font-size: 1.125em;
+      color: white;
+      line-height: 1.5em;
+      margin-bottom: 20px;
+    }
+  }
+}

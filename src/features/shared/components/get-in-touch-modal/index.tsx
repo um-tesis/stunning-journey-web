@@ -76,8 +76,8 @@ export default function GetInTouchModal({}: Props) {
     <div className={styles.getInTouchModal}>
       <Typography className={styles.title}>Get in touch today</Typography>
       <Typography className={styles.subtitle}>
-        Lorem ipsum dolor sit amet consectetur adipiscing elit tortor eu dolorol egestas morbi sem vulputate
-        etiam facilisis pellentesque ut quis.
+        We&apos;d love to hear from you! Get in touch to find out how you can support our cause and help make
+        a positive impact.
       </Typography>
       <form onSubmit={handleSubmit(sendGetInTouch.execute)} className={styles.formContainer}>
         <div>
