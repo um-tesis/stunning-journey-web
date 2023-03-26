@@ -1,8 +1,6 @@
 name: Tests
 on:
-  pull_request:
-    branches:
-      - main
+  push:
 
 jobs:
   test:
@@ -13,6 +11,5 @@ jobs:
       - name: Run tests
         run: | # Add test commands here
           sleep 5
-          dsflkjsdhkfjhswdkfjh
         # Fail the job if any of the previous steps fail
         continue-on-error: false
