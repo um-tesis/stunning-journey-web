@@ -12,6 +12,6 @@ jobs:
         uses: actions/checkout@v3
       - name: Run tests
         run: | # Add test commands here
-          sleep(5)
+          sleep 5
         # Fail the job if any of the previous steps fail
         continue-on-error: false
