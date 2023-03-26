@@ -1,4 +1,4 @@
-# Next.js Project with Create-Next-App
+# Libera Frontend
 
 This is a [Next.js](https://nextjs.org/) project that has been bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app). It includes an API route and uses `next/font` for automatic font optimization.
 
