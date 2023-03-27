@@ -1,8 +1,5 @@
-import {classNamesFilter} from '@/lib/utils/ui-helper';
 import {Container, InputAdornment, TextField} from '@mui/material';
-import {useState} from 'react';
 import SearchIcon from '@mui/icons-material/Search';
-
 import styles from './styles.module.scss';
 import PrimaryButton from '../primary-button';
 
@@ -13,7 +10,7 @@ type SearchInputProps = {
 
 export default function SearchInput({searchTerm, handleChange}: SearchInputProps) {
   return (
-    <Container maxWidth='md' sx={{border: '0px'}}>
+    <Container maxWidth='md'>
       <TextField
         id='search'
         type='search'
@@ -21,23 +18,26 @@ export default function SearchInput({searchTerm, handleChange}: SearchInputProps
         onChange={handleChange}
         sx={{
           width: 400,
+          height: 45,
           backgroundColor: '#F9F9FF',
           borderRadius: 10,
-          // remove border for every child
-          '& > *': {border: '0px !important'},
+          '& .MuiInputBase-input': {
+            marginTop: 0.5,
+          },
         }}
-        variant='outlined'
+        variant='standard'
         InputProps={{
           startAdornment: (
             <InputAdornment position='start'>
-              <SearchIcon />
+              <SearchIcon className={styles.searchIcon} />
             </InputAdornment>
           ),
           endAdornment: (
             <InputAdornment position='end'>
-              <PrimaryButton>Search</PrimaryButton>
+              <PrimaryButton auxClassNames={styles.searchButton}>Search</PrimaryButton>
             </InputAdornment>
           ),
+          disableUnderline: true,
         }}
       />
     </Container>
