@@ -1,25 +1,23 @@
 import {GET_PROJECTS} from '@/graphql/query/getProjects';
-import {classNamesFilter} from '@/lib/utils/ui-helper';
 import {useQuery} from '@apollo/client';
 import {Grid, Pagination} from '@mui/material';
-import {useState} from 'react';
+import {useMemo, useState} from 'react';
 import ProjectCard from '../shared/components/project-card';
 import SearchInput from '../shared/components/search-input';
 import styles from './styles.module.scss';
 
 export default function Projects() {
+  const [filter, setFilter] = useState('');
   const {data, loading} = useQuery(GET_PROJECTS, {
-    variables: {page: 1, itemsPerPage: 9},
+    variables: {page: 1, itemsPerPage: 9, filter},
   });
 
   const projects = data?.projects;
 
   const totalPages = Math.ceil(projects?.length / 9);
 
-  const [searchTerm, setSearchTerm] = useState('');
-
   const handleChange = (event: any) => {
-    setSearchTerm(event.target.value);
+    setFilter(event.target.value);
   };
 
   if (loading) {
@@ -29,13 +27,13 @@ export default function Projects() {
   return (
     <div className={styles.projectsContainer}>
       <div className={styles.browseSection}>
-        <div className={styles.title}>Browse projects & organizations</div>
+        <div className={styles.title}>Browse Libera&apos;s projects</div>
         <div className={styles.subtitle}>
           Lorem ipsum dolor sit amet consectetur adipiscing elit semper dalar elementum tempus hac tellus
           libero accumsan.
         </div>
         <div className={styles.searchBox}>
-          <SearchInput searchTerm={searchTerm} handleChange={handleChange} />
+          <SearchInput searchTerm={filter} handleChange={handleChange} />
         </div>
       </div>
       <div className={styles.projects}>
@@ -46,7 +44,7 @@ export default function Projects() {
             </Grid>
           ))}
         </Grid>
-        <Pagination className={styles.pagination} count={totalPages} color='primary' />
+        {totalPages > 0 && <Pagination className={styles.pagination} count={totalPages} color='primary' />}
       </div>
     </div>
   );

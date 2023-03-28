@@ -1,10 +1,9 @@
-import Projects from '@/features/projects';
+import OurWork from '@/features/our-work';
 import Footer from '@/features/shared/components/footer';
 import Header from '@/features/shared/components/header';
 import {Container} from '@mui/material';
 
-export default function ProjectsPage() {
-  console.log('ProjectsPage');
+export default function OurWorkPage() {
   return (
     <Container
       sx={{
@@ -17,7 +16,7 @@ export default function ProjectsPage() {
       }}
     >
       <Header />
-      <Projects />
+      <OurWork />
       <Footer />
     </Container>
   );
