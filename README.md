@@ -1,4 +1,7 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Libera Frontend
+
+This is a [Next.js](https://nextjs.org/) project that has been bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app). It includes an API route and uses `next/font` for automatic font optimization.
+
 
 ## Getting Started
 
@@ -12,13 +15,23 @@ yarn dev
 pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then, open http://localhost:3000 in your browser to see the result. The page auto-updates as you edit the pages/index.tsx file.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+**Alternatively**, you can use Docker to initialize the project. First, build the Docker image:
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+`docker build -t front .`
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+Then, run the Docker container:
+
+`docker run -p 3000:3000 front`
+
+This will expose the application on http://localhost:3000 as well.
+
+## API Routes
+
+This project include [API routes](https://nextjs.org/docs/api-routes/introduction) that can be accessed at [http://localhost:3000/api/hello](http://localhost:3000/api/hello). You can edit this endpoint in `pages/api/hello.ts`. The `pages/api` directory is mapped to `/api/*` and any file in this directory is treated as an [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+
+## Font Optimization
 
 This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
