@@ -4,7 +4,6 @@ import Header from '@/features/shared/components/header';
 import {Container} from '@mui/material';
 
 export default function ProjectsPage() {
-  console.log('ProjectsPage');
   return (
     <Container
       sx={{

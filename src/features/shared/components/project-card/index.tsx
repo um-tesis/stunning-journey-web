@@ -4,12 +4,20 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import {CardActionArea, CardActions} from '@mui/material';
 import PrimaryButton from '../primary-button';
+import {useRouter} from 'next/router';
 
 type ProjectCardProps = {
+  projectId: number;
   name: string;
 };
 
-export default function ProjectCard({name}: ProjectCardProps) {
+export default function ProjectCard({projectId, name}: ProjectCardProps) {
+  const router = useRouter();
+
+  const redirectToProject = () => {
+    router.push(`projects/${projectId}`);
+  };
+
   return (
     <Card sx={{maxWidth: 410, border: '1px solid #D4D2E3', borderRadius: '24px', padding: 2}}>
       <CardActionArea>
@@ -31,7 +39,7 @@ export default function ProjectCard({name}: ProjectCardProps) {
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <PrimaryButton size='small' color='primary'>
+        <PrimaryButton size='small' color='primary' onClick={redirectToProject}>
           Learn More...
         </PrimaryButton>
       </CardActions>

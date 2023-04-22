@@ -6,9 +6,10 @@ import PrimaryButton from '../primary-button';
 type SearchInputProps = {
   searchTerm: string;
   handleChange: (e: any) => void;
+  handleSearch: () => void;
 };
 
-export default function SearchInput({searchTerm, handleChange}: SearchInputProps) {
+export default function SearchInput({searchTerm, handleChange, handleSearch}: SearchInputProps) {
   return (
     <Container maxWidth='md'>
       <TextField
@@ -16,6 +17,7 @@ export default function SearchInput({searchTerm, handleChange}: SearchInputProps
         type='search'
         value={searchTerm}
         onChange={handleChange}
+        onKeyPress={handleChange}
         sx={{
           width: 400,
           height: 45,
@@ -34,7 +36,9 @@ export default function SearchInput({searchTerm, handleChange}: SearchInputProps
           ),
           endAdornment: (
             <InputAdornment position='end'>
-              <PrimaryButton auxClassNames={styles.searchButton}>Search</PrimaryButton>
+              <PrimaryButton auxClassNames={styles.searchButton} onClick={handleSearch}>
+                Search
+              </PrimaryButton>
             </InputAdornment>
           ),
           disableUnderline: true,
