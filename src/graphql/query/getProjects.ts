@@ -8,9 +8,9 @@ export const GET_PROJECTS = gql`
         organizationId
         name
         field
+        description
         startDate
         endDate
-        description
       }
       total
     }
