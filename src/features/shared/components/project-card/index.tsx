@@ -4,14 +4,17 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import {CardActionArea, CardActions} from '@mui/material';
 import PrimaryButton from '../primary-button';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import {useRouter} from 'next/router';
+import styles from './styles.module.scss';
 
 type ProjectCardProps = {
   projectId: number;
   name: string;
+  description: string;
 };
 
-export default function ProjectCard({projectId, name}: ProjectCardProps) {
+export default function ProjectCard({projectId, name, description}: ProjectCardProps) {
   const router = useRouter();
 
   const redirectToProject = () => {
@@ -19,7 +22,7 @@ export default function ProjectCard({projectId, name}: ProjectCardProps) {
   };
 
   return (
-    <Card sx={{maxWidth: 410, border: '1px solid #D4D2E3', borderRadius: '24px', padding: 2}}>
+    <Card className={styles.card}>
       <CardActionArea>
         <CardMedia
           component='img'
@@ -29,18 +32,28 @@ export default function ProjectCard({projectId, name}: ProjectCardProps) {
           sx={{borderRadius: '10px'}}
         />
         <CardContent>
-          <Typography gutterBottom variant='h6' component='div'>
+          <Typography gutterBottom variant='h6' component='div' className={styles.name}>
             {name}
           </Typography>
-          <Typography variant='body2' color='text.secondary'>
-            Lorem ipsum dolor sit amet consecte tur adipiscing elit semper dalaracc lacus vel facilisis
-            volutpat est velitolm.
+          <Typography
+            variant='body2'
+            color='text.secondary'
+            className={styles.description}
+            title={description}
+          >
+            {description}
           </Typography>
         </CardContent>
       </CardActionArea>
       <CardActions>
         <PrimaryButton size='small' color='primary' onClick={redirectToProject}>
-          Learn More...
+          Learn More{' '}
+          <ArrowForwardIcon
+            fontSize={'small'}
+            sx={{
+              marginBottom: '-8px',
+            }}
+          />
         </PrimaryButton>
       </CardActions>
     </Card>
