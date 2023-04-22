@@ -21,8 +21,6 @@ export default function Projects() {
   const handleFilterChange = (event: any) => {
     setSearchTerm(event.target.value);
 
-    console.log(event);
-
     if (event.key === 'Enter') {
       setFilter(event.target.value);
     }
@@ -56,8 +54,8 @@ export default function Projects() {
         <Grid container spacing={2}>
           {projects &&
             projects.map((project: any) => (
-              <Grid key={project.project_id} item xs={4}>
-                <ProjectCard projectId={project.project_id} name={project.name} />
+              <Grid key={project.id} item xs={4}>
+                <ProjectCard projectId={project.id} name={project.name} description={project.description} />
               </Grid>
             ))}
         </Grid>

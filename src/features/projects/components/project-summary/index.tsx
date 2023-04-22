@@ -5,12 +5,11 @@ type Props = {
 };
 
 export default function ProjectSummary({project}: Props) {
-  console.log('summary', project);
-
+  const {name, description} = project;
   return (
-    <div>
-      <div>Project Title</div>
-      <div>Project Description</div>
+    <div className={styles.projectContainer}>
+      <div>Project {name}</div>
+      <div>Project {description}</div>
     </div>
   );
 }
