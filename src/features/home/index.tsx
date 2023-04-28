@@ -7,14 +7,19 @@ import Header from '../shared/components/header';
 import PrimaryButton from '../shared/components/primary-button';
 import GetInTouchSection from './components/get-in-touch-section';
 import styles from './styles.module.scss';
+import {UserData} from '../shared/types';
 
-export default function Home() {
+type Props = {
+  user: UserData | null;
+};
+
+export default function Home({user}: Props) {
   const router = useRouter();
 
   return (
     <Box sx={{backgroundColor: '#9795B5', height: '100%'}}>
       <div className={styles.mainHomeContainer}>
-        <Header />
+        <Header user={user} />
         <div className={styles.homeSection}>
           <h1>Join the Libera community</h1>
           <p>

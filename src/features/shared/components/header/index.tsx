@@ -5,18 +5,28 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import VerifiedIcon from '@mui/icons-material/Verified';
-import {serverHealthCheck} from '@/lib/utils/api-settings';
 import PrimaryButton from '../primary-button';
 import {useRouter} from 'next/router';
 import styles from './styles.module.scss';
+import {UserData} from '../../types';
+import {logOut} from '@/features/auth/service';
 
 const pages = ['Home', 'About', 'Projects', 'Our-Work'];
 
-function Header() {
+type Props = {
+  user: UserData | null;
+};
+
+function Header({user}: Props) {
   const router = useRouter();
 
-  const healthCheck = async () => {
-    await serverHealthCheck();
+  const handleAuthToggle = async () => {
+    if (user) {
+      await logOut();
+      router.push('/login');
+    } else {
+      router.push('/login');
+    }
   };
 
   return (
@@ -39,7 +49,7 @@ function Header() {
               textDecoration: 'none',
             }}
           >
-            LIBERA
+            LIBERA {user && `- ${user.name}`}
           </Typography>
 
           <Box sx={{flexGrow: 1, display: {xs: 'none', md: 'flex'}}}>
@@ -82,8 +92,8 @@ function Header() {
                 {page.split('-').join(' ')}
               </PrimaryButton>
             ))}
-            <PrimaryButton onClick={healthCheck} inverted>
-              Login
+            <PrimaryButton onClick={handleAuthToggle} inverted>
+              {user ? 'Logout' : 'Login'}
             </PrimaryButton>
             <PrimaryButton onClick={() => router.push('/our-work')}>Get Started</PrimaryButton>
           </Box>
