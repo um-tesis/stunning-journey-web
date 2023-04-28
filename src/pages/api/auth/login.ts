@@ -4,6 +4,7 @@ import {withIronSessionApiRoute} from 'iron-session/next';
 import {gql} from '@apollo/client';
 import {ironSessionOptions} from '@/lib/utils/iron-session';
 import client, {setClientToken} from '@/apollo-client';
+import {GENERAL_SERVER_ERROR, NO_CREDENTIALS} from '@/lib/utils/api-messages-helper';
 
 export default withIronSessionApiRoute(handler, ironSessionOptions);
 
@@ -12,7 +13,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
     const {email, password} = req.body;
     if (!email || !password) {
       res.status(400);
-      res.json({error: 'Missing credentials'});
+      res.json({error: NO_CREDENTIALS});
       return;
     }
     const LOGIN_QUERY = gql`
@@ -75,7 +76,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
     } catch (error: any) {
       console.log('ERROR >>>', error);
       res.status(500);
-      return res.json({error: error.message || 'Internal server error'});
+      return res.json({error: error.message || GENERAL_SERVER_ERROR});
     }
   }
 }
