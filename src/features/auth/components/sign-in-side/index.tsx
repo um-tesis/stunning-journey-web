@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useState} from 'react';
+import React, {useState} from 'react';
 import Avatar from '@mui/material/Avatar';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
@@ -18,6 +18,7 @@ import {useForm} from 'react-hook-form';
 import {toast} from 'react-hot-toast';
 import {logIn} from '../../service';
 import {useRouter} from 'next/router';
+import {GENERAL_SERVER_ERROR, SUCCESSFUL_GET_IN_TOUCH} from '@/lib/utils/api-messages-helper';
 
 type AuthForm = {
   email: string;
@@ -40,7 +41,7 @@ export default function SignInSide() {
     defaultValues: emptyForm,
   });
 
-  const sendGetInTouch = useAsync(async () => {
+  const loginRequest = useAsync(async () => {
     const formValues = form.getValues();
     await loginForm({
       variables: {
@@ -60,21 +61,21 @@ export default function SignInSide() {
     if (res.status === 200) {
       router.push('/home');
     } else {
-      toast('Internal Server Error: ' + res.response.status);
+      toast(GENERAL_SERVER_ERROR);
     }
   };
 
   // Effect to handle sendGetInTouch request status
   React.useEffect(() => {
-    if (sendGetInTouch.status === 'success') {
+    if (loginRequest.status === 'success') {
       form.reset(emptyForm);
-      toast.success('Thank you for your message!');
+      toast.success(SUCCESSFUL_GET_IN_TOUCH);
     }
-    if (sendGetInTouch.status === 'error') {
-      toast.error(sendGetInTouch.error);
+    if (loginRequest.status === 'error') {
+      toast.error(loginRequest.error);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [sendGetInTouch.status]);
+  }, [loginRequest.status]);
 
   function handleChange(event: any) {
     const {value, name} = event.target;
