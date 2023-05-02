@@ -88,30 +88,9 @@ export default function SignInSide() {
     <ThemeProvider theme={theme}>
       <Grid container component='main' sx={{height: '100vh', minHeight: '100vh'}}>
         <CssBaseline />
-        <Grid
-          item
-          xs={false}
-          sm={4}
-          md={7}
-          sx={{
-            backgroundImage: 'url(/collaboration.jpeg)',
-            backgroundRepeat: 'no-repeat',
-            backgroundColor: '#5d5a88',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-          }}
-        />
+        <Grid item xs={false} sm={4} md={7} className={styles.sideImageGrid} />
         <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
-          <Box
-            sx={{
-              my: 8,
-              mx: 4,
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-            }}
-            className={styles.form}
-          >
+          <Box my={8} mx={4} className={styles.form}>
             <Avatar sx={{m: 1, bgcolor: 'secondary.main'}}>
               <ArrowBack fontSize={'medium'} />
             </Avatar>
