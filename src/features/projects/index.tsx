@@ -1,7 +1,7 @@
 import {GET_PROJECTS} from '@/graphql/query/getProjects';
 import {useQuery} from '@apollo/client';
 import {Grid, Pagination} from '@mui/material';
-import {useMemo, useState} from 'react';
+import {ChangeEvent, useMemo, useState} from 'react';
 import ProjectCard from '../shared/components/project-card';
 import SearchInput from '../shared/components/search-input';
 import styles from './styles.module.scss';
@@ -9,8 +9,9 @@ import styles from './styles.module.scss';
 export default function Projects() {
   const [filter, setFilter] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
-  const variables = useMemo(() => ({page: 1, itemsPerPage: 9, filter}), [filter]);
-  const {data, loading, refetch} = useQuery(GET_PROJECTS, {
+  const [page, setPage] = useState(1);
+  const variables = useMemo(() => ({page, itemsPerPage: 9, filter}), [filter, page]);
+  const {data, loading} = useQuery(GET_PROJECTS, {
     variables,
   });
 
@@ -33,6 +34,10 @@ export default function Projects() {
   if (loading) {
     return null;
   }
+
+  const onChangePage = (_event: any, newPage: number) => {
+    setPage(newPage);
+  };
 
   return (
     <div className={styles.projectsContainer}>
@@ -59,7 +64,14 @@ export default function Projects() {
               </Grid>
             ))}
         </Grid>
-        {totalPages > 0 && <Pagination className={styles.pagination} count={totalPages} color='primary' />}
+        {totalPages > 0 && (
+          <Pagination
+            className={styles.pagination}
+            count={totalPages}
+            onChange={onChangePage}
+            color='primary'
+          />
+        )}
       </div>
     </div>
   );
