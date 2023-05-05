@@ -1,0 +1,64 @@
+.sectionContent {
+  position: relative;
+  height: 705px;
+  max-width: 100%;
+  background-color: #fff;
+  padding-top: 56px;
+
+  .sectionTitle {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 42px;
+    text-align: center;
+    color: #575484;
+  }
+
+  .sectionDescription {
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 26px;
+    text-align: center;
+    color: #adabc3;
+  }
+
+  .resultsContainer {
+    margin-top: 54px;
+
+    .cardIcon {
+      width: 60px;
+      height: 60px;
+      padding: 10px;
+      margin-bottom: 28px;
+      color: #575484;
+      background: #f9f9ff;
+      border-radius: 20px;
+    }
+  }
+
+  .anualDonations {
+    border-radius: 20px;
+    background-image: url('/ayudar.png');
+    margin-right: 30px;
+    background-repeat: no-repeat;
+    height: 450px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 40px 30px;
+
+    .description {
+      font-weight: 700;
+      font-size: 36px;
+      line-height: 46px;
+      color: #ffffff;
+    }
+
+    .number {
+      font-weight: 700;
+      font-size: 72px;
+      line-height: 80px;
+      color: #ffffff;
+    }
+  }
+}

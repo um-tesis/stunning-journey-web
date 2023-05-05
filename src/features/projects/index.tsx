@@ -9,8 +9,9 @@ import styles from './styles.module.scss';
 export default function Projects() {
   const [filter, setFilter] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
-  const variables = useMemo(() => ({page: 1, itemsPerPage: 9, filter}), [filter]);
-  const {data, loading, refetch} = useQuery(GET_PROJECTS, {
+  const [page, setPage] = useState(1);
+  const variables = useMemo(() => ({page, itemsPerPage: 9, filter}), [filter, page]);
+  const {data, loading} = useQuery(GET_PROJECTS, {
     variables,
   });
 
@@ -34,13 +35,16 @@ export default function Projects() {
     return null;
   }
 
+  const onChangePage = (_event: any, newPage: number) => {
+    setPage(newPage);
+  };
+
   return (
     <div className={styles.projectsContainer}>
       <div className={styles.browseSection}>
         <div className={styles.title}>Browse Libera&apos;s projects</div>
         <div className={styles.subtitle}>
-          Lorem ipsum dolor sit amet consectetur adipiscing elit semper dalar elementum tempus hac tellus
-          libero accumsan.
+          Find the project that suits you best and start making a difference today!
         </div>
         <div className={styles.searchBox}>
           <SearchInput
@@ -59,7 +63,14 @@ export default function Projects() {
               </Grid>
             ))}
         </Grid>
-        {totalPages > 0 && <Pagination className={styles.pagination} count={totalPages} color='primary' />}
+        {totalPages > 0 && (
+          <Pagination
+            className={styles.pagination}
+            count={totalPages}
+            onChange={onChangePage}
+            color='primary'
+          />
+        )}
       </div>
     </div>
   );

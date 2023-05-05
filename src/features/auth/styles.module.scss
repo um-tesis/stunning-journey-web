@@ -1,0 +1,30 @@
+.auth {
+  width: 1220px;
+  height: 100%;
+  margin: 7% auto;
+  border-radius: 25px;
+
+  background: #f2f1fa;
+  .title {
+    font-weight: 700;
+    font-size: 56px;
+    line-height: 66px;
+    color: #5d5a88;
+  }
+  .subtitle {
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 30px;
+    color: #9795b5;
+  }
+  .formContainer {
+    display: flex;
+    flex-direction: column;
+    margin-top: 40px;
+    & > * {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 40px;
+    }
+  }
+}

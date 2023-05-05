@@ -31,7 +31,7 @@ export default function ProjectCard({projectId, name, description}: ProjectCardP
           alt='photo'
           sx={{borderRadius: '10px'}}
         />
-        <CardContent>
+        <CardContent className={styles.content}>
           <Typography gutterBottom variant='h6' component='div' className={styles.name}>
             {name}
           </Typography>
@@ -45,7 +45,7 @@ export default function ProjectCard({projectId, name, description}: ProjectCardP
           </Typography>
         </CardContent>
       </CardActionArea>
-      <CardActions>
+      <CardActions className={styles.actions}>
         <PrimaryButton size='small' color='primary' onClick={redirectToProject}>
           Learn More{' '}
           <ArrowForwardIcon
