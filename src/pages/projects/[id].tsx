@@ -6,8 +6,16 @@ import {useQuery} from '@apollo/client';
 import {GET_PROJECT} from '@/graphql/query/getProject';
 import styles from './styles.module.scss';
 import {useRouter} from 'next/router';
+import {GetServerSidePropsContext} from 'next';
+import {withIronSessionSsr} from 'iron-session/next';
+import {ironSessionOptions} from '@/lib/utils/iron-session';
+import {UserData} from '@/features/shared/types';
 
-export default function ProjectPage() {
+type Props = {
+  user: UserData | null;
+};
+
+export default function ProjectPage({user}: Props) {
   const router = useRouter();
   const id = +router.query.id!;
 
@@ -19,9 +27,19 @@ export default function ProjectPage() {
 
   return (
     <Container className={styles.pageContainer}>
-      <Header />
+      <Header user={user} />
       <ProjectSummary project={data.project} />
       <Footer />
     </Container>
   );
 }
+
+export const getServerSideProps = withIronSessionSsr(async function (ctx: GetServerSidePropsContext) {
+  const userData = ctx.req.session.user as UserData;
+
+  return {
+    props: {
+      user: userData ?? null,
+    },
+  };
+}, ironSessionOptions);
