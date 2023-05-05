@@ -1,7 +1,7 @@
 import {GET_PROJECTS} from '@/graphql/query/getProjects';
 import {useQuery} from '@apollo/client';
 import {Grid, Pagination} from '@mui/material';
-import {ChangeEvent, useMemo, useState} from 'react';
+import {useMemo, useState} from 'react';
 import ProjectCard from '../shared/components/project-card';
 import SearchInput from '../shared/components/search-input';
 import styles from './styles.module.scss';
@@ -44,8 +44,7 @@ export default function Projects() {
       <div className={styles.browseSection}>
         <div className={styles.title}>Browse Libera&apos;s projects</div>
         <div className={styles.subtitle}>
-          Lorem ipsum dolor sit amet consectetur adipiscing elit semper dalar elementum tempus hac tellus
-          libero accumsan.
+          Find the project that suits you best and start making a difference today!
         </div>
         <div className={styles.searchBox}>
           <SearchInput

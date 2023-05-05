@@ -8,6 +8,7 @@ import PrimaryButton from '../shared/components/primary-button';
 import GetInTouchSection from './components/get-in-touch-section';
 import styles from './styles.module.scss';
 import {UserData} from '../shared/types';
+import ResultsSection from './components/results-section';
 
 type Props = {
   user: UserData | null;
@@ -15,6 +16,14 @@ type Props = {
 
 export default function Home({user}: Props) {
   const router = useRouter();
+
+  const results = {
+    anualDonations: 11111,
+    raisedMoney: 11111,
+    donators: 123,
+    activeProjects: 123,
+    collaboratorsInvolved: 123,
+  };
 
   return (
     <Box sx={{backgroundColor: '#9795B5', height: '100%'}}>
@@ -33,16 +42,17 @@ export default function Home({user}: Props) {
             <PrimaryButton onClick={() => router.push('/about')}>More Info</PrimaryButton>
           </div>
         </div>
+        <ResultsSection user={user} results={results} />
         <div className={classNamesFilter(styles.homeSection, styles.homeSecondSection)}>
           <Image src='/collaboration.jpeg' width={500} height={350} alt='image' />
           <div className={styles.sectionRightContent}>
             <h1>Create your account today and get started for free!</h1>
             <p>Together we can unleash the potential of charitable organizations with Libera.</p>
             <div className={styles.buttonsContainer}>
-              <PrimaryButton inverted onClick={() => {}}>
+              <PrimaryButton inverted onClick={() => router.push('/our-work')}>
                 Get Started
               </PrimaryButton>
-              <PrimaryButton onClick={() => {}}>About Us</PrimaryButton>
+              <PrimaryButton onClick={() => router.push('/about')}>About Us</PrimaryButton>
             </div>
           </div>
         </div>

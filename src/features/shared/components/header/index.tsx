@@ -95,7 +95,6 @@ function Header({user}: Props) {
             <PrimaryButton onClick={handleAuthToggle} inverted>
               {user ? 'Logout' : 'Login'}
             </PrimaryButton>
-            <PrimaryButton onClick={() => router.push('/our-work')}>Get Started</PrimaryButton>
           </Box>
         </Toolbar>
       </Container>

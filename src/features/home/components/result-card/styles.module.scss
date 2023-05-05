@@ -1,0 +1,25 @@
+.result {
+  border-radius: 20px;
+  border: 1px solid #d4d2e3;
+  height: 208px;
+  margin-bottom: 24px;
+  margin-right: 16px;
+  padding: 24px 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+
+  .resultDescription {
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 20px;
+    color: #575484;
+  }
+
+  .resultNumber {
+    font-weight: 700;
+    font-size: 44px;
+    line-height: 50px;
+    color: #575484;
+  }
+}
