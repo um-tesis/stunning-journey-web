@@ -11,14 +11,16 @@ import styles from './styles.module.scss';
 import {UserData} from '../../types';
 import {logOut} from '@/features/auth/service';
 
-const pages = ['Home', 'About', 'Projects', 'Our-Work'];
-
 type Props = {
   user: UserData | null;
 };
 
 function Header({user}: Props) {
   const router = useRouter();
+
+  const pages = user
+    ? ['Home', 'Our-Projects', 'Donators', 'Donations']
+    : ['Home', 'About', 'Projects', 'Our-Work'];
 
   const handleAuthToggle = async () => {
     if (user) {

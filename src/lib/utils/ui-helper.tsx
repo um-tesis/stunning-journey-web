@@ -1,3 +1,5 @@
+import {DateTime} from 'luxon';
+
 export const classNamesFilter = (...classes: any[]) => {
   return classes.filter(Boolean).join(' ');
 };
@@ -15,4 +17,8 @@ export const toastOptions = {
     background: '#000',
     color: '#FFF',
   },
+};
+
+export const convertDateFromIso = (date: string) => {
+  return DateTime.fromISO(date).toFormat('dd/MM/yyyy');
 };
