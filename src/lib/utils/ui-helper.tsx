@@ -22,3 +22,7 @@ export const toastOptions = {
 export const convertDateFromIso = (date: string) => {
   return DateTime.fromISO(date).toFormat('dd/MM/yyyy');
 };
+
+export const convertJsDateToIso = (date: Date) => {
+  return DateTime.fromJSDate(date).toISO();
+};

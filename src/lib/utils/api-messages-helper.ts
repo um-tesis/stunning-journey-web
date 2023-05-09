@@ -6,3 +6,7 @@ export const NO_CREDENTIALS = 'Missing credentials';
 
 export const SUCCESSFUL_GET_IN_TOUCH =
   'Thank you for getting in touch with us. We will get back to you shortly.';
+
+export const SUCCESSFUL_LOGIN = 'Login successful';
+
+export const PROJECT_CREATED = 'Project created successfully!';

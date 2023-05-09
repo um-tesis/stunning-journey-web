@@ -7,17 +7,22 @@ import {UserData} from '../shared/types';
 import AddIcon from '@mui/icons-material/Add';
 import CustomTable from '../shared/components/custom-table';
 import {convertDateFromIso} from '@/lib/utils/ui-helper';
+import AddProjectDrawer from './components/add-project-drawer';
+import {useRouter} from 'next/router';
 
 type Props = {
   user: UserData;
 };
 
 export default function OurProjects({user}: Props) {
+  const router = useRouter();
+  const ITEMS_PER_PAGE = 5;
+  const [isAddProjectOpen, setIsAddProjectOpen] = useState(false);
   const [page, setPage] = useState(1);
   const variables = useMemo(
-    () => ({page, itemsPerPage: 5, filter: '', organizationId: user.organizationId}),
+    () => ({page, itemsPerPage: ITEMS_PER_PAGE, filter: '', organizationId: user.organizationId}),
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [page]
+    [page, isAddProjectOpen]
   );
   const {data, loading} = useQuery(GET_OUR_PROJECTS, {
     variables,
@@ -25,7 +30,7 @@ export default function OurProjects({user}: Props) {
 
   const projects = data?.organizationProjects.projects;
 
-  const totalPages = Math.ceil(data?.organizationProjects.total / 9);
+  const totalPages = Math.ceil(data?.organizationProjects.total / ITEMS_PER_PAGE);
 
   if (loading) {
     return null;
@@ -43,14 +48,23 @@ export default function OurProjects({user}: Props) {
     setPage(newPage);
   };
 
+  const closeAddProjectDrawer = () => {
+    setIsAddProjectOpen(false);
+  };
+
+  const goToProject = (row: any) => {
+    router.push(`/projects/${row.id}`);
+  };
+
   return (
     <div className={styles.ourProjectsContainer}>
       <div className={styles.title}>
-        Projects <AddIcon className={styles.addButton} />
+        Our Projects <AddIcon className={styles.addButton} onClick={() => setIsAddProjectOpen(true)} />
       </div>
       <CustomTable
         data={mappedProjects}
         columnLabels={['Name', 'Field', 'Start Date', 'End Date', 'Monetary Objective']}
+        onClickRow={goToProject}
       />
       {totalPages > 0 && (
         <Pagination
@@ -59,6 +73,9 @@ export default function OurProjects({user}: Props) {
           onChange={onChangePage}
           color='primary'
         />
+      )}
+      {isAddProjectOpen && (
+        <AddProjectDrawer onClose={closeAddProjectDrawer} organizationId={user.organizationId} />
       )}
     </div>
   );

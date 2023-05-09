@@ -1,0 +1,131 @@
+@mixin shrinkLabel {
+  bottom: 2.325rem !important;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.container {
+  height: fit-content;
+  padding: 0.525rem 0 1.35rem 0;
+
+  &.sm {
+    width: 6.9rem;
+  }
+
+  &.md {
+    width: 10.5rem;
+  }
+
+  &.lg {
+    width: 21.3rem;
+  }
+
+  &.xl {
+    width: 30rem;
+  }
+
+  .group {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+
+    height: 3.675rem;
+    width: 100%;
+
+    .input {
+      width: 100%;
+      background: transparent;
+      border: none;
+      border-bottom: 0.075rem solid gray;
+      padding: 0 0 0.525rem 0;
+
+      color: black;
+      caret-color: blue;
+      font-size: 1.2rem;
+      line-height: 1.65rem;
+      font-family: 'Aeonik', sans-serif;
+      overflow: visible;
+
+      &.shortInput {
+        padding-right: 1.8rem;
+      }
+
+      &.error {
+        border-bottom: 0.075rem solid red !important;
+      }
+
+      &.disabled {
+        color: gray;
+      }
+
+      &:focus {
+        outline: none;
+        border-bottom: 0.075rem solid blue;
+
+        ~ .label {
+          @include shrinkLabel();
+        }
+
+        ~ .unitLabel {
+          opacity: 1;
+        }
+      }
+    }
+
+    .label {
+      pointer-events: none;
+      position: absolute;
+      bottom: 1.2rem;
+
+      font-family: 'Aeonik';
+      color: gray;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 1.65rem;
+      font-size: 1.2rem;
+
+      transition: 225ms ease all;
+      &.shrink {
+        @include shrinkLabel();
+      }
+    }
+
+    .optionalLabel {
+      pointer-events: none;
+      position: absolute;
+      bottom: -1.35rem;
+
+      color: gray;
+      line-height: 1.35rem;
+      font-size: 0.9rem;
+    }
+
+    .errorLabel {
+      pointer-events: none;
+      width: max-content;
+      position: absolute;
+      bottom: -1.35rem;
+
+      color: black;
+      line-height: 1.35rem;
+      font-size: 0.9rem;
+    }
+
+    .unitLabel {
+      transition: 225ms ease all;
+      pointer-events: none;
+      position: absolute;
+      right: 0;
+      bottom: 0.57rem;
+
+      color: gray;
+      line-height: 1.65rem;
+      font-size: 1.2rem;
+      opacity: 0;
+
+      &.show {
+        opacity: 1;
+      }
+    }
+  }
+}

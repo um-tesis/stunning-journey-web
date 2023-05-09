@@ -1,7 +1,6 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Avatar from '@mui/material/Avatar';
 import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
@@ -17,7 +16,8 @@ import {useForm} from 'react-hook-form';
 import {toast} from 'react-hot-toast';
 import {logIn} from '../../service';
 import {useRouter} from 'next/router';
-import {GENERAL_SERVER_ERROR, SUCCESSFUL_GET_IN_TOUCH} from '@/lib/utils/api-messages-helper';
+import {GENERAL_SERVER_ERROR, SUCCESSFUL_LOGIN} from '@/lib/utils/api-messages-helper';
+import FormInput from '@/features/shared/components/form-input';
 
 type AuthForm = {
   email: string;
@@ -64,11 +64,11 @@ export default function SignInSide() {
     }
   };
 
-  // Effect to handle sendGetInTouch request status
-  React.useEffect(() => {
+  // Effect to handle login request request status
+  useEffect(() => {
     if (loginRequest.status === 'success') {
       form.reset(emptyForm);
-      toast.success(SUCCESSFUL_GET_IN_TOUCH);
+      toast.success(SUCCESSFUL_LOGIN);
     }
     if (loginRequest.status === 'error') {
       toast.error(loginRequest.error);
@@ -98,31 +98,20 @@ export default function SignInSide() {
               Libera
             </Typography>
             <form className={styles.form}>
-              <TextField
-                margin='normal'
-                fullWidth
-                id='email'
-                label='Email Address'
-                variant='standard'
+              <FormInput
                 name='email'
-                autoComplete='email'
-                autoFocus
-                className={styles.input}
+                label='Email'
                 value={watch().email}
-                onChange={handleChange}
+                handleChange={handleChange}
+                className={styles.input}
               />
-              <TextField
-                margin='normal'
-                fullWidth
+              <FormInput
                 name='password'
                 label='Password'
-                variant='standard'
                 type='password'
-                id='password'
-                autoComplete='current-password'
-                className={styles.input}
                 value={watch().password}
-                onChange={handleChange}
+                handleChange={handleChange}
+                className={styles.input}
               />
               <PrimaryButton onClick={handleCredentialsSubmit} fullWidth auxClassNames={styles.submitButton}>
                 Sign in
