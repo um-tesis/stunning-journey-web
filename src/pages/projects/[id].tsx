@@ -10,6 +10,9 @@ import {GetServerSidePropsContext} from 'next';
 import {withIronSessionSsr} from 'iron-session/next';
 import {ironSessionOptions} from '@/lib/utils/iron-session';
 import {UserData} from '@/features/shared/types';
+import {SYSTEM_ROLES} from '@/lib/utils/constants';
+import {useState} from 'react';
+import UpdateProjectDrawer from '@/features/our-projects/components/update-project-drawer';
 
 type Props = {
   user: UserData | null;
@@ -19,7 +22,18 @@ export default function ProjectPage({user}: Props) {
   const router = useRouter();
   const id = +router.query.id!;
 
-  const {data, loading} = useQuery(GET_PROJECT, {
+  const [isUpdateProjectDrawerOpen, setIsUpdateProjectDrawerOpen] = useState<boolean>(false);
+
+  const handleCloseUpdateProjectDrawer = () => {
+    setIsUpdateProjectDrawerOpen(false);
+    refetch();
+  };
+
+  const handleOpenUpdateProjectDrawer = () => {
+    setIsUpdateProjectDrawerOpen(true);
+  };
+
+  const {data, loading, refetch} = useQuery(GET_PROJECT, {
     variables: {id},
   });
 
@@ -28,7 +42,21 @@ export default function ProjectPage({user}: Props) {
   return (
     <Container className={styles.pageContainer}>
       <Header user={user} />
-      <ProjectSummary project={data.project} />
+
+      {user?.role === SYSTEM_ROLES.ORGADMIN ? (
+        <>
+          <ProjectSummary
+            project={data.project}
+            handleOpenUpdateProjectDrawer={handleOpenUpdateProjectDrawer}
+          />
+          {isUpdateProjectDrawerOpen && (
+            <UpdateProjectDrawer project={data.project} onClose={handleCloseUpdateProjectDrawer} />
+          )}
+        </>
+      ) : (
+        <div>Not Admin view</div>
+      )}
+
       <Footer />
     </Container>
   );

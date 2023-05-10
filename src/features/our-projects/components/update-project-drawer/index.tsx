@@ -1,7 +1,7 @@
 import Drawer from '@/features/shared/components/drawer';
 import {useForm} from 'react-hook-form';
 import {useEffect, useState} from 'react';
-import {ProjectOut} from '@/features/projects/types';
+import {Project} from '@/features/projects/types';
 import PrimaryButton from '@/features/shared/components/primary-button';
 import styles from './styles.module.scss';
 import FormInput from '@/features/shared/components/form-input';
@@ -11,37 +11,39 @@ import {convertJsDateToIso} from '@/lib/utils/ui-helper';
 import ImageInput from '@/features/shared/components/image-input';
 import useAsync from '@/lib/hooks/useAsync';
 import {useMutation} from '@apollo/client';
-import {CREATE_PROJECT} from '@/graphql/mutation/createProject';
 import {toast} from 'react-hot-toast';
 import {PROJECT_CREATED} from '@/lib/utils/api-messages-helper';
 import Checkbox from '@mui/material/Checkbox';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
+import {UPDATE_PROJECT} from '@/graphql/mutation/updateProject';
 
 type Props = {
   onClose: () => void;
-  organizationId: number;
+  project: any;
 };
 
-export default function AddProjectDrawer({onClose, organizationId}: Props) {
+export default function UpdateProjectDrawer({onClose, project}: Props) {
   const [selectedDate, setSelectedDate] = useState<Date | undefined>();
   const [_, setDateRange] = useState([new Date(), new Date()]);
-  const [createProject, {}] = useMutation(CREATE_PROJECT);
+  const [updateProject, {}] = useMutation(UPDATE_PROJECT);
 
-  const emptyProject: ProjectOut = {
-    name: '',
-    description: '',
-    field: '',
-    location: '',
-    startDate: '',
-    endDate: '',
-    organizationId,
-    acceptsVolunteers: false,
-    coverPhoto: '',
-    photoGallery: [],
-    video: '',
+  // we do not use destructuring here because we project has some fields that are not in Project but come from the query
+  const emptyProject: Project = {
+    id: project.id,
+    name: project.name,
+    description: project.description,
+    field: project.field,
+    location: project.location,
+    startDate: project.startDate,
+    endDate: project.endDate,
+    organizationId: project.organizationId,
+    acceptsVolunteers: project.acceptsVolunteers,
+    coverPhoto: project.coverPhoto,
+    photoGallery: project.photoGallery,
+    video: project.video,
   };
-  const form = useForm<ProjectOut>({
+  const form = useForm<Project>({
     defaultValues: emptyProject,
   });
   const {
@@ -75,11 +77,12 @@ export default function AddProjectDrawer({onClose, organizationId}: Props) {
     form.reset();
   }, [form]);
 
-  const createProjectRequest = useAsync(async () => {
+  const updateProjectRequest = useAsync(async () => {
     const formValues = form.getValues();
-    await createProject({
+    await updateProject({
       variables: {
         input: {
+          id: formValues.id,
           name: formValues.name,
           description: formValues.description,
           field: formValues.field,
@@ -97,30 +100,30 @@ export default function AddProjectDrawer({onClose, organizationId}: Props) {
   }, false);
 
   const onSubmitProject = async () => {
-    await createProjectRequest.execute();
+    await updateProjectRequest.execute();
   };
 
   // Effect to handle login request request status
   useEffect(() => {
-    if (createProjectRequest.status === 'success') {
+    if (updateProjectRequest.status === 'success') {
       form.reset(emptyProject);
       toast.success(PROJECT_CREATED);
       onClose();
     }
-    if (createProjectRequest.status === 'error') {
-      toast.error(createProjectRequest.error);
+    if (updateProjectRequest.status === 'error') {
+      toast.error(updateProjectRequest.error);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [createProjectRequest.status]);
+  }, [updateProjectRequest.status]);
 
-  const isAddDisabled = () => {
+  const isUpdateDisabled = () => {
     const formValues = form.getValues();
     return formValues.name === '' || formValues.description === '' || formValues.field === '';
   };
 
   return (
     <Drawer isOpen={true} onClose={onClose}>
-      <div className={styles.title}>New Project</div>
+      <div className={styles.title}>Update Project</div>
       <form className={styles.form}>
         <FormInput
           name='name'
@@ -206,9 +209,9 @@ export default function AddProjectDrawer({onClose, organizationId}: Props) {
           onClick={onSubmitProject}
           fullWidth
           auxClassNames={styles.submitButton}
-          disabled={isAddDisabled()}
+          disabled={isUpdateDisabled()}
         >
-          Add
+          Update
         </PrimaryButton>
       </form>
     </Drawer>

@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-css-tags */
 import './styles.scss';
 import Head from 'next/head';
 import type {AppProps} from 'next/app';
@@ -14,7 +15,9 @@ export default function MyApp({Component, pageProps}: AppProps) {
     <div id='portal'>
       <Head>
         <title>Libera</title>
+        <link rel='stylesheet' href='/css/video-react.css' />
       </Head>
+
       <ThemeProvider theme={theme}>
         <Component {...pageProps} />
       </ThemeProvider>

@@ -1,0 +1,5 @@
+export const SYSTEM_ROLES = {
+  SYSADMIN: 'SYSADMIN',
+  ORGADMIN: 'ORGADMIN',
+  USER: 'USER',
+};

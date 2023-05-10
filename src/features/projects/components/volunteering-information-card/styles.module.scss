@@ -1,0 +1,26 @@
+.volunteeringData {
+  margin: 1rem;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+  padding: 2rem;
+
+  .title {
+    font-weight: bold;
+    color: gray;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 40px;
+    margin-bottom: 30px;
+
+    .editIcon {
+      cursor: pointer;
+      margin-bottom: -2px;
+      margin-left: 8px;
+    }
+  }
+
+  .pagination {
+    display: flex;
+    justify-content: right;
+    margin-top: 60px;
+  }
+}
