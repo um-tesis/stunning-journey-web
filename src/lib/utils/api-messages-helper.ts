@@ -10,3 +10,9 @@ export const SUCCESSFUL_GET_IN_TOUCH =
 export const SUCCESSFUL_LOGIN = 'Login successful';
 
 export const PROJECT_CREATED = 'Project created successfully!';
+
+export const SUCCESSFUL_VOLUNTEERS_BROADCAST = 'Project Volunteers emailed successfully!';
+
+export const SUCCESSFUL_PROJECT_HOURS_LOAD = 'Project hours loaded successfully!';
+
+export const SUCCESSFUL_NEW_VOLUNTEER = 'Successfully added and assigned volunteer to project!';

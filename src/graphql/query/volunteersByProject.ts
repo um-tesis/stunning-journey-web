@@ -6,6 +6,7 @@ export const GET_PROJECT_VOLUNTEERS = gql`
       total
       volunteers {
         user {
+          id
           name
           email
           phone

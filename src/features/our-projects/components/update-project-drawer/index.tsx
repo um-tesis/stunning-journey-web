@@ -1,8 +1,6 @@
-import Drawer from '@/features/shared/components/drawer';
 import {useForm} from 'react-hook-form';
 import {useEffect, useState} from 'react';
 import {Project} from '@/features/projects/types';
-import PrimaryButton from '@/features/shared/components/primary-button';
 import styles from './styles.module.scss';
 import FormInput from '@/features/shared/components/form-input';
 import Calendar from 'react-calendar';
@@ -17,6 +15,7 @@ import Checkbox from '@mui/material/Checkbox';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import {UPDATE_PROJECT} from '@/graphql/mutation/updateProject';
+import FormDrawer from '@/features/shared/components/form-drawer';
 
 type Props = {
   onClose: () => void;
@@ -122,98 +121,84 @@ export default function UpdateProjectDrawer({onClose, project}: Props) {
   };
 
   return (
-    <Drawer isOpen={true} onClose={onClose}>
-      <div className={styles.title}>Update Project</div>
-      <form className={styles.form}>
-        <FormInput
-          name='name'
-          label='Name'
-          handleChange={handleChange}
-          value={watch().name}
-          error={errors.name}
+    <FormDrawer
+      isOpen={true}
+      onCloseDrawer={onClose}
+      canSubmit={!isUpdateDisabled()}
+      onSubmit={onSubmitProject}
+      title='Update Project'
+      submitButtonText='Update'
+    >
+      <FormInput
+        name='name'
+        label='Name'
+        handleChange={handleChange}
+        value={watch().name}
+        error={errors.name}
+      />
+
+      <FormInput
+        name='field'
+        label='Field'
+        handleChange={handleChange}
+        value={watch().field}
+        error={errors.field}
+      />
+
+      <FormInput
+        name='description'
+        label='Description'
+        handleChange={handleChange}
+        value={watch().description}
+        error={errors.description}
+      />
+
+      <FormInput
+        name='location'
+        label='Location'
+        handleChange={handleChange}
+        value={watch().location}
+        error={errors.location}
+        optional
+      />
+
+      <br />
+
+      <FormGroup>
+        <FormControlLabel
+          control={
+            <Checkbox name='acceptsVolunteers' checked={watch().acceptsVolunteers} onChange={handleChange} />
+          }
+          className={styles.checkbox}
+          label='Does this project accepts volunteers?'
         />
+      </FormGroup>
 
-        <FormInput
-          name='field'
-          label='Field'
-          handleChange={handleChange}
-          value={watch().field}
-          error={errors.field}
-        />
+      <br />
+      <div className={styles.calendarDescription}>Chose the start and end date of the project (optional)</div>
 
-        <FormInput
-          name='description'
-          label='Description'
-          handleChange={handleChange}
-          value={watch().description}
-          error={errors.description}
-        />
+      <Calendar selectRange={true} onChange={onSelectDateRange} value={selectedDate} />
 
-        <FormInput
-          name='location'
-          label='Location'
-          handleChange={handleChange}
-          value={watch().location}
-          error={errors.location}
-          optional
-        />
+      <br />
+      <br />
 
-        <br />
+      <ImageInput
+        imageUrl={watch().coverPhoto}
+        onChange={handleCoverPhotoChange}
+        label='Cover Photo (Optional)'
+      />
 
-        <FormGroup>
-          <FormControlLabel
-            control={
-              <Checkbox
-                name='acceptsVolunteers'
-                checked={watch().acceptsVolunteers}
-                onChange={handleChange}
-              />
-            }
-            className={styles.checkbox}
-            label='Does this project accepts volunteers?'
-          />
-        </FormGroup>
+      <br />
+      <br />
 
-        <br />
-        <div className={styles.calendarDescription}>
-          Chose the start and end date of the project (optional)
-        </div>
-
-        <Calendar selectRange={true} onChange={onSelectDateRange} value={selectedDate} />
-
-        <br />
-        <br />
-
-        <ImageInput
-          imageUrl={watch().coverPhoto}
-          onChange={handleCoverPhotoChange}
-          label='Cover Photo (Optional)'
-        />
-
-        <br />
-        <br />
-
-        <FormInput
-          name='video'
-          label='Youtube Video'
-          handleChange={handleChange}
-          value={watch().video}
-          error={errors.video}
-          optional
-        />
-
-        <br />
-        <br />
-
-        <PrimaryButton
-          onClick={onSubmitProject}
-          fullWidth
-          auxClassNames={styles.submitButton}
-          disabled={isUpdateDisabled()}
-        >
-          Update
-        </PrimaryButton>
-      </form>
-    </Drawer>
+      <FormInput
+        name='video'
+        label='Youtube Video'
+        handleChange={handleChange}
+        value={watch().video}
+        error={errors.video}
+        optional
+      />
+    </FormDrawer>
   );
 }

@@ -28,4 +28,9 @@ body {
     display: flex;
     flex-direction: column;
   }
+
+  // This is set to be able to use a Material UI Menu inside a Drawer
+  .MuiMenu-root {
+    z-index: 100001;
+  }
 }

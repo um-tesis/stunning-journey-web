@@ -8,13 +8,15 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  text-align: center;
+
   height: 528px;
 
   .title {
     font-weight: 700;
     font-size: 28px;
     line-height: 38px;
-    text-align: center;
     color: #5d5a88;
   }
 
@@ -23,9 +25,9 @@
     font-weight: 400;
     font-size: 18px;
     line-height: 30px;
-    text-align: center;
     color: #9795b5;
-    margin-top: 12px;
+    margin: 12px auto 0 auto;
+    text-align: center;
   }
 
   .subscription {
@@ -33,6 +35,8 @@
     justify-content: space-between;
     align-items: center;
     width: 450px;
+
+    margin: 0 auto;
     margin-top: 40px;
 
     input {
@@ -46,7 +50,8 @@
   }
   .socials {
     display: flex;
-    margin-top: 50px;
+    margin: 50px auto;
+    width: 300px;
     margin-bottom: 60px;
 
     svg {
@@ -64,6 +69,7 @@
   hr {
     width: 1000px;
     border: 1px solid #e7e6f2;
+    margin: 0 auto;
   }
 
   .copyright {
@@ -73,5 +79,6 @@
     text-align: center;
     color: #9795b5 !important;
     margin-bottom: 30px;
+    margin-top: 10px;
   }
 }

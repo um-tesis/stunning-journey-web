@@ -58,16 +58,19 @@ export default function CustomTable({data, columnLabels, onClickRow}: Props) {
               className={styles.data}
               onClick={() => handleRowClick(index)}
             >
-              {getObjectKeys(row).map((key) => (
-                <TableCell
-                  key={key}
-                  component={key === columnLabels[0] ? 'th' : 'td'}
-                  scope={key === columnLabels[0] ? 'row' : undefined}
-                  align='left'
-                >
-                  {row[key] || '-'}
-                </TableCell>
-              ))}
+              {getObjectKeys(row).map((key) => {
+                if (key === 'id') return null; // Skip rendering the table cell for the 'id' key
+                return (
+                  <TableCell
+                    key={key}
+                    component={key === columnLabels[0] ? 'th' : 'td'}
+                    scope={key === columnLabels[0] ? 'row' : undefined}
+                    align='left'
+                  >
+                    {row[key] || '-'}
+                  </TableCell>
+                );
+              })}
             </TableRow>
           ))}
         </TableBody>

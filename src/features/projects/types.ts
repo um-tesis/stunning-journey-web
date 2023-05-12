@@ -14,3 +14,15 @@ export type Project = {
 };
 
 export type ProjectOut = Omit<Project, 'id'>;
+
+export type VolunteersEmail = {
+  projectId: number;
+  subject: string;
+  body: string;
+};
+
+export type ProjectHours = {
+  projectId: number;
+  userId: number;
+  hours: number;
+};

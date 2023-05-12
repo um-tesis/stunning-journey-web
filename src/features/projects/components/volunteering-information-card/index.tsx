@@ -1,27 +1,35 @@
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
-import EditIcon from '@mui/icons-material/Edit';
+import AddIcon from '@mui/icons-material/Add';
 import styles from './styles.module.scss';
 import {useQuery} from '@apollo/client';
 import {GET_PROJECT_VOLUNTEERS} from '@/graphql/query/volunteersByProject';
 import {Pagination} from '@mui/material';
 import {useMemo, useState} from 'react';
 import CustomTable from '@/features/shared/components/custom-table';
+import PrimaryButton from '@/features/shared/components/primary-button';
+import EmailVolunteersDrawer from '../email-volunteers-drawer';
+import LoadHoursDrawer from '../load-hours-drawer';
+import AddVolunteerDrawer from '../add-volunteer-drawer';
 
 type Props = {
   projectId: number;
+  organizationId: number;
 };
 
-export default function VolunteeringInformationCard({projectId}: Props) {
+export default function VolunteeringInformationCard({projectId, organizationId}: Props) {
   const ITEMS_PER_PAGE = 5;
+  const [showEmailVolunteersDrawer, setShowEmailVolunteersDrawer] = useState(false);
+  const [showLoadHoursDrawer, setShowLoadHoursDrawer] = useState(false);
+  const [showAddVolunteerDrawer, setShowAddVolunteerDrawer] = useState(false);
   const [page, setPage] = useState(1);
   const variables = useMemo(
     () => ({page, itemsPerPage: ITEMS_PER_PAGE, filter: '', projectId}),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [page]
   );
-  const {data, loading} = useQuery(GET_PROJECT_VOLUNTEERS, {
+  const {data, loading, refetch} = useQuery(GET_PROJECT_VOLUNTEERS, {
     variables,
   });
 
@@ -42,23 +50,76 @@ export default function VolunteeringInformationCard({projectId}: Props) {
     };
   });
 
+  const handleOpenEmailVolunteersDrawer = () => {
+    setShowEmailVolunteersDrawer(true);
+  };
+
+  const handleCloseEmailVolunteersDrawer = () => {
+    setShowEmailVolunteersDrawer(false);
+  };
+
+  const handleOpenLoadHoursDrawer = () => {
+    setShowLoadHoursDrawer(true);
+  };
+
+  const handleCloseLoadHoursDrawer = () => {
+    setShowLoadHoursDrawer(false);
+    refetch();
+  };
+
+  const handleOpenAddVolunteerDrawer = () => {
+    setShowAddVolunteerDrawer(true);
+  };
+
+  const handleCloseAddVolunteerDrawer = () => {
+    setShowAddVolunteerDrawer(false);
+    refetch();
+  };
+
   return (
-    <Card className={styles.volunteeringData}>
-      <CardContent>
-        <Typography variant='h5' component='h2' className={styles.title}>
-          Project Volunteers
-          <EditIcon className={styles.editIcon} />
-        </Typography>
-        <CustomTable data={mappedVolunteers} columnLabels={['Name', 'Email', 'Phone', 'Hours']} />
-        {totalPages > 0 && (
-          <Pagination
-            className={styles.pagination}
-            count={totalPages}
-            onChange={onChangePage}
-            color='primary'
-          />
-        )}
-      </CardContent>
-    </Card>
+    <>
+      <Card className={styles.volunteeringData}>
+        <CardContent>
+          <Typography variant='h5' component='h2' className={styles.title}>
+            <div>Project Volunteers</div>
+            <div className={styles.buttonsContainer}>
+              <AddIcon className={styles.addButton} onClick={handleOpenAddVolunteerDrawer} />
+              <PrimaryButton inverted onClick={handleOpenEmailVolunteersDrawer}>
+                Email Volunteers
+              </PrimaryButton>
+              <PrimaryButton inverted onClick={handleOpenLoadHoursDrawer}>
+                Load Hours
+              </PrimaryButton>
+            </div>
+          </Typography>
+          <CustomTable data={mappedVolunteers} columnLabels={['Name', 'Email', 'Phone', 'Hours']} />
+          {totalPages > 0 && (
+            <Pagination
+              className={styles.pagination}
+              count={totalPages}
+              onChange={onChangePage}
+              color='primary'
+            />
+          )}
+        </CardContent>
+      </Card>
+      {showEmailVolunteersDrawer && (
+        <EmailVolunteersDrawer projectId={projectId} onClose={handleCloseEmailVolunteersDrawer} />
+      )}
+      {showLoadHoursDrawer && (
+        <LoadHoursDrawer
+          projectId={projectId}
+          onClose={handleCloseLoadHoursDrawer}
+          volunteers={mappedVolunteers}
+        />
+      )}
+      {showAddVolunteerDrawer && (
+        <AddVolunteerDrawer
+          organizationId={organizationId}
+          onClose={handleCloseAddVolunteerDrawer}
+          projectId={projectId}
+        />
+      )}
+    </>
   );
 }

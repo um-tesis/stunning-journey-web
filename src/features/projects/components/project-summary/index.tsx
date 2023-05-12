@@ -48,7 +48,9 @@ export default function ProjectSummary({project, handleOpenUpdateProjectDrawer}:
           handleOpenUpdateProjectDrawer={handleOpenUpdateProjectDrawer}
         />
       )}
-      {selectedSection === 1 && <VolunteeringInformationCard projectId={project.id} />}
+      {selectedSection === 1 && (
+        <VolunteeringInformationCard projectId={project.id} organizationId={project.organizationId} />
+      )}
     </div>
   );
 }
