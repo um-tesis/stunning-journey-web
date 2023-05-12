@@ -58,6 +58,7 @@ export default function AddVolunteerDrawer({onClose, projectId, organizationId}:
           phone: formValues.phone,
           role: formValues.role,
           password: formValues.password,
+          organizationId: formValues.organizationId,
         },
       },
     });
