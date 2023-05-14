@@ -84,6 +84,10 @@ export default function SignInSide() {
     setFormResult({...formResult, [name]: value});
   }
 
+  const goToHome = () => {
+    router.push('/');
+  };
+
   return (
     <ThemeProvider theme={theme}>
       <Grid container component='main' sx={{height: '100vh', minHeight: '100vh'}}>
@@ -91,8 +95,8 @@ export default function SignInSide() {
         <Grid item xs={false} sm={4} md={7} className={styles.sideImageGrid} />
         <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
           <Box my={8} mx={4} className={styles.form}>
-            <Avatar sx={{m: 1, bgcolor: 'secondary.main'}}>
-              <ArrowBack fontSize={'medium'} />
+            <Avatar sx={{m: 1, bgcolor: 'secondary.main', cursor: 'pointer'}}>
+              <ArrowBack fontSize={'medium'} onClick={goToHome} />
             </Avatar>
             <Typography component='h1' variant='h5' className={styles.title}>
               Libera

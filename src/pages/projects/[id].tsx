@@ -13,6 +13,7 @@ import {UserData} from '@/features/shared/types';
 import {SYSTEM_ROLES} from '@/lib/utils/constants';
 import {useState} from 'react';
 import UpdateProjectDrawer from '@/features/our-projects/components/update-project-drawer';
+import ProjectOverview from '@/features/projects/components/project-overview';
 
 type Props = {
   user: UserData | null;
@@ -39,22 +40,21 @@ export default function ProjectPage({user}: Props) {
 
   if (loading) return null;
 
+  const project = data.project;
+
   return (
     <Container className={styles.pageContainer}>
       <Header user={user} />
 
       {user?.role === SYSTEM_ROLES.ORGADMIN ? (
         <>
-          <ProjectSummary
-            project={data.project}
-            handleOpenUpdateProjectDrawer={handleOpenUpdateProjectDrawer}
-          />
+          <ProjectSummary project={project} handleOpenUpdateProjectDrawer={handleOpenUpdateProjectDrawer} />
           {isUpdateProjectDrawerOpen && (
-            <UpdateProjectDrawer project={data.project} onClose={handleCloseUpdateProjectDrawer} />
+            <UpdateProjectDrawer project={project} onClose={handleCloseUpdateProjectDrawer} />
           )}
         </>
       ) : (
-        <div>Not Admin view</div>
+        <ProjectOverview project={project} />
       )}
 
       <Footer />
