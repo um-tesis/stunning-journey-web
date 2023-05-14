@@ -16,6 +16,7 @@ import Checkbox from '@mui/material/Checkbox';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormDrawer from '@/features/shared/components/form-drawer';
+import {convertDateFromIso} from '@/lib/utils/ui-helper';
 
 type Props = {
   onClose: () => void;
@@ -133,7 +134,6 @@ export default function AddProjectDrawer({onClose, organizationId}: Props) {
         value={watch().name}
         error={errors.name}
       />
-
       <FormInput
         name='field'
         label='Field'
@@ -141,7 +141,6 @@ export default function AddProjectDrawer({onClose, organizationId}: Props) {
         value={watch().field}
         error={errors.field}
       />
-
       <FormInput
         name='description'
         label='Description'
@@ -149,7 +148,6 @@ export default function AddProjectDrawer({onClose, organizationId}: Props) {
         value={watch().description}
         error={errors.description}
       />
-
       <FormInput
         name='location'
         label='Location'
@@ -158,9 +156,7 @@ export default function AddProjectDrawer({onClose, organizationId}: Props) {
         error={errors.location}
         optional
       />
-
       <br />
-
       <FormGroup>
         <FormControlLabel
           control={
@@ -170,24 +166,25 @@ export default function AddProjectDrawer({onClose, organizationId}: Props) {
           label='Does this project accepts volunteers?'
         />
       </FormGroup>
-
       <br />
       <div className={styles.calendarDescription}>Chose the start and end date of the project (optional)</div>
-
+      <div className={styles.calendarDescription}>
+        Start Date : {watch().startDate ? convertDateFromIso(watch().startDate!) : '-'}
+      </div>
+      <div className={styles.calendarDescription}>
+        End Date : {watch().endDate ? convertDateFromIso(watch().endDate!) : '-'}
+      </div>
+      <br />
       <Calendar selectRange={true} onChange={onSelectDateRange} value={selectedDate} />
-
       <br />
       <br />
-
       <ImageInput
         imageUrl={watch().coverPhoto}
         onChange={handleCoverPhotoChange}
         label='Cover Photo (Optional)'
       />
-
       <br />
       <br />
-
       <FormInput
         name='video'
         label='Youtube Video'

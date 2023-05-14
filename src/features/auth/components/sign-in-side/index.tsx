@@ -18,6 +18,7 @@ import {logIn} from '../../service';
 import {useRouter} from 'next/router';
 import {GENERAL_SERVER_ERROR, SUCCESSFUL_LOGIN} from '@/lib/utils/api-messages-helper';
 import FormInput from '@/features/shared/components/form-input';
+import Image from 'next/image';
 
 type AuthForm = {
   email: string;
@@ -98,9 +99,8 @@ export default function SignInSide() {
             <Avatar sx={{m: 1, bgcolor: 'secondary.main', cursor: 'pointer'}}>
               <ArrowBack fontSize={'medium'} onClick={goToHome} />
             </Avatar>
-            <Typography component='h1' variant='h5' className={styles.title}>
-              Libera
-            </Typography>
+            <Image src='/Logo-libera.png' alt='logo' width={300} height={250} className={styles.logo} />
+
             <form className={styles.form}>
               <FormInput
                 name='email'

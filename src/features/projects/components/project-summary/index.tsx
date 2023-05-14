@@ -15,7 +15,7 @@ type Props = {
 export default function ProjectSummary({project, handleOpenUpdateProjectDrawer}: Props) {
   const [selectedSection, setSelectedSection] = useState<number>(0);
 
-  const {name, description} = project;
+  const {name, description, coverPhoto} = project;
 
   const navSections = [
     {key: 0, value: 'Project Information'},
@@ -24,7 +24,10 @@ export default function ProjectSummary({project, handleOpenUpdateProjectDrawer}:
 
   return (
     <div className={styles.projectContainer}>
-      <Card className={styles.projectHeader}>
+      <Card
+        className={styles.projectHeader}
+        sx={{backgroundImage: `url(${coverPhoto ? coverPhoto : '/collaboration.jpeg'})`}}
+      >
         <div className={styles.overlay} />
         <CardContent className={styles.content}>
           <Typography className={styles.title} variant='h6' component='h3'>

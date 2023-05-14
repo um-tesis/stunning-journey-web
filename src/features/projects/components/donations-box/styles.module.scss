@@ -1,0 +1,46 @@
+.boxContainer {
+  width: 100%;
+  height: 400px;
+  display: flex;
+  background-color: #fff;
+
+  .oneTimeDonation,
+  .recurrentDonation {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    padding: 10%;
+    .donationTitle {
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: #adabc3;
+    }
+    .donationDescription {
+      font-size: 20px;
+      font-weight: 400;
+      color: #adabc3;
+    }
+    .donationIcon {
+      height: 50px;
+      margin-bottom: 10px;
+      color: #575484;
+      font-size: 40px;
+      svg {
+        height: 70px;
+        width: 60px;
+        margin-bottom: -20px;
+      }
+      margin-bottom: 30px;
+    }
+    .donationButton {
+      min-height: 50px;
+      width: 300px;
+      margin-top: 30px;
+    }
+  }
+}

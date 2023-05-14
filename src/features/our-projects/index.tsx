@@ -22,9 +22,9 @@ export default function OurProjects({user}: Props) {
   const variables = useMemo(
     () => ({page, itemsPerPage: ITEMS_PER_PAGE, filter: '', organizationId: user.organizationId}),
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [page, isAddProjectOpen]
+    [page]
   );
-  const {data, loading} = useQuery(GET_OUR_PROJECTS, {
+  const {data, loading, refetch} = useQuery(GET_OUR_PROJECTS, {
     variables,
   });
 
@@ -50,6 +50,7 @@ export default function OurProjects({user}: Props) {
 
   const closeAddProjectDrawer = () => {
     setIsAddProjectOpen(false);
+    refetch();
   };
 
   const goToProject = (row: any) => {

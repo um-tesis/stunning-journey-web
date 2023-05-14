@@ -2,17 +2,21 @@ import styles from './styles.module.scss';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
+import DonationsBox from '../donations-box';
 
 type Props = {
   project: any;
 };
 
 export default function ProjectOverview({project}: Props) {
-  const {name, description} = project;
+  const {name, description, coverPhoto} = project;
 
   return (
     <div className={styles.projectContainer}>
-      <Card className={styles.projectHeader}>
+      <Card
+        className={styles.projectHeader}
+        sx={{backgroundImage: `url(${coverPhoto ? coverPhoto : '/collaboration.jpeg'})`}}
+      >
         <div className={styles.overlay} />
         <CardContent className={styles.content}>
           <Typography className={styles.title} variant='h6' component='h3'>
@@ -23,8 +27,7 @@ export default function ProjectOverview({project}: Props) {
           </Typography>
         </CardContent>
       </Card>
-      <br />
-      <br />
+      <DonationsBox />
     </div>
   );
 }

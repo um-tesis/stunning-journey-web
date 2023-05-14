@@ -10,6 +10,7 @@ export const GET_PROJECT = gql`
       field
       startDate
       endDate
+      coverPhoto
       organization {
         name
       }
