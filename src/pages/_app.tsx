@@ -16,6 +16,7 @@ export default function MyApp({Component, pageProps}: AppProps) {
       <Head>
         <title>Libera</title>
         <link rel='stylesheet' href='/css/video-react.css' />
+        <link rel='icon' href='/Logo-libera.png' />
       </Head>
 
       <ThemeProvider theme={theme}>
