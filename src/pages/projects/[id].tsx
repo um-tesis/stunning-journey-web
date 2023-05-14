@@ -40,6 +40,11 @@ export default function ProjectPage({user}: Props) {
 
   if (loading) return null;
 
+  if (!data) {
+    router.push('/404');
+    return null;
+  }
+
   const project = data.project;
 
   return (
