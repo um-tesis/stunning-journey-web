@@ -3,6 +3,7 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import DonationsBox from '../donations-box';
+import ImagesMasonry from '@/features/shared/components/images-masonry';
 
 type Props = {
   project: any;
@@ -28,6 +29,7 @@ export default function ProjectOverview({project}: Props) {
         </CardContent>
       </Card>
       <DonationsBox />
+      <ImagesMasonry />
     </div>
   );
 }

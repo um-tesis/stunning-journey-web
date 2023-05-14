@@ -12,9 +12,10 @@ type ProjectCardProps = {
   projectId: number;
   name: string;
   description: string;
+  coverPhoto?: string;
 };
 
-export default function ProjectCard({projectId, name, description}: ProjectCardProps) {
+export default function ProjectCard({projectId, name, description, coverPhoto}: ProjectCardProps) {
   const router = useRouter();
 
   const redirectToProject = () => {
@@ -27,7 +28,7 @@ export default function ProjectCard({projectId, name, description}: ProjectCardP
         <CardMedia
           component='img'
           height='140'
-          image='/collaboration.jpeg'
+          image={coverPhoto ? coverPhoto : '/collaboration.jpeg'}
           alt='photo'
           sx={{borderRadius: '10px'}}
         />

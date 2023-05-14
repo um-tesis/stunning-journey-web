@@ -11,6 +11,7 @@ export const GET_PROJECTS = gql`
         description
         startDate
         endDate
+        coverPhoto
       }
       total
     }

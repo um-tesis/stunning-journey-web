@@ -1,0 +1,14 @@
+.masonryGrid {
+  display: flex;
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.masonryGridColumn {
+  background-clip: padding-box;
+}
+
+.masonryGridColumn > div {
+  margin-bottom: 30px;
+}

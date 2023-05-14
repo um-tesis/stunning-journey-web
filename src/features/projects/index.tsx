@@ -60,7 +60,12 @@ export default function Projects() {
           {projects &&
             projects.map((project: any) => (
               <Grid key={project.id} item xs={4}>
-                <ProjectCard projectId={project.id} name={project.name} description={project.description} />
+                <ProjectCard
+                  projectId={project.id}
+                  name={project.name}
+                  description={project.description}
+                  coverPhoto={project.coverPhoto}
+                />
               </Grid>
             ))}
         </Grid>
