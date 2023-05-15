@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import Avatar from '@mui/material/Avatar';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import Link from '@mui/material/Link';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
@@ -96,7 +95,7 @@ export default function SignInSide() {
               <ArrowBack fontSize={'medium'} />
             </Avatar>
             <Typography component='h1' variant='h5' className={styles.title}>
-              Login
+              Libera
             </Typography>
             <form className={styles.form}>
               <TextField
@@ -126,15 +125,8 @@ export default function SignInSide() {
                 onChange={handleChange}
               />
               <PrimaryButton onClick={handleCredentialsSubmit} fullWidth auxClassNames={styles.submitButton}>
-                Login
+                Sign in
               </PrimaryButton>
-              <Grid container>
-                <Grid item xs>
-                  <Link href='#' variant='body2'>
-                    Forgot password?
-                  </Link>
-                </Grid>
-              </Grid>
             </form>
           </Box>
         </Grid>

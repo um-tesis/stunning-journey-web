@@ -1,12 +1,29 @@
 .form {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: left;
   margin-top: 8px;
-}
 
-.input {
-  margin-top: 16px;
+  .input {
+    margin-top: 16px;
+    width: 500px;
+  }
+
+  .title {
+    font-weight: 700;
+    font-size: 56px;
+    line-height: 66px;
+    color: #575484;
+    margin-top: 10%;
+  }
+
+  .submitButton {
+    width: 180px;
+    height: 48px;
+    position: absolute;
+    bottom: 10%;
+    font-size: 24px;
+  }
 }
 
 .sideImageGrid {
@@ -15,15 +32,4 @@
   background-color: #5d5a88;
   background-size: cover;
   background-position: center;
-}
-
-.title {
-  font-weight: 700;
-  font-size: 56px;
-  line-height: 66px;
-  color: #575484;
-}
-
-.submitButton {
-  width: 180px;
 }
