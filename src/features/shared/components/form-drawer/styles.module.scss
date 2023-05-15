@@ -1,0 +1,54 @@
+.drawerHeader {
+  width: 100%;
+  padding-right: 3.2rem;
+
+  .crossButtonContainer {
+    position: absolute;
+    top: 2.4rem;
+    right: 2.4rem;
+    cursor: pointer;
+    color: #575484;
+  }
+
+  .title {
+    font-weight: 700;
+    font-size: 42px;
+    line-height: 48px;
+    color: #575484;
+  }
+
+  .subtitle {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 1.8rem;
+    line-height: 2.4rem;
+    color: black;
+  }
+
+  .description {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.6rem;
+    color: black;
+    padding-bottom: 0.8rem;
+    margin-top: 0.8rem;
+    b {
+      font-weight: 700;
+    }
+  }
+}
+
+.contentContainer {
+  // height: calc(100% - 28.8rem);
+  width: calc(100% - 0.4rem);
+}
+
+.drawerFooter {
+  margin-top: 24px;
+
+  .submitButton {
+    margin-top: 20px;
+    width: 200px;
+  }
+}

@@ -6,3 +6,5 @@ export interface UserData {
   phone: string;
   role: string;
 }
+
+export type UserDataIn = Omit<UserData, 'id'> & {password: string};

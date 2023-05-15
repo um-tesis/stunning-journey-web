@@ -4,12 +4,12 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import VerifiedIcon from '@mui/icons-material/Verified';
 import PrimaryButton from '../primary-button';
 import {useRouter} from 'next/router';
 import styles from './styles.module.scss';
 import {UserData} from '../../types';
 import {logOut} from '@/features/auth/service';
+import Image from 'next/image';
 
 type Props = {
   user: UserData | null;
@@ -35,7 +35,7 @@ function Header({user}: Props) {
     <AppBar position='static'>
       <Container maxWidth={false} sx={{backgroundColor: 'white'}}>
         <Toolbar disableGutters sx={{height: '118px'}}>
-          <VerifiedIcon sx={{display: {xs: 'none', md: 'flex'}, mr: 1, color: '#5d5a88'}} />
+          <Image src='/Logo-libera.png' alt='logo' width={120} height={100} />
           <Typography
             variant='h6'
             noWrap
@@ -51,11 +51,10 @@ function Header({user}: Props) {
               textDecoration: 'none',
             }}
           >
-            LIBERA {user && `- ${user.name}`}
+            {user && user.name}
           </Typography>
 
           <Box sx={{flexGrow: 1, display: {xs: 'none', md: 'flex'}}}>
-            <VerifiedIcon sx={{display: {xs: 'flex', md: 'none'}, mr: 1}} />
             <Typography
               variant='h5'
               noWrap

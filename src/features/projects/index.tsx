@@ -7,17 +7,18 @@ import SearchInput from '../shared/components/search-input';
 import styles from './styles.module.scss';
 
 export default function Projects() {
+  const ITEMS_PER_PAGE = 9;
   const [filter, setFilter] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
   const [page, setPage] = useState(1);
-  const variables = useMemo(() => ({page, itemsPerPage: 9, filter}), [filter, page]);
+  const variables = useMemo(() => ({page, itemsPerPage: ITEMS_PER_PAGE, filter}), [filter, page]);
   const {data, loading} = useQuery(GET_PROJECTS, {
     variables,
   });
 
   const projects = data?.projects.projects;
 
-  const totalPages = Math.ceil(data?.projects.total / 9);
+  const totalPages = Math.ceil(data?.projects.total / ITEMS_PER_PAGE);
 
   const handleFilterChange = (event: any) => {
     setSearchTerm(event.target.value);
@@ -59,7 +60,12 @@ export default function Projects() {
           {projects &&
             projects.map((project: any) => (
               <Grid key={project.id} item xs={4}>
-                <ProjectCard projectId={project.id} name={project.name} description={project.description} />
+                <ProjectCard
+                  projectId={project.id}
+                  name={project.name}
+                  description={project.description}
+                  coverPhoto={project.coverPhoto}
+                />
               </Grid>
             ))}
         </Grid>

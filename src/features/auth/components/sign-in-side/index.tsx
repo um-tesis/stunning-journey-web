@@ -1,7 +1,6 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Avatar from '@mui/material/Avatar';
 import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
@@ -17,7 +16,9 @@ import {useForm} from 'react-hook-form';
 import {toast} from 'react-hot-toast';
 import {logIn} from '../../service';
 import {useRouter} from 'next/router';
-import {GENERAL_SERVER_ERROR, SUCCESSFUL_GET_IN_TOUCH} from '@/lib/utils/api-messages-helper';
+import {GENERAL_SERVER_ERROR, SUCCESSFUL_LOGIN} from '@/lib/utils/api-messages-helper';
+import FormInput from '@/features/shared/components/form-input';
+import Image from 'next/image';
 
 type AuthForm = {
   email: string;
@@ -64,11 +65,11 @@ export default function SignInSide() {
     }
   };
 
-  // Effect to handle sendGetInTouch request status
-  React.useEffect(() => {
+  // Effect to handle login request request status
+  useEffect(() => {
     if (loginRequest.status === 'success') {
       form.reset(emptyForm);
-      toast.success(SUCCESSFUL_GET_IN_TOUCH);
+      toast.success(SUCCESSFUL_LOGIN);
     }
     if (loginRequest.status === 'error') {
       toast.error(loginRequest.error);
@@ -84,6 +85,10 @@ export default function SignInSide() {
     setFormResult({...formResult, [name]: value});
   }
 
+  const goToHome = () => {
+    router.push('/');
+  };
+
   return (
     <ThemeProvider theme={theme}>
       <Grid container component='main' sx={{height: '100vh', minHeight: '100vh'}}>
@@ -91,38 +96,26 @@ export default function SignInSide() {
         <Grid item xs={false} sm={4} md={7} className={styles.sideImageGrid} />
         <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
           <Box my={8} mx={4} className={styles.form}>
-            <Avatar sx={{m: 1, bgcolor: 'secondary.main'}}>
-              <ArrowBack fontSize={'medium'} />
+            <Avatar sx={{m: 1, bgcolor: 'secondary.main', cursor: 'pointer'}}>
+              <ArrowBack fontSize={'medium'} onClick={goToHome} />
             </Avatar>
-            <Typography component='h1' variant='h5' className={styles.title}>
-              Libera
-            </Typography>
+            <Image src='/Logo-libera.png' alt='logo' width={300} height={250} className={styles.logo} />
+
             <form className={styles.form}>
-              <TextField
-                margin='normal'
-                fullWidth
-                id='email'
-                label='Email Address'
-                variant='standard'
+              <FormInput
                 name='email'
-                autoComplete='email'
-                autoFocus
-                className={styles.input}
+                label='Email'
                 value={watch().email}
-                onChange={handleChange}
+                handleChange={handleChange}
+                className={styles.input}
               />
-              <TextField
-                margin='normal'
-                fullWidth
+              <FormInput
                 name='password'
                 label='Password'
-                variant='standard'
                 type='password'
-                id='password'
-                autoComplete='current-password'
-                className={styles.input}
                 value={watch().password}
-                onChange={handleChange}
+                handleChange={handleChange}
+                className={styles.input}
               />
               <PrimaryButton onClick={handleCredentialsSubmit} fullWidth auxClassNames={styles.submitButton}>
                 Sign in

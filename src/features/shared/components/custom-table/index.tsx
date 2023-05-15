@@ -10,9 +10,10 @@ import styles from './styles.module.scss';
 type Props = {
   data: any[];
   columnLabels: string[];
+  onClickRow?: (row: any) => void;
 };
 
-export default function CustomTable({data, columnLabels}: Props) {
+export default function CustomTable({data, columnLabels, onClickRow}: Props) {
   const getObjectKeys = (object: object) => {
     return Object.keys(object).filter((key) => key !== '__typename');
   };
@@ -24,6 +25,11 @@ export default function CustomTable({data, columnLabels}: Props) {
       return acc;
     }, {});
   });
+
+  const handleRowClick = (index: number) => {
+    const row = rows[index];
+    onClickRow && onClickRow(row);
+  };
 
   return (
     <TableContainer>
@@ -50,17 +56,21 @@ export default function CustomTable({data, columnLabels}: Props) {
               key={index}
               sx={{'&:last-child td, &:last-child th': {border: 0}}}
               className={styles.data}
+              onClick={() => handleRowClick(index)}
             >
-              {getObjectKeys(row).map((key) => (
-                <TableCell
-                  key={key}
-                  component={key === columnLabels[0] ? 'th' : 'td'}
-                  scope={key === columnLabels[0] ? 'row' : undefined}
-                  align='left'
-                >
-                  {row[key] || '-'}
-                </TableCell>
-              ))}
+              {getObjectKeys(row).map((key) => {
+                if (key === 'id') return null; // Skip rendering the table cell for the 'id' key
+                return (
+                  <TableCell
+                    key={key}
+                    component={key === columnLabels[0] ? 'th' : 'td'}
+                    scope={key === columnLabels[0] ? 'row' : undefined}
+                    align='left'
+                  >
+                    {row[key] || '-'}
+                  </TableCell>
+                );
+              })}
             </TableRow>
           ))}
         </TableBody>
