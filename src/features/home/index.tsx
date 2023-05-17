@@ -1,5 +1,5 @@
 import {classNamesFilter} from '@/lib/utils/ui-helper';
-import {Box} from '@mui/material';
+import {Box, Typography} from '@mui/material';
 import Image from 'next/image';
 import {useRouter} from 'next/router';
 import Footer from '../shared/components/footer';
@@ -30,11 +30,14 @@ export default function Home({user}: Props) {
       <div className={styles.mainHomeContainer}>
         <Header user={user} />
         <div className={styles.homeSection}>
-          <h1>Join the Libera community</h1>
-          <p>
+          <Typography variant='h1' className={styles.heroTitle}>
+            Join the Libera community
+          </Typography>
+
+          <Typography variant='body1' className={styles.heroText}>
             With Libera, you can donate safely and effectively to charitable organizations that are making a
             real difference in the world
-          </p>
+          </Typography>
           <div className={styles.buttonsContainer}>
             <PrimaryButton inverted onClick={() => router.push('/projects')}>
               Projects
@@ -46,8 +49,10 @@ export default function Home({user}: Props) {
         <div className={classNamesFilter(styles.homeSection, styles.homeSecondSection)}>
           <Image src='/collaboration.jpeg' width={500} height={350} alt='image' />
           <div className={styles.sectionRightContent}>
-            <h1>Create your account today and get started for free!</h1>
-            <p>Together we can unleash the potential of charitable organizations with Libera.</p>
+            <Typography variant='h5'>Create your account today and get started for free!</Typography>
+            <Typography variant='subtitle2'>
+              Together we can unleash the potential of charitable organizations with Libera.
+            </Typography>
             <div className={styles.buttonsContainer}>
               <PrimaryButton inverted onClick={() => router.push('/our-work')}>
                 Get Started

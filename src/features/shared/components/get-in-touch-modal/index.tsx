@@ -1,6 +1,6 @@
 import useAsync from '@/lib/hooks/useAsync';
 import {capitalizeTheFirstLetterOfEachWord} from '@/lib/utils/ui-helper';
-import {TextareaAutosize, TextField, Typography} from '@mui/material';
+import {Grid, TextareaAutosize, TextField, Typography} from '@mui/material';
 import {useEffect} from 'react';
 import {useForm} from 'react-hook-form';
 import {toast} from 'react-hot-toast';
@@ -80,55 +80,65 @@ export default function GetInTouchModal({}: Props) {
         a positive impact.
       </Typography>
       <form onSubmit={handleSubmit(sendGetInTouch.execute)} className={styles.formContainer}>
-        <div>
-          <TextField
-            id='name'
-            name='name'
-            label='Name'
-            variant='standard'
-            value={watch().name}
-            onChange={handleChange}
-          />
-          <TextField
-            id='email'
-            name='email'
-            label='Email'
-            variant='standard'
-            value={watch().email}
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <TextField
-            id='phone'
-            name='phone'
-            label='Phone'
-            variant='standard'
-            value={watch().phone}
-            onChange={handleChange}
-          />
-          <TextField
-            id='company'
-            name='company'
-            label='Company'
-            variant='standard'
-            value={watch().company}
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <TextareaAutosize
-            id='message'
-            name='message'
-            placeholder='Leave us a message...'
-            value={watch().message}
-            onChange={handleChange}
-            className={styles.messageTextArea}
-          />
-        </div>
-        <PrimaryButton type='submit' auxClassNames={styles.submitButton}>
-          Send Message
-        </PrimaryButton>
+        <Grid container spacing={3} rowSpacing={5}>
+          <Grid item xs={12} sm={6}>
+            <TextField
+              id='name'
+              name='name'
+              label='Name'
+              variant='outlined'
+              fullWidth
+              value={watch().name}
+              onChange={handleChange}
+            />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <TextField
+              id='email'
+              name='email'
+              label='Email'
+              variant='outlined'
+              fullWidth
+              value={watch().email}
+              onChange={handleChange}
+            />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <TextField
+              id='phone'
+              name='phone'
+              label='Phone'
+              variant='outlined'
+              fullWidth
+              value={watch().phone}
+              onChange={handleChange}
+            />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <TextField
+              id='company'
+              name='company'
+              label='Company'
+              variant='outlined'
+              fullWidth
+              value={watch().company}
+              onChange={handleChange}
+            />
+          </Grid>
+          <Grid item xl={12}>
+            <TextareaAutosize
+              id='message'
+              name='message'
+              placeholder='Leave us a message...'
+              value={watch().message}
+              onChange={handleChange}
+              className={styles.messageTextArea}
+            />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <PrimaryButton type='submit'>Send Message</PrimaryButton>
+          </Grid>
+        </Grid>
       </form>
     </div>
   );

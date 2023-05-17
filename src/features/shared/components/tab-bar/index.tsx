@@ -1,3 +1,4 @@
+import {Typography} from '@mui/material';
 import styles from './styles.module.scss';
 import {classNamesFilter} from '@utils/ui-helper';
 import {Dispatch, SetStateAction} from 'react';
@@ -24,7 +25,7 @@ export default function TabBar({sections, selectedSection, setSelectedSection, a
             key={section.key}
             onClick={() => setSelectedSection(section.key)}
           >
-            {section.value}
+            <Typography variant='h6'>{section.value}</Typography>
           </li>
         ))}
       </ul>

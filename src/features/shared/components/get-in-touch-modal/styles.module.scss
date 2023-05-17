@@ -3,7 +3,6 @@
   left: 10%;
   top: 7%;
   width: 40%;
-  height: 85%;
   padding: 2% 4%;
   color: #5d5a88;
   background: #f2f1fa;
@@ -24,12 +23,16 @@
     & > * {
       display: flex;
       justify-content: space-between;
-      margin-bottom: 40px;
     }
-  }
-  .submitButton {
-    position: absolute;
-    bottom: 2%;
+
+    fieldset {
+      border-radius: 15px;
+    }
+
+    input {
+      background-color: #fafafa;
+      border-radius: 15px;
+    }
   }
 
   .messageTextArea {

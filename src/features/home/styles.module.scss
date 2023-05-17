@@ -15,13 +15,13 @@
       margin-bottom: 45px;
     }
 
-    h1 {
+    .heroTitle {
       font-weight: 700;
       font-size: 56px;
       line-height: 66px;
       width: 650px;
     }
-    p {
+    .heroText {
       font-style: normal;
       font-weight: 400;
       font-size: 18px;
@@ -46,6 +46,7 @@
       color: #5d5a88;
       display: flex;
       flex-direction: row;
+      gap: 2em;
       justify-content: space-between;
       img {
         width: 48%;

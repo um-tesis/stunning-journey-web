@@ -1,3 +1,4 @@
+import {Typography} from '@mui/material';
 import styles from './styles.module.scss';
 
 type Props = {
@@ -10,8 +11,12 @@ export default function ResultCard({resultNumber, resultDescription, Icon}: Prop
   return (
     <div className={styles.result}>
       {Icon}
-      <div className={styles.resultDescription}>{resultDescription}</div>
-      <div className={styles.resultNumber}>{resultNumber}</div>
+      <Typography variant='h4' className={styles.resultDescription}>
+        {resultDescription}
+      </Typography>
+      <Typography variant='h4' className={styles.resultNumber}>
+        {resultNumber}
+      </Typography>
     </div>
   );
 }
