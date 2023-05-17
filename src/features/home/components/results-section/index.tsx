@@ -38,7 +38,7 @@ export default function ResultsSection({user, results}: Props) {
           <Grid item xs={6}>
             <div className={styles.anualDonations}>
               <Typography variant='h4' className={styles.description}>
-                Anual Donations
+                Annual Donations
               </Typography>
               <Typography variant='h2' className={styles.number}>
                 {results.anualDonations}
