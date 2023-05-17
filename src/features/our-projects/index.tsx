@@ -1,5 +1,5 @@
 import {useQuery} from '@apollo/client';
-import {Pagination} from '@mui/material';
+import {Pagination, Typography} from '@mui/material';
 import {useMemo, useState} from 'react';
 import styles from './styles.module.scss';
 import {GET_OUR_PROJECTS} from '@/graphql/query/getOurProjects';
@@ -59,9 +59,9 @@ export default function OurProjects({user}: Props) {
 
   return (
     <div className={styles.ourProjectsContainer}>
-      <div className={styles.title}>
+      <Typography variant='h1' className={styles.title}>
         Our Projects <AddIcon className={styles.addButton} onClick={() => setIsAddProjectOpen(true)} />
-      </div>
+      </Typography>
       <CustomTable
         data={mappedProjects}
         columnLabels={['Name', 'Field', 'Start Date', 'End Date', 'Monetary Objective']}

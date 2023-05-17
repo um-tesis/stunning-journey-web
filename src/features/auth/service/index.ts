@@ -1,4 +1,4 @@
-import {apiClient, apiServer, localServer} from '@utils/api-settings';
+import {localServer} from '@utils/api-settings';
 import {AxiosResponse} from 'axios';
 
 export const logIn = async (email: string, password: string): Promise<AxiosResponse | any> => {
@@ -9,7 +9,7 @@ export const logIn = async (email: string, password: string): Promise<AxiosRespo
     });
     return res;
   } catch (error: any) {
-    return error;
+    throw error;
   }
 };
 

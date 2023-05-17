@@ -1,6 +1,6 @@
 import {Box} from '@mui/system';
 import styles from './styles.module.scss';
-import {Container, Grid} from '@mui/material';
+import {Container, Grid, Typography} from '@mui/material';
 import {UserData} from '@/features/shared/types';
 import ResultCard from '../result-card';
 import VolunteerActivismIcon from '@mui/icons-material/VolunteerActivism';
@@ -27,14 +27,22 @@ export default function ResultsSection({user, results}: Props) {
 
   return (
     <Container className={styles.sectionContent}>
-      <Box className={styles.sectionTitle}>{sectionTitle}</Box>
-      <Box className={styles.sectionDescription}>{sectionDescription}</Box>
+      <Box>
+        <Typography className={styles.sectionTitle}>{sectionTitle}</Typography>
+      </Box>
+      <Box className={styles.sectionDescription}>
+        <Typography variant='body2'>{sectionDescription}</Typography>
+      </Box>
       <Box className={styles.resultsContainer}>
         <Grid container>
           <Grid item xs={6}>
             <div className={styles.anualDonations}>
-              <div className={styles.description}>Annual Donations</div>
-              <div className={styles.number}>{results.anualDonations}</div>
+              <Typography variant='h4' className={styles.description}>
+                Annual Donations
+              </Typography>
+              <Typography variant='h2' className={styles.number}>
+                {results.anualDonations}
+              </Typography>
             </div>
           </Grid>
           <Grid item xs={6}>

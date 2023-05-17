@@ -15,7 +15,6 @@ const VideoPlayer = ({videoId, auxClassNames}: Props) => {
     height: '360',
     width: '640',
     playerVars: {
-      autoplay: 1,
       key: process.env.NEXT_PUBLIC_YOUTUBE_API_KEY,
       origin,
     },

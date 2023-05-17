@@ -4,7 +4,6 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
-import Typography from '@mui/material/Typography';
 import {createTheme, ThemeProvider} from '@mui/material/styles';
 import styles from './styles.module.scss';
 import PrimaryButton from '@/features/shared/components/primary-button';
@@ -45,7 +44,7 @@ export default function SignInSide() {
     const formValues = form.getValues();
     await loginForm({
       variables: {
-        input: {
+        data: {
           email: formValues.email,
           password: formValues.password,
         },
@@ -57,11 +56,11 @@ export default function SignInSide() {
 
   const handleCredentialsSubmit = async () => {
     const {email, password} = formResult;
-    const res = await logIn(email, password);
-    if (res.status === 200) {
-      router.push('/home');
-    } else {
-      toast(GENERAL_SERVER_ERROR);
+    try {
+      await logIn(email, password);
+      router.replace('/home');
+    } catch (e: any) {
+      toast(e?.response?.data?.error || GENERAL_SERVER_ERROR);
     }
   };
 

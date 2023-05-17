@@ -5,28 +5,14 @@
   display: flex;
 
   .imageSection {
-    width: 50%;
     height: 100%;
     img {
-      width: 80%;
-      height: 80%;
       border-radius: 10px;
-    }
-
-    .name {
-      margin-top: 20px;
-      width: 82%;
-      display: flex;
-      justify-content: space-between;
     }
   }
 
   .about {
-    width: 50%;
     height: 100%;
-    .title {
-      display: flex;
-    }
     .aboutSection {
       font-size: 1.125em;
       color: white;

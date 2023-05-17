@@ -16,34 +16,11 @@ async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
       res.json({error: NO_CREDENTIALS});
       return;
     }
-    const LOGIN_QUERY = gql`
-      query Login($email: String!, $password: String!) {
-        login(logInModelIn: {email: $email, password: $password}) {
+    const LOGIN_MUTATION = gql`
+      mutation Login($email: String!, $password: String!) {
+        login(data: {email: $email, password: $password}) {
+          accessToken
           user {
-            id
-            email
-          }
-          token
-        }
-      }
-    `;
-
-    try {
-      const response = await client.query({
-        query: LOGIN_QUERY,
-        variables: {
-          email,
-          password,
-        },
-      });
-
-      const token = response.data.login.token;
-      const userId = response.data.login.user.id;
-      const cookies = new Cookies(req, res);
-
-      const USER_INFO_QUERY = gql`
-        query User($id: Int!) {
-          user(id: $id) {
             id
             name
             phone
@@ -52,24 +29,31 @@ async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
             role
           }
         }
-      `;
+      }
+    `;
 
-      cookies.set('authorization', token, {
-        httpOnly: true,
-        sameSite: 'strict',
-      });
-      req.cookies['authorization'] = token;
-
-      setClientToken(token);
-
-      const userInfo = await client.query({
-        query: USER_INFO_QUERY,
+    try {
+      const response = await client.mutate({
+        mutation: LOGIN_MUTATION,
         variables: {
-          id: userId,
+          email,
+          password,
         },
       });
 
-      req.session.user = userInfo.data.user;
+      const {accessToken, user} = response.data.login;
+
+      const cookies = new Cookies(req, res);
+
+      cookies.set('authorization', accessToken, {
+        httpOnly: true,
+        sameSite: 'strict',
+      });
+      req.cookies['authorization'] = accessToken;
+
+      setClientToken(accessToken);
+
+      req.session.user = user;
       await req.session.save();
       res.status(200);
       return res.json(response.data.login);
