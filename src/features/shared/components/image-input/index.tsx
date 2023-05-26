@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import React, {ChangeEvent} from 'react';
-import {TextField} from '@mui/material';
+import {Grid, TextField} from '@mui/material';
 import styles from './styles.module.scss';
 import PrimaryButton from '../primary-button';
 
@@ -23,20 +23,29 @@ function ImageInput({imageUrl, onChange, label}: ImageInputProps) {
   };
 
   return (
-    <div className={styles.container}>
-      <TextField
-        className={styles.textField}
-        label={label || 'Image URL'}
-        variant='outlined'
-        value={imageUrl}
-        onChange={(event) => onChange(event.target.value)}
-      />
-      <PrimaryButton className={styles.uploadButton} variant='contained' component='label'>
-        Upload
-        <input type='file' hidden accept='image/*' onChange={handleFileInputChange} />
-      </PrimaryButton>
-      {imageUrl && <img className={styles.previewImage} src={imageUrl} alt='Preview' />}
-    </div>
+    <Grid container spacing={2}>
+      <Grid item>
+        <TextField
+          className={styles.textField}
+          disabled
+          label={label || 'Image URL'}
+          variant='outlined'
+          value={imageUrl}
+          onChange={(event) => onChange(event.target.value)}
+        />
+      </Grid>
+      <Grid item>
+        <PrimaryButton variant='contained' component='label'>
+          Upload
+          <input type='file' hidden accept='image/*' onChange={handleFileInputChange} />
+        </PrimaryButton>
+      </Grid>
+      {imageUrl && (
+        <Grid item xs={12}>
+          <img className={styles.previewImage} src={imageUrl} alt='Preview' />
+        </Grid>
+      )}
+    </Grid>
   );
 }
 

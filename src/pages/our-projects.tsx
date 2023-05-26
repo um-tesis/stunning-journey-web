@@ -19,7 +19,6 @@ export default function OurProjectsPage({user}: Props) {
     <Container className={styles.pageContainer}>
       <Header user={user} />
       <OurProjects user={user} />
-      <Footer />
     </Container>
   );
 }

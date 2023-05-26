@@ -13,8 +13,6 @@ export const GET_OUR_PROJECTS = gql`
         name
         field
         startDate
-        endDate
-        monetaryGoal
       }
       total
     }
