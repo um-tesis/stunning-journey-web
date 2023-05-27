@@ -10,6 +10,8 @@ import styles from './styles.module.scss';
 import {UserData} from '../../types';
 import {logOut} from '@/features/auth/service';
 import Image from 'next/image';
+import Chip from '@mui/material/Chip';
+import FaceIcon from '@mui/icons-material/Face';
 
 type Props = {
   user: UserData | null;
@@ -19,7 +21,7 @@ function Header({user}: Props) {
   const router = useRouter();
 
   const pages = user
-    ? ['Home', 'Our-Projects', 'Donators', 'Donations']
+    ? ['Home', 'Projects', 'Our-Projects', 'Donators', 'Donations']
     : ['Home', 'About', 'Projects', 'Our-Work'];
 
   const handleAuthToggle = async () => {
@@ -35,23 +37,23 @@ function Header({user}: Props) {
     <AppBar position='static'>
       <Container maxWidth={false} sx={{backgroundColor: 'white'}}>
         <Toolbar disableGutters sx={{height: '118px'}}>
-          <Image src='/Logo-libera.png' alt='logo' width={120} height={100} />
-          <Typography
-            variant='h6'
-            noWrap
-            component='a'
-            href='/'
-            sx={{
-              mr: 2,
-              display: {xs: 'none', md: 'flex'},
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: '#5d5a88',
-              textDecoration: 'none',
-            }}
-          >
-            {user && user.name}
-          </Typography>
+          <Image
+            src='/Logo-libera.png'
+            alt='logo'
+            width={120}
+            height={100}
+            className={styles.logo}
+            onClick={() => router.push('/')}
+          />
+
+          {user && (
+            <Chip
+              icon={<FaceIcon />}
+              className={styles.avatar}
+              label={user.name}
+              onClick={() => router.push('/account')}
+            />
+          )}
 
           <Box sx={{flexGrow: 1, display: {xs: 'none', md: 'flex'}}}>
             <Typography
@@ -86,7 +88,11 @@ function Header({user}: Props) {
                 onClick={() => {
                   router.push(`/${page.toLowerCase()}`);
                 }}
-                auxClassNames={router && router.pathname.includes(page.toLowerCase()) ? styles.active : ''}
+                auxClassNames={
+                  router && router.pathname.replace(/\//g, '') === page.toLowerCase().replace(/ /g, '-')
+                    ? styles.active
+                    : ''
+                }
               >
                 {page.split('-').join(' ')}
               </PrimaryButton>

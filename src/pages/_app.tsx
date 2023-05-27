@@ -9,7 +9,7 @@ import {ApolloProvider} from '@apollo/client';
 import client from '../apollo-client';
 import {Toaster} from 'react-hot-toast';
 import {toastOptions} from '@utils/ui-helper';
-import CssBaseline from '@mui/material/CssBaseline';
+import {StyledEngineProvider} from '@mui/material/styles';
 
 export default function MyApp({Component, pageProps}: AppProps) {
   const Main = () => (
@@ -22,18 +22,19 @@ export default function MyApp({Component, pageProps}: AppProps) {
       </Head>
 
       <ThemeProvider theme={theme}>
-        <CssBaseline />
         <Component {...pageProps} />
       </ThemeProvider>
     </div>
   );
 
   return (
-    <ApolloProvider client={client}>
-      <ErrorBoundary>
-        <Main />
-        <Toaster position='bottom-right' toastOptions={toastOptions} />
-      </ErrorBoundary>
-    </ApolloProvider>
+    <StyledEngineProvider injectFirst>
+      <ApolloProvider client={client}>
+        <ErrorBoundary>
+          <Main />
+          <Toaster position='bottom-right' toastOptions={toastOptions} />
+        </ErrorBoundary>
+      </ApolloProvider>
+    </StyledEngineProvider>
   );
 }

@@ -6,8 +6,6 @@ import EditIcon from '@mui/icons-material/Edit';
 import Grid from '@mui/material/Grid';
 import styles from './styles.module.scss';
 import VideoPlayer from '@/features/shared/components/video-player';
-import {useState} from 'react';
-import UpdateProjectDrawer from '@/features/our-projects/components/update-project-drawer';
 
 type Props = {
   project: any;

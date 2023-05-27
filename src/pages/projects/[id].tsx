@@ -51,7 +51,7 @@ export default function ProjectPage({user}: Props) {
     <Container className={styles.pageContainer}>
       <Header user={user} />
 
-      {user?.role === SYSTEM_ROLES.ORGADMIN ? (
+      {user?.role === SYSTEM_ROLES.ORGADMIN && project.organizationId === user?.organizationId ? (
         <>
           <ProjectSummary project={project} handleOpenUpdateProjectDrawer={handleOpenUpdateProjectDrawer} />
           {isUpdateProjectDrawerOpen && (

@@ -27,7 +27,7 @@ export default function ProjectCard({projectId, name, description, coverPhoto}: 
       <CardActionArea>
         <CardMedia
           component='img'
-          height='140'
+          height='220'
           image={coverPhoto ? coverPhoto : '/collaboration.jpeg'}
           alt='photo'
           sx={{borderRadius: '10px'}}

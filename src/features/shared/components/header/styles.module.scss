@@ -2,3 +2,26 @@
   border: 1px solid #b3e5be !important;
   font-weight: 700;
 }
+
+.logo {
+  cursor: pointer;
+}
+
+.avatar {
+  color: #5d5a88;
+  background-color: #fff;
+  border: 1px solid #5d5a88;
+  height: 44px;
+  padding: 10px;
+  width: fit-content;
+  cursor: pointer;
+  &:hover {
+    svg {
+      background-color: rgba(0, 0, 0, 0) !important;
+    }
+  }
+
+  svg {
+    background-color: #fff !important;
+  }
+}

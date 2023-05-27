@@ -1,0 +1,36 @@
+.accountContainer {
+  height: 680px;
+  padding: 50px 100px;
+  position: relative;
+  background-color: #fff;
+  box-shadow: 0px -2px 4px rgba(0, 0, 0, 0.1);
+
+  .editIcon {
+    cursor: pointer;
+    height: 40px;
+    width: 40px;
+  }
+
+  .settingsIcon {
+    margin-bottom: -10px;
+    height: 60px;
+    width: 60px;
+  }
+
+  .setting {
+    display: flex;
+    align-items: center;
+    margin-top: 40px;
+
+    .label {
+      color: #57606f;
+      font-weight: bold;
+      margin-right: 10px;
+      width: 200px;
+    }
+  }
+
+  .changePassword {
+    margin-top: 40px;
+  }
+}

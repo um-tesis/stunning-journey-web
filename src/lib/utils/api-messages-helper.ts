@@ -16,3 +16,9 @@ export const SUCCESSFUL_VOLUNTEERS_BROADCAST = 'Project Volunteers emailed succe
 export const SUCCESSFUL_PROJECT_HOURS_LOAD = 'Project hours loaded successfully!';
 
 export const SUCCESSFUL_NEW_VOLUNTEER = 'Successfully added and assigned volunteer to project!';
+
+export const SUCCESSFUL_NEWSLETTER_SUBSCRIPTION = "Successfully subscribed to Libera's newsletter!";
+
+export const SUCCESSFUL_USER_UPDATE = 'User updated successfully!';
+
+export const SUCCESSFUL_PASSWORD_CHANGE = 'Password changed successfully!';

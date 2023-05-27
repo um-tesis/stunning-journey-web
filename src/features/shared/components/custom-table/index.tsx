@@ -41,7 +41,6 @@ export default function CustomTable({data, columnLabels, onClickRow}: Props) {
                 key={label}
                 align='left'
                 sx={{
-                  color: '#333',
                   fontWeight: 'bold',
                 }}
               >

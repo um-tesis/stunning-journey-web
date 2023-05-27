@@ -14,7 +14,7 @@
     .content {
       position: absolute;
       width: 100%;
-      bottom: 15%;
+      bottom: 5%;
       padding: 1rem;
       color: #fff;
 
@@ -33,6 +33,12 @@
         line-height: 30px;
         line-height: 1.4;
       }
+    }
+    .volunteeringButton {
+      position: absolute;
+      right: 0;
+      bottom: 20px;
+      margin-right: 30px;
     }
   }
 

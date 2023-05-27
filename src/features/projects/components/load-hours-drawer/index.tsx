@@ -25,7 +25,7 @@ export default function LoadHoursDrawer({onClose, projectId, volunteers}: Props)
 
   const handleVolunteerSelection = (event: SelectChangeEvent) => {
     const volunteer = event.target.value as any;
-    form.setValue('userId', volunteer.id);
+    form.setValue('userId', +volunteer.id);
     setSelectedVolunteer(volunteer);
   };
 

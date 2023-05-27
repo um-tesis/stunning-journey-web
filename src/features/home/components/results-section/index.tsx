@@ -7,11 +7,12 @@ import VolunteerActivismIcon from '@mui/icons-material/VolunteerActivism';
 import PaidIcon from '@mui/icons-material/Paid';
 import PeopleIcon from '@mui/icons-material/People';
 import CorporateFareIcon from '@mui/icons-material/CorporateFare';
+import {SYSTEM_ROLES} from '@/lib/utils/constants';
 
 type Props = {
   user: UserData | null;
   results: {
-    anualDonations: number;
+    annualDonations: number;
     raisedMoney: number;
     donators: number;
     activeProjects: number;
@@ -20,10 +21,12 @@ type Props = {
 };
 
 export default function ResultsSection({user, results}: Props) {
-  const sectionTitle = user ? `Your results in numbers` : 'Our results in numbers';
-  const sectionDescription = user
-    ? `Your organization has achieved the following results:`
-    : 'Thanks to YOUR help, we have achieved the following results:';
+  const sectionTitle =
+    user && user.role !== SYSTEM_ROLES.USER ? `Your results in numbers` : 'Our results in numbers';
+  const sectionDescription =
+    user && user.role !== SYSTEM_ROLES.USER
+      ? `Your organization has achieved the following results:`
+      : 'Thanks to YOUR help, we have achieved the following results:';
 
   return (
     <Container className={styles.sectionContent}>
@@ -41,7 +44,7 @@ export default function ResultsSection({user, results}: Props) {
                 Annual Donations
               </Typography>
               <Typography variant='h2' className={styles.number}>
-                {results.anualDonations}
+                {results.annualDonations}
               </Typography>
             </div>
           </Grid>
