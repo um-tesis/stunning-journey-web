@@ -2,9 +2,7 @@ import React, {useEffect, useState} from 'react';
 import Avatar from '@mui/material/Avatar';
 import CssBaseline from '@mui/material/CssBaseline';
 import Paper from '@mui/material/Paper';
-import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
-import {createTheme, ThemeProvider} from '@mui/material/styles';
 import styles from './styles.module.scss';
 import PrimaryButton from '@/features/shared/components/primary-button';
 import {ArrowBack} from '@mui/icons-material';
@@ -16,15 +14,12 @@ import {toast} from 'react-hot-toast';
 import {logIn} from '../../service';
 import {useRouter} from 'next/router';
 import {GENERAL_SERVER_ERROR, SUCCESSFUL_LOGIN} from '@/lib/utils/api-messages-helper';
-import FormInput from '@/features/shared/components/form-input';
-import Image from 'next/image';
+import {Box, IconButton, TextField, Typography} from '@mui/material';
 
 type AuthForm = {
   email: string;
   password: string;
 };
-
-const theme = createTheme();
 
 export default function SignInSide() {
   const [formResult, setFormResult] = useState({email: '', password: ''});
@@ -89,40 +84,55 @@ export default function SignInSide() {
   };
 
   return (
-    <ThemeProvider theme={theme}>
-      <Grid container component='main' sx={{height: '100vh', minHeight: '100vh'}}>
-        <CssBaseline />
-        <Grid item xs={false} sm={4} md={7} className={styles.sideImageGrid} />
-        <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
-          <Box my={8} mx={4} className={styles.form}>
-            <Avatar sx={{m: 1, bgcolor: 'secondary.main', cursor: 'pointer'}}>
-              <ArrowBack fontSize={'medium'} onClick={goToHome} />
-            </Avatar>
-            <Image src='/Logo-libera.png' alt='logo' width={300} height={250} className={styles.logo} />
-
-            <form className={styles.form}>
-              <FormInput
-                name='email'
-                label='Email'
-                value={watch().email}
-                handleChange={handleChange}
-                className={styles.input}
-              />
-              <FormInput
-                name='password'
-                label='Password'
-                type='password'
-                value={watch().password}
-                handleChange={handleChange}
-                className={styles.input}
-              />
-              <PrimaryButton onClick={handleCredentialsSubmit} fullWidth auxClassNames={styles.submitButton}>
-                Sign in
-              </PrimaryButton>
+    <Grid container display='flex' alignItems='center' sx={{height: '100vh', minHeight: '100vh'}}>
+      <Grid item md={7}>
+        <Box component='div' className={styles.sideImageGrid} />
+      </Grid>
+      <Grid item xs={12} md={5} ml={{sm: 0, md: -10}} component={Paper} elevation={6} padding={7}>
+        <Grid container spacing={7} justifyContent='space-between'>
+          <Grid item alignSelf='center'>
+            <IconButton>
+              <ArrowBack fontSize='large' onClick={goToHome} />
+            </IconButton>
+          </Grid>
+          <Grid item alignSelf='center'>
+            <Avatar sx={{width: 96, height: 96}} src='/Logo-libera.png' />
+          </Grid>
+          <Grid xs={12} item alignSelf='center'>
+            <Typography variant='h4' color='#575484'>
+              Welcome to Libera
+            </Typography>
+          </Grid>
+          <Grid item xs={12}>
+            <form>
+              <Grid container spacing={5}>
+                <Grid item xs={12}>
+                  <TextField
+                    name='email'
+                    label='Email'
+                    value={watch().email}
+                    onChange={handleChange}
+                    fullWidth
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    name='password'
+                    label='Password'
+                    type='password'
+                    value={watch().password}
+                    onChange={handleChange}
+                    fullWidth
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <PrimaryButton onClick={handleCredentialsSubmit}>Sign in</PrimaryButton>
+                </Grid>
+              </Grid>
             </form>
-          </Box>
+          </Grid>
         </Grid>
       </Grid>
-    </ThemeProvider>
+    </Grid>
   );
 }

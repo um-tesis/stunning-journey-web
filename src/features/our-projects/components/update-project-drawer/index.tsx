@@ -2,10 +2,6 @@ import {useForm} from 'react-hook-form';
 import {useEffect, useState} from 'react';
 import {Project} from '@/features/projects/types';
 import styles from './styles.module.scss';
-import FormInput from '@/features/shared/components/form-input';
-import Calendar from 'react-calendar';
-import 'react-calendar/dist/Calendar.css';
-import {convertJsDateToIso} from '@/lib/utils/ui-helper';
 import ImageInput from '@/features/shared/components/image-input';
 import useAsync from '@/lib/hooks/useAsync';
 import {useMutation} from '@apollo/client';
@@ -16,6 +12,8 @@ import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import {UPDATE_PROJECT} from '@/graphql/mutation/updateProject';
 import FormDrawer from '@/features/shared/components/form-drawer';
+import {Grid, TextField} from '@mui/material';
+import {DatePicker} from '@mui/x-date-pickers';
 
 type Props = {
   onClose: () => void;
@@ -23,8 +21,6 @@ type Props = {
 };
 
 export default function UpdateProjectDrawer({onClose, project}: Props) {
-  const [selectedDate, setSelectedDate] = useState<Date | undefined>();
-  const [_, setDateRange] = useState([new Date(), new Date()]);
   const [updateProject, {}] = useMutation(UPDATE_PROJECT);
 
   // we do not use destructuring here because we project has some fields that are not in Project but come from the query
@@ -61,11 +57,8 @@ export default function UpdateProjectDrawer({onClose, project}: Props) {
     form.setValue(name, value);
   };
 
-  const onSelectDateRange = (date: any) => {
-    setDateRange(date);
-    setSelectedDate(date[0]);
-    form.setValue('startDate', convertJsDateToIso(date[0]) || '');
-    form.setValue('endDate', convertJsDateToIso(date[1]) || '');
+  const onDateChange = (date: any) => {
+    form.setValue('startDate', date);
   };
 
   const handleCoverPhotoChange = (imageUrl: string) => {
@@ -126,79 +119,101 @@ export default function UpdateProjectDrawer({onClose, project}: Props) {
       onCloseDrawer={onClose}
       canSubmit={!isUpdateDisabled()}
       onSubmit={onSubmitProject}
-      title='Update Project'
-      submitButtonText='Update'
+      title='New Project'
+      submitButtonText='Add'
     >
-      <FormInput
-        name='name'
-        label='Name'
-        handleChange={handleChange}
-        value={watch().name}
-        error={errors.name}
-      />
+      <Grid container spacing={3} paddingY={5}>
+        <Grid item xs={12}>
+          <TextField
+            name='name'
+            label='Name*'
+            variant='outlined'
+            onChange={handleChange}
+            value={watch().name}
+            error={!!errors?.name}
+            helperText={errors?.name?.message}
+            fullWidth
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <TextField
+            name='field'
+            label='Category*'
+            variant='outlined'
+            onChange={handleChange}
+            value={watch().field}
+            error={!!errors?.field}
+            helperText={errors?.field?.message}
+            fullWidth
+          />
+        </Grid>
 
-      <FormInput
-        name='field'
-        label='Field'
-        handleChange={handleChange}
-        value={watch().field}
-        error={errors.field}
-      />
-
-      <FormInput
-        name='description'
-        label='Description'
-        handleChange={handleChange}
-        value={watch().description}
-        error={errors.description}
-      />
-
-      <FormInput
-        name='location'
-        label='Location'
-        handleChange={handleChange}
-        value={watch().location}
-        error={errors.location}
-        optional
-      />
-
-      <br />
-
-      <FormGroup>
-        <FormControlLabel
-          control={
-            <Checkbox name='acceptsVolunteers' checked={watch().acceptsVolunteers} onChange={handleChange} />
-          }
-          className={styles.checkbox}
-          label='Does this project accepts volunteers?'
-        />
-      </FormGroup>
-
-      <br />
-      <div className={styles.calendarDescription}>Chose the start and end date of the project (optional)</div>
-
-      <Calendar selectRange={true} onChange={onSelectDateRange} value={selectedDate} />
-
-      <br />
-      <br />
-
-      <ImageInput
-        imageUrl={watch().coverPhoto}
-        onChange={handleCoverPhotoChange}
-        label='Cover Photo (Optional)'
-      />
-
-      <br />
-      <br />
-
-      <FormInput
-        name='video'
-        label='Youtube Video'
-        handleChange={handleChange}
-        value={watch().video}
-        error={errors.video}
-        optional
-      />
+        <Grid item xs={12}>
+          <TextField
+            name='description'
+            label='Description*'
+            variant='outlined'
+            onChange={handleChange}
+            value={watch().description}
+            error={!!errors?.description}
+            helperText={errors?.description?.message}
+            fullWidth
+            multiline
+            minRows={3}
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <TextField
+            name='location'
+            label='Location'
+            variant='outlined'
+            onChange={handleChange}
+            value={watch().location}
+            error={!!errors?.location}
+            helperText={errors?.location?.message}
+            fullWidth
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <FormGroup>
+            <FormControlLabel
+              control={
+                <Checkbox
+                  name='acceptsVolunteers'
+                  checked={watch().acceptsVolunteers}
+                  onChange={handleChange}
+                />
+              }
+              className={styles.checkbox}
+              label='Does this project accepts volunteers?'
+            />
+          </FormGroup>
+        </Grid>
+        <Grid item xs={12}>
+          <DatePicker
+            label='Start date'
+            sx={{width: '100%'}}
+            slotProps={{popper: {disablePortal: true}, textField: {helperText: errors?.startDate?.message}}}
+            value={watch().startDate}
+            onChange={onDateChange}
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <ImageInput imageUrl={watch().coverPhoto} onChange={handleCoverPhotoChange} label='Cover Photo' />
+        </Grid>
+        <Grid item xs={12}>
+          <TextField
+            name='video'
+            label='Youtube Video'
+            variant='outlined'
+            onChange={handleChange}
+            value={watch().video}
+            error={!!errors?.video}
+            helperText={errors?.video?.message}
+            fullWidth
+          />
+        </Grid>
+      </Grid>
     </FormDrawer>
   );
 }

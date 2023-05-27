@@ -11,10 +11,10 @@ export const dmSans = DM_Sans({
 export default createTheme({
   palette: {
     primary: {
-      main: '#0070f3', // Set your primary color
+      main: '#5d5a88', // Set your primary color
     },
     secondary: {
-      main: '#ffcc00', // Set your secondary color
+      main: '#473BF0', // Set your secondary color
     },
   },
   typography: {

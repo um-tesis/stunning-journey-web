@@ -59,7 +59,7 @@ export default function Projects() {
         <Grid container spacing={2}>
           {projects &&
             projects.map((project: any) => (
-              <Grid key={project.id} item xs={4}>
+              <Grid key={project.id} item sm={12} md={6}>
                 <ProjectCard
                   projectId={project.id}
                   name={project.name}

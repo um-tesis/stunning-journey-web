@@ -1,4 +1,4 @@
-import styles from './styles.module.scss';
+import {Box, Typography} from '@mui/material';
 
 export type OurWorkStepsProps = {
   title: string;
@@ -8,10 +8,12 @@ export type OurWorkStepsProps = {
 
 export default function OurWorkSteps({title, description, Icon}: OurWorkStepsProps) {
   return (
-    <div className={styles.steps}>
-      {Icon}
-      <div className={styles.title}>{title}</div>
-      <div className={styles.description}>{description}</div>
-    </div>
+    <Box display='flex' alignItems='center' flexDirection='column' gap={3}>
+      <Box fontSize={100}>{Icon}</Box>
+      <Typography variant='h6' textAlign='center'>
+        {title}
+      </Typography>
+      <Typography variant='body2'>{description}</Typography>
+    </Box>
   );
 }
