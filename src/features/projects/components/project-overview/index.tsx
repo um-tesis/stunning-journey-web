@@ -60,11 +60,13 @@ export default function ProjectOverview({project}: Props) {
       <Grid
         container
         padding={10}
+        spacing={3}
         className={styles.projectHeader}
+        justifyContent='center'
         sx={{backgroundImage: `url(${coverPhoto ? coverPhoto : '/collaboration.jpeg'})`}}
       >
         <Grid item xs={12}>
-          <Typography variant='h2' textAlign='center' gutterBottom>
+          <Typography variant='h2' textAlign='center' color='white'>
             {name}
           </Typography>
         </Grid>
@@ -73,11 +75,13 @@ export default function ProjectOverview({project}: Props) {
           <Typography variant='subtitle2' textAlign='center'>
             {description}
           </Typography>
+        </Grid>
+        <Grid item xs={2} />
+        <Grid item>
           <PrimaryButton auxClassNames={styles.volunteeringButton} inverted>
             Offer As A Volunteer!
           </PrimaryButton>
         </Grid>
-        <Grid item xs={2} />
       </Grid>
       <Grid container>
         <Grid item className={styles.overlap}>
@@ -86,7 +90,8 @@ export default function ProjectOverview({project}: Props) {
         <Grid item xs={12}>
           <ImagesMasonry />
         </Grid>
-        <Grid item xs={12}>
+        <Grid item xs={1} />
+        <Grid item xs={10}>
           <InstagramFeedWidget />
         </Grid>
       </Grid>

@@ -23,7 +23,7 @@ type Props = {};
 
 export default function DonationsBox({}: Props) {
   return (
-    <Grid container paddingX={10}>
+    <Grid container paddingX={10} spacing={3}>
       <Grid item xs={12} lg={6} component={Paper} elevation={6} sx={{borderRadius: '3em'}}>
         <Grid container padding={5} spacing={3} justifyContent='center' alignItems='center'>
           <Grid item xs={12} className={styles.donationTitle}>

@@ -1,8 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import React from 'react';
-import styles from './styles.module.scss'; // adjust the path to match your file structure
-import {Grid, ImageList, ImageListItem} from '@mui/material';
-import Image from 'next/image';
+import {ImageList, ImageListItem} from '@mui/material';
 
 const ImagesMasonry = () => {
   const images = [
