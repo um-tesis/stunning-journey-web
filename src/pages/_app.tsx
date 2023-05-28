@@ -10,6 +10,8 @@ import client from '../apollo-client';
 import {Toaster} from 'react-hot-toast';
 import {toastOptions} from '@utils/ui-helper';
 import {StyledEngineProvider} from '@mui/material/styles';
+import {LocalizationProvider} from '@mui/x-date-pickers';
+import {AdapterDayjs} from '@mui/x-date-pickers/AdapterDayjs';
 
 export default function MyApp({Component, pageProps}: AppProps) {
   const Main = () => (
@@ -29,12 +31,14 @@ export default function MyApp({Component, pageProps}: AppProps) {
 
   return (
     <StyledEngineProvider injectFirst>
-      <ApolloProvider client={client}>
-        <ErrorBoundary>
-          <Main />
-          <Toaster position='bottom-right' toastOptions={toastOptions} />
-        </ErrorBoundary>
-      </ApolloProvider>
+      <LocalizationProvider dateAdapter={AdapterDayjs}>
+        <ApolloProvider client={client}>
+          <ErrorBoundary>
+            <Main />
+            <Toaster position='bottom-right' toastOptions={toastOptions} />
+          </ErrorBoundary>
+        </ApolloProvider>
+      </LocalizationProvider>
     </StyledEngineProvider>
   );
 }

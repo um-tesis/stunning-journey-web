@@ -1,37 +1,6 @@
-.form {
-  display: flex;
-  flex-direction: column;
-  align-items: left;
-  margin-top: 8px;
-
-  .input {
-    margin-top: 16px;
-    width: 500px;
-  }
-
-  .logo {
-    margin-left: 100px;
-  }
-
-  .title {
-    font-weight: 700;
-    font-size: 56px;
-    line-height: 66px;
-    color: #575484;
-    margin-top: 10%;
-  }
-
-  .submitButton {
-    width: 180px;
-    height: 48px;
-    position: absolute;
-    bottom: 10%;
-    font-size: 24px;
-  }
-}
-
 .sideImageGrid {
   background-image: url('/collaboration.jpeg');
+  height: 100vh;
   background-repeat: no-repeat;
   background-color: #5d5a88;
   background-size: cover;

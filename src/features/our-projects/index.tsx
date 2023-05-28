@@ -1,5 +1,5 @@
 import {useQuery} from '@apollo/client';
-import {Pagination, Typography} from '@mui/material';
+import {Grid, IconButton, Pagination, Typography} from '@mui/material';
 import {useMemo, useState} from 'react';
 import styles from './styles.module.scss';
 import {GET_OUR_PROJECTS} from '@/graphql/query/getOurProjects';
@@ -28,13 +28,13 @@ export default function OurProjects({user}: Props) {
     variables,
   });
 
-  const projects = data?.organizationProjects.projects;
-
-  const totalPages = Math.ceil(data?.organizationProjects.total / ITEMS_PER_PAGE);
-
   if (loading) {
     return null;
   }
+
+  const projects = data?.organizationProjects.projects;
+
+  const totalPages = Math.ceil(data?.organizationProjects.total / ITEMS_PER_PAGE);
 
   const mappedProjects = projects.map((project: any) => {
     return {
@@ -59,22 +59,34 @@ export default function OurProjects({user}: Props) {
 
   return (
     <div className={styles.ourProjectsContainer}>
-      <Typography variant='h1' className={styles.title}>
-        Our Projects <AddIcon className={styles.addButton} onClick={() => setIsAddProjectOpen(true)} />
-      </Typography>
-      <CustomTable
-        data={mappedProjects}
-        columnLabels={['Name', 'Field', 'Start Date', 'End Date', 'Monetary Objective']}
-        onClickRow={goToProject}
-      />
-      {totalPages > 0 && (
-        <Pagination
-          className={styles.pagination}
-          count={totalPages}
-          onChange={onChangePage}
-          color='primary'
-        />
-      )}
+      <Grid container spacing={5} justifyContent='space-between' alignItems='center'>
+        <Grid item>
+          <Typography variant='h3' fontWeight='bold' color='primary' className={styles.title}>
+            Our Projects
+          </Typography>
+        </Grid>
+        <Grid item>
+          <IconButton onClick={() => setIsAddProjectOpen(true)}>
+            <AddIcon className={styles.addButton} />
+          </IconButton>
+        </Grid>
+        <Grid item xs={12}>
+          <CustomTable
+            data={mappedProjects}
+            columnLabels={['Name', 'Field', 'Start Date', 'End Date', 'Monetary Objective']}
+            onClickRow={goToProject}
+          />
+          {totalPages > 0 && (
+            <Pagination
+              className={styles.pagination}
+              count={totalPages}
+              onChange={onChangePage}
+              color='primary'
+            />
+          )}
+        </Grid>
+      </Grid>
+
       {isAddProjectOpen && (
         <AddProjectDrawer onClose={closeAddProjectDrawer} organizationId={user.organizationId} />
       )}
