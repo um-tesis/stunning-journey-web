@@ -1,10 +1,12 @@
+import {Dayjs} from 'dayjs';
+
 export type Project = {
   id: number;
   name: string;
   description: string;
   field: string;
   organizationId: number;
-  startDate?: string;
+  startDate?: Dayjs;
   endDate?: string;
   acceptsVolunteers?: boolean;
   coverPhoto?: string;

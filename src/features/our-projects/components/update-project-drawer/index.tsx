@@ -1,5 +1,5 @@
 import {useForm} from 'react-hook-form';
-import {useEffect, useState} from 'react';
+import {useEffect} from 'react';
 import {Project} from '@/features/projects/types';
 import styles from './styles.module.scss';
 import ImageInput from '@/features/shared/components/image-input';
@@ -14,6 +14,7 @@ import {UPDATE_PROJECT} from '@/graphql/mutation/updateProject';
 import FormDrawer from '@/features/shared/components/form-drawer';
 import {Grid, TextField} from '@mui/material';
 import {DatePicker} from '@mui/x-date-pickers';
+import dayjs from 'dayjs';
 
 type Props = {
   onClose: () => void;
@@ -25,12 +26,12 @@ export default function UpdateProjectDrawer({onClose, project}: Props) {
 
   // we do not use destructuring here because we project has some fields that are not in Project but come from the query
   const emptyProject: Project = {
-    id: project.id,
+    id: Number(project.id),
     name: project.name,
     description: project.description,
     field: project.field,
     location: project.location,
-    startDate: project.startDate,
+    startDate: dayjs(project.startDate),
     endDate: project.endDate,
     organizationId: project.organizationId,
     acceptsVolunteers: project.acceptsVolunteers,
@@ -120,7 +121,7 @@ export default function UpdateProjectDrawer({onClose, project}: Props) {
       canSubmit={!isUpdateDisabled()}
       onSubmit={onSubmitProject}
       title='New Project'
-      submitButtonText='Add'
+      submitButtonText='Update'
     >
       <Grid container spacing={3} paddingY={5}>
         <Grid item xs={12}>

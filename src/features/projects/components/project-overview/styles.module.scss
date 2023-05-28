@@ -1,78 +1,12 @@
-.projectContainer {
-  min-height: 600px;
-  .projectHeader {
-    position: relative;
-    min-height: 400px;
-    width: 100%;
-    background-size: cover;
-    background-position: center;
+.projectHeader {
+  background-size: cover;
+  background-position: top;
+  background-repeat: no-repeat;
+  color: #fff;
+}
 
-    overflow: hidden;
-
-    .content {
-      position: absolute;
-      width: 100%;
-      bottom: 5%;
-      padding: 1rem;
-      color: #fff;
-
-      .title {
-        color: white;
-        font-weight: bold;
-        margin-bottom: 0.5rem;
-        font-weight: 700;
-        font-size: 56px;
-        line-height: 66px;
-      }
-
-      .description {
-        width: 30%;
-        font-weight: 400;
-        font-size: 18px;
-        line-height: 30px;
-        line-height: 1.4;
-      }
-    }
-    .volunteeringButton {
-      position: absolute;
-      right: 0;
-      bottom: 20px;
-      margin-right: 30px;
-    }
-  }
-
-  .projectData {
-    margin: 1rem;
-    padding: 2rem;
-
-    .title {
-      color: white;
-      font-weight: bold;
-      margin-bottom: 0.5rem;
-      font-weight: 700;
-      font-size: 32px;
-      line-height: 40px;
-    }
-
-    .field,
-    .startDate,
-    .endDate,
-    .organizationId,
-    .monetaryGoal,
-    .acceptsVolunteers,
-    .location,
-    .photoGallery,
-    .video {
-      margin-bottom: 0.5rem;
-
-      .label {
-        font-weight: bold;
-        margin-right: 10px;
-      }
-
-      .value {
-        margin-bottom: 0.5rem;
-      }
-    }
-  }
+.overlap {
+  margin-top: -10px;
+  margin-bottom: -10px;
+  z-index: 100;
 }

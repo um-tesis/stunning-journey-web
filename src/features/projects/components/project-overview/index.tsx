@@ -4,10 +4,10 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import DonationsBox from '../donations-box';
 import ImagesMasonry from '@/features/shared/components/images-masonry';
-import {Gallery} from 'react-grid-gallery';
 import useImageDimensions from './useImageDimensions';
 import InstagramFeedWidget from '@/features/shared/components/instagram-feed-widget';
 import PrimaryButton from '@/features/shared/components/primary-button';
+import {Box, Container, Grid} from '@mui/material';
 
 type Props = {
   project: any;
@@ -56,28 +56,40 @@ export default function ProjectOverview({project}: Props) {
   ];
 
   return (
-    <div className={styles.projectContainer}>
-      <Card
+    <>
+      <Grid
+        container
+        padding={10}
         className={styles.projectHeader}
         sx={{backgroundImage: `url(${coverPhoto ? coverPhoto : '/collaboration.jpeg'})`}}
       >
-        <div className={styles.overlay} />
-        <CardContent className={styles.content}>
-          <Typography className={styles.title} variant='h6' component='h3'>
+        <Grid item xs={12}>
+          <Typography variant='h2' textAlign='center' gutterBottom>
             {name}
           </Typography>
-          <Typography className={styles.description} variant='body2' component='p'>
+        </Grid>
+        <Grid item xs={2} />
+        <Grid item xs={8}>
+          <Typography variant='subtitle2' textAlign='center'>
             {description}
           </Typography>
           <PrimaryButton auxClassNames={styles.volunteeringButton} inverted>
             Offer As A Volunteer!
           </PrimaryButton>
-        </CardContent>
-      </Card>
-      <DonationsBox />
-      <InstagramFeedWidget />
-      <Gallery images={PHOTOS} enableImageSelection={false} />
-      <ImagesMasonry />
-    </div>
+        </Grid>
+        <Grid item xs={2} />
+      </Grid>
+      <Grid container>
+        <Grid item className={styles.overlap}>
+          <DonationsBox />
+        </Grid>
+        <Grid item xs={12}>
+          <ImagesMasonry />
+        </Grid>
+        <Grid item xs={12}>
+          <InstagramFeedWidget />
+        </Grid>
+      </Grid>
+    </>
   );
 }

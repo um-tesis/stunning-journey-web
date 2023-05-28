@@ -29,7 +29,7 @@ export default function AddProjectDrawer({onClose, organizationId}: Props) {
     description: '',
     field: '',
     location: '',
-    startDate: '',
+    startDate: undefined,
     endDate: '',
     organizationId,
     acceptsVolunteers: false,

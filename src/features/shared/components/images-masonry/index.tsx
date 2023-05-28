@@ -1,7 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
 import React from 'react';
-import Masonry from 'react-masonry-css';
 import styles from './styles.module.scss'; // adjust the path to match your file structure
+import {Grid, ImageList, ImageListItem} from '@mui/material';
+import Image from 'next/image';
 
 const ImagesMasonry = () => {
   const images = [
@@ -21,18 +22,14 @@ const ImagesMasonry = () => {
   };
 
   return (
-    <Masonry
-      breakpointCols={breakpointColumnsObj}
-      className={styles.masonryGrid}
-      columnClassName={styles.masonryGridColumn}
-    >
+    <ImageList variant='masonry' cols={3} gap={16}>
       {images.length > 0 &&
         images.map((image, i) => (
-          <div key={i}>
-            <img src={image} alt={`Masonry item ${i}`} />
-          </div>
+          <ImageListItem key={i}>
+            <img src={image} srcSet={`${image} 2x`} alt={`Masonry item ${i}`} loading='lazy' />
+          </ImageListItem>
         ))}
-    </Masonry>
+    </ImageList>
   );
 };
 

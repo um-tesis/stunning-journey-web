@@ -94,8 +94,8 @@ export default function SignInSide() {
       <Grid item xs={12} md={5} ml={{sm: 0, md: -10}} component={Paper} elevation={6} padding={7}>
         <Grid container spacing={7} justifyContent='space-between'>
           <Grid item alignSelf='center'>
-            <IconButton>
-              <ArrowBack fontSize='large' onClick={goToHome} />
+            <IconButton onClick={goToHome}>
+              <ArrowBack fontSize='large' />
             </IconButton>
           </Grid>
           <Grid item alignSelf='center'>

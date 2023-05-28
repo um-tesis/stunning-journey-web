@@ -24,7 +24,6 @@ export default function PrimaryButton({
     <Button
       variant={'outlined'}
       onClick={onClick}
-      fullWidth={otherProps.fullWidth ?? false}
       className={classNamesFilter(
         styles.primaryButton,
         inverted && styles.inverted,
