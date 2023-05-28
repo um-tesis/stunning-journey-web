@@ -9,6 +9,7 @@ import {CHANGE_PASSWORD} from '@/graphql/mutation/changePassword';
 import {useMutation} from '@apollo/client';
 import {SUCCESSFUL_PASSWORD_CHANGE} from '@/lib/utils/api-messages-helper';
 import {toast} from 'react-hot-toast';
+import {Grid, TextField} from '@mui/material';
 
 type Props = {
   onClose: () => void;
@@ -97,30 +98,44 @@ export default function ChangePasswordDrawer({onClose}: Props) {
       submitButtonText='Update'
       description='Passwords must be at least 8 characters long.'
     >
-      <FormInput
-        name='oldPassword'
-        label='Old Password'
-        handleChange={handleChange}
-        value={watch().oldPassword}
-        error={errors.oldPassword}
-        type='password'
-      />
-      <FormInput
-        name='newPassword'
-        label='New Password'
-        handleChange={handleChange}
-        value={watch().newPassword}
-        error={errors.newPassword}
-        type='password'
-      />
-      <FormInput
-        name='confirmNewPassword'
-        label='Confirm New Password'
-        handleChange={handleChange}
-        value={watch().confirmNewPassword}
-        error={errors.confirmNewPassword}
-        type='password'
-      />
+      <Grid container spacing={3} paddingY={5}>
+        <Grid item xs={12}>
+          <TextField
+            name='oldPassword'
+            label='Old Password*'
+            variant='outlined'
+            onChange={handleChange}
+            value={watch().oldPassword}
+            error={!!errors?.oldPassword}
+            helperText={errors?.oldPassword?.message}
+            fullWidth
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <TextField
+            name='newPassword'
+            label='New Password*'
+            variant='outlined'
+            onChange={handleChange}
+            value={watch().newPassword}
+            error={!!errors?.newPassword}
+            helperText={errors?.newPassword?.message}
+            fullWidth
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <TextField
+            name='confirmNewPassword'
+            label='Confirm New Password*'
+            variant='outlined'
+            onChange={handleChange}
+            value={watch().confirmNewPassword}
+            error={!!errors?.confirmNewPassword}
+            helperText={errors?.confirmNewPassword?.message}
+            fullWidth
+          />
+        </Grid>
+      </Grid>
     </FormDrawer>
   );
 }

@@ -1,7 +1,5 @@
 import {useForm} from 'react-hook-form';
 import {useEffect} from 'react';
-import FormInput from '@/features/shared/components/form-input';
-import 'react-calendar/dist/Calendar.css';
 import FormDrawer from '@/features/shared/components/form-drawer';
 import {UserBasicInfo} from '../types';
 import {UserData} from '@/features/shared/types';
@@ -11,6 +9,7 @@ import useAsync from '@/lib/hooks/useAsync';
 import {toast} from 'react-hot-toast';
 import {SUCCESSFUL_USER_UPDATE} from '@/lib/utils/api-messages-helper';
 import {useRouter} from 'next/router';
+import {Grid, TextField} from '@mui/material';
 
 type Props = {
   onClose: () => void;
@@ -110,27 +109,47 @@ export default function UpdateBasicInfoDrawer({onClose, user, setUser}: Props) {
       submitButtonText='Update'
       description='Update your account information.'
     >
-      <FormInput
-        name='name'
-        label='Name'
-        handleChange={handleChange}
-        value={watch().name}
-        error={errors.name}
-      />
-      <FormInput
-        name='email'
-        label='Email'
-        handleChange={handleChange}
-        value={watch().email}
-        error={errors.email}
-      />
-      <FormInput
-        name='phone'
-        label='Phone'
-        handleChange={handleChange}
-        value={watch().phone}
-        error={errors.phone}
-      />
+      <Grid container spacing={3} paddingY={5}>
+        <Grid item xs={12}>
+          <TextField
+            name='name'
+            label='Name'
+            variant='outlined'
+            fullWidth
+            onChange={handleChange}
+            value={watch().name}
+            error={!!errors.name}
+            helperText={errors?.name?.message}
+          />
+        </Grid>
+
+        <Grid item xs={12}>
+          <TextField
+            name='email'
+            label='Email'
+            variant='outlined'
+            fullWidth
+            onChange={handleChange}
+            value={watch().email}
+            error={!!errors.email}
+            helperText={errors?.email?.message}
+          />
+        </Grid>
+
+        <Grid item xs={12}>
+          <TextField
+            name='phone'
+            label='Phone'
+            variant='outlined'
+            type='number'
+            fullWidth
+            onChange={handleChange}
+            value={watch().phone}
+            error={!!errors.phone}
+            helperText={errors?.phone?.message}
+          />
+        </Grid>
+      </Grid>
     </FormDrawer>
   );
 }

@@ -1,6 +1,5 @@
 .projectContainer {
   min-height: 600px;
-  box-shadow: 0px -2px 4px rgba(0, 0, 0, 0.1);
   .projectHeader {
     position: relative;
     min-height: 400px;
@@ -19,6 +18,7 @@
       color: #fff;
 
       .title {
+        color: white;
         font-weight: bold;
         margin-bottom: 0.5rem;
         font-weight: 700;

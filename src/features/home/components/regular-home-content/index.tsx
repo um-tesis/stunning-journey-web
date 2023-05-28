@@ -1,7 +1,7 @@
 import {UserData} from '@/features/shared/types';
 import styles from './styles.module.scss';
 import {useRouter} from 'next/router';
-import {Typography} from '@mui/material';
+import {Box, Typography} from '@mui/material';
 import Image from 'next/image';
 import ResultsSection from '../../components/results-section';
 import PrimaryButton from '../../../shared/components/primary-button';
@@ -26,7 +26,7 @@ export default function RegularHomeContent({user}: Props) {
 
   return (
     <>
-      <div className={styles.homeSection}>
+      <Box className={styles.homeSection}>
         <Typography variant='h1' className={styles.heroTitle}>
           Join the Libera community
         </Typography>
@@ -41,7 +41,7 @@ export default function RegularHomeContent({user}: Props) {
           </PrimaryButton>
           <PrimaryButton onClick={() => router.push('/about')}>More Info</PrimaryButton>
         </div>
-      </div>
+      </Box>
       <ResultsSection user={user} results={results} />
       {user && user.role === 'USER' && (
         <>

@@ -34,7 +34,7 @@ function Header({user}: Props) {
   };
 
   return (
-    <AppBar position='static'>
+    <AppBar position='static' className={styles.appBar} elevation={6}>
       <Container maxWidth={false} sx={{backgroundColor: 'white'}}>
         <Toolbar disableGutters sx={{height: '118px'}}>
           <Image

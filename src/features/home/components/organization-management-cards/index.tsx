@@ -1,11 +1,11 @@
-import {CardContent, Grid, Typography} from '@mui/material';
+import {Box, CardActionArea, CardContent, Grid, Typography} from '@mui/material';
 import styles from './styles.module.scss';
 import {useRouter} from 'next/router';
 import Card from '@mui/material/Card';
 
 const cards = [
   {
-    title: 'Donators',
+    title: 'Donors',
     linkTo: '/donators',
     image: '/tacu2.jpeg',
   },
@@ -26,7 +26,7 @@ export default function OrganizationManagementCards() {
   const router = useRouter();
 
   return (
-    <div className={styles.managementContainer}>
+    <Box className={styles.managementContainer}>
       <Typography variant='h4' className={styles.title}>
         Organization Management
       </Typography>
@@ -40,25 +40,23 @@ export default function OrganizationManagementCards() {
         {cards.map((card, i) => (
           <Grid item xs={12} sm={6} md={4} key={i}>
             <Card
+              onClick={() => router.push(card.linkTo)}
               className={styles.root}
               sx={{
                 background: `url("${card.image}") center / cover no-repeat`,
               }}
             >
-              <CardContent className={styles.content}>
-                <Typography
-                  variant='h5'
-                  component='h2'
-                  onClick={() => router.push(card.linkTo)}
-                  className={styles.text}
-                >
-                  {card.title}
-                </Typography>
-              </CardContent>
+              <CardActionArea>
+                <CardContent className={styles.content}>
+                  <Typography variant='h5' component='h2' className={styles.text} color='white'>
+                    {card.title}
+                  </Typography>
+                </CardContent>
+              </CardActionArea>
             </Card>
           </Grid>
         ))}
       </Grid>
-    </div>
+    </Box>
   );
 }
