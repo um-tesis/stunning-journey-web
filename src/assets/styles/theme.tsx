@@ -8,18 +8,38 @@ export const dmSans = DM_Sans({
   fallback: ['Helvetica', 'Arial', 'sans-serif'],
 });
 
+const primaryColor = '#5d5a88';
+const secondaryColor = '#473BF0';
+
 export default createTheme({
   palette: {
     primary: {
-      main: '#5d5a88', // Set your primary color
+      main: primaryColor,
     },
     secondary: {
-      main: '#473BF0', // Set your secondary color
+      main: secondaryColor,
     },
   },
   typography: {
-    fontFamily: dmSans.style.fontFamily, // Set your default font family
+    fontFamily: dmSans.style.fontFamily,
     fontSize: 18,
+    h1: {
+      color: primaryColor,
+    },
+    h2: {
+      color: primaryColor,
+    },
+    h3: {
+      color: primaryColor,
+    },
+    h4: {
+      color: primaryColor,
+    },
+    h5: {
+      color: primaryColor,
+    },
+    h6: {
+      color: primaryColor,
+    },
   },
-  // Add more properties as desired
 });

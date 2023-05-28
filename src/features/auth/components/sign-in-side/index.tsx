@@ -47,7 +47,10 @@ export default function SignInSide() {
     });
   }, false);
 
-  const {watch} = form;
+  const {
+    formState: {errors},
+    watch,
+  } = form;
 
   const handleCredentialsSubmit = async () => {
     const {email, password} = formResult;
@@ -104,14 +107,17 @@ export default function SignInSide() {
             </Typography>
           </Grid>
           <Grid item xs={12}>
-            <form>
+            <form onSubmit={handleCredentialsSubmit}>
               <Grid container spacing={5}>
                 <Grid item xs={12}>
                   <TextField
                     name='email'
                     label='Email'
+                    type='email'
                     value={watch().email}
                     onChange={handleChange}
+                    error={!!errors.email}
+                    helperText={errors.email?.message}
                     fullWidth
                   />
                 </Grid>
@@ -122,6 +128,8 @@ export default function SignInSide() {
                     type='password'
                     value={watch().password}
                     onChange={handleChange}
+                    error={!!errors.password}
+                    helperText={errors.password?.message}
                     fullWidth
                   />
                 </Grid>

@@ -7,8 +7,37 @@ import TwitterIcon from '@mui/icons-material/Twitter';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import YouTubeIcon from '@mui/icons-material/YouTube';
+import {useState, useEffect} from 'react';
+import {useMutation} from '@apollo/client';
+import {SUBSCRIBE_TO_NEWSLETTER} from '@/graphql/mutation/subscribeToNewsletter';
+import useAsync from '@/lib/hooks/useAsync';
+import {toast} from 'react-hot-toast';
+import {SUCCESSFUL_NEWSLETTER_SUBSCRIPTION} from '@/lib/utils/api-messages-helper';
 
 function Footer() {
+  const [email, setEmail] = useState('');
+  const [subscribeToNewsletter, {}] = useMutation(SUBSCRIBE_TO_NEWSLETTER);
+
+  const subscribeRequest = useAsync(async () => {
+    await subscribeToNewsletter({
+      variables: {
+        email,
+      },
+    });
+  }, false);
+
+  // Effect to handle subscribe request request status
+  useEffect(() => {
+    if (subscribeRequest.status === 'success') {
+      toast.success(SUCCESSFUL_NEWSLETTER_SUBSCRIPTION);
+      setEmail('');
+    }
+    if (subscribeRequest.status === 'error') {
+      toast.error(subscribeRequest.error);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [subscribeRequest.status]);
+
   return (
     <Container maxWidth='lg' className={styles.footer}>
       <Typography variant='h5' className={styles.title}>
@@ -18,8 +47,21 @@ function Footer() {
         Lorem ipsum dolor sit amet consectetur adipiscing elit phasellus amet dui quam vitae quis leo.
       </Typography>
       <div className={styles.subscription}>
-        <TextField id='email' name='email' label='Email' variant='standard' />
-        <PrimaryButton>Subscribe</PrimaryButton>
+        <TextField
+          id='email'
+          name='email'
+          label='Email'
+          variant='standard'
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <PrimaryButton
+          onClick={() => {
+            subscribeRequest.execute();
+          }}
+        >
+          Subscribe
+        </PrimaryButton>
       </div>
       <div className={styles.socials}>
         <FacebookIcon color='primary' />

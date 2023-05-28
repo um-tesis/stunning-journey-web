@@ -9,7 +9,7 @@ import {ApolloProvider} from '@apollo/client';
 import client from '../apollo-client';
 import {Toaster} from 'react-hot-toast';
 import {toastOptions} from '@utils/ui-helper';
-import CssBaseline from '@mui/material/CssBaseline';
+import {StyledEngineProvider} from '@mui/material/styles';
 import {LocalizationProvider} from '@mui/x-date-pickers';
 import {AdapterDayjs} from '@mui/x-date-pickers/AdapterDayjs';
 
@@ -24,20 +24,21 @@ export default function MyApp({Component, pageProps}: AppProps) {
       </Head>
 
       <ThemeProvider theme={theme}>
-        <CssBaseline />
         <Component {...pageProps} />
       </ThemeProvider>
     </div>
   );
 
   return (
-    <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <ApolloProvider client={client}>
-        <ErrorBoundary>
-          <Main />
-          <Toaster position='bottom-right' toastOptions={toastOptions} />
-        </ErrorBoundary>
-      </ApolloProvider>
-    </LocalizationProvider>
+    <StyledEngineProvider injectFirst>
+      <LocalizationProvider dateAdapter={AdapterDayjs}>
+        <ApolloProvider client={client}>
+          <ErrorBoundary>
+            <Main />
+            <Toaster position='bottom-right' toastOptions={toastOptions} />
+          </ErrorBoundary>
+        </ApolloProvider>
+      </LocalizationProvider>
+    </StyledEngineProvider>
   );
 }

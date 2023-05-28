@@ -15,11 +15,11 @@ type Props = {
 export default function ProjectSummary({project, handleOpenUpdateProjectDrawer}: Props) {
   const [selectedSection, setSelectedSection] = useState<number>(0);
 
-  const {name, description, coverPhoto} = project;
+  const {name, description, coverPhoto, acceptsVolunteers} = project;
 
   const navSections = [
     {key: 0, value: 'Project Information'},
-    {key: 1, value: 'Volunteering'},
+    acceptsVolunteers && {key: 1, value: 'Volunteering'},
   ];
 
   return (

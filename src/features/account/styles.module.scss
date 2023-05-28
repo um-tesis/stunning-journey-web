@@ -1,0 +1,28 @@
+.accountContainer {
+  background-color: #fff;
+
+  .editIcon {
+    cursor: pointer;
+    height: 40px;
+    width: 40px;
+  }
+
+  .settingsIcon {
+    margin-bottom: -10px;
+    height: 60px;
+    width: 60px;
+  }
+
+  .setting {
+    display: flex;
+    align-items: center;
+    margin-top: 40px;
+
+    .label {
+      color: #57606f;
+      font-weight: bold;
+      margin-right: 10px;
+      width: 200px;
+    }
+  }
+}

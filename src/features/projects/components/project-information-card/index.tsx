@@ -6,8 +6,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import Grid from '@mui/material/Grid';
 import styles from './styles.module.scss';
 import VideoPlayer from '@/features/shared/components/video-player';
-import {useState} from 'react';
-import UpdateProjectDrawer from '@/features/our-projects/components/update-project-drawer';
+import {IconButton} from '@mui/material';
 
 type Props = {
   project: any;
@@ -21,10 +20,18 @@ export default function ProjectInformationCard({project, handleOpenUpdateProject
     <>
       <Card className={styles.projectData}>
         <CardContent>
-          <Typography variant='h5' component='h2' className={styles.title}>
-            Project Information
-            <EditIcon className={styles.editIcon} onClick={handleOpenUpdateProjectDrawer} />
-          </Typography>
+          <Grid container spacing={5} alignItems='center' paddingBottom={4}>
+            <Grid item>
+              <Typography variant='h5' component='h2' className={styles.title}>
+                Project Information
+              </Typography>
+            </Grid>
+            <Grid item>
+              <IconButton onClick={handleOpenUpdateProjectDrawer}>
+                <EditIcon className={styles.editIcon} />
+              </IconButton>
+            </Grid>
+          </Grid>
           <Grid container justifyContent='space-between' alignItems='center' spacing={2}>
             <Grid item xs={12} md={6}>
               <div className={styles.field}>

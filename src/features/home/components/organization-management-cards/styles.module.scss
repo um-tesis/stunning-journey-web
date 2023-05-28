@@ -1,0 +1,47 @@
+.managementContainer {
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 100px;
+  padding-top: 60px;
+
+  .title {
+    color: #fff;
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+
+  .subtitle {
+    font-weight: 400;
+    margin-bottom: 40px;
+    text-align: center;
+    width: 70%;
+  }
+
+  .root {
+    max-width: 450px;
+    border-radius: 20px;
+  }
+
+  .content {
+    color: #fff;
+    height: 320px;
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
+    padding: 0;
+
+    .text {
+      padding: 5px;
+      width: fit-content;
+      background: rgb(178, 178, 178, 0.5);
+      font-weight: 700;
+      cursor: pointer;
+      &:hover {
+        background: rgb(178, 178, 178, 0.8);
+      }
+    }
+  }
+}
