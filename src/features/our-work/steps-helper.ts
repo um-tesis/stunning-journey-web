@@ -4,21 +4,21 @@ import VolunteerActivismIcon from '@mui/icons-material/VolunteerActivism';
 
 export const steps = [
   {
-    title: 'Find a project suitable for your business',
+    title: 'Encuentra un proyecto adecuado para ti o tu negocio',
     description:
-      "Whether you're looking to support a specific cause or want to explore new projects making a difference, our curated selection of projects makes it easy to find the right fit for your business.",
+      'Tanto si buscas apoyar una causa específica como si quieres explorar nuevos proyectos que marquen la diferencia, nuestra curada selección de proyectos hace que sea fácil encontrar el adecuado para tu negocio',
     icon: ManageSearchIcon,
   },
   {
-    title: 'See the impact of your donation',
+    title: 'Vea el impacto de su donación',
     description:
-      "We believe in transparency and accountability when it comes to donations. When you donate through our platform, you'll receive regular updates on the progress of the projects you support, as well as detailed reports on the impact your contribution is making. ",
+      'Creemos en la transparencia y la responsabilidad cuando se trata de donaciones. Cuando dones a través de nuestra plataforma, recibirás actualizaciones periódicas sobre el progreso de los proyectos que apoyas, así como informes detallados sobre el impacto que está teniendo tu contribución.',
     icon: CorporateFareIcon,
   },
   {
-    title: 'Donate!',
+    title: 'Dona!',
     description:
-      "We understand that making a donation should be a simple and secure process. That's why we've designed our platform to offer multiple payment options, making it easy to support your chosen project.",
+      'Entendemos que hacer una donación debe ser un proceso sencillo y seguro. Por eso hemos diseñado nuestra plataforma para ofrecer múltiples opciones de pago, facilitando así el apoyo al proyecto elegido',
     icon: VolunteerActivismIcon,
   },
 ];

@@ -1,5 +1,5 @@
 import {useForm} from 'react-hook-form';
-import {useEffect, useState} from 'react';
+import {useEffect} from 'react';
 import {ProjectOut} from '@/features/projects/types';
 import styles from './styles.module.scss';
 import ImageInput from '@/features/shared/components/image-input';
@@ -20,8 +20,6 @@ type Props = {
 };
 
 export default function AddProjectDrawer({onClose, organizationId}: Props) {
-  const [selectedDate, setSelectedDate] = useState<Date | undefined>();
-  const [_, setDateRange] = useState([new Date(), new Date()]);
   const [createProject, {}] = useMutation(CREATE_PROJECT);
 
   const emptyProject: ProjectOut = {
@@ -45,7 +43,6 @@ export default function AddProjectDrawer({onClose, organizationId}: Props) {
     watch,
   } = form;
   const handleChange = (event: any) => {
-    console.log(event);
     let {value, name} = event.target;
 
     if (name === 'acceptsVolunteers') {
@@ -118,14 +115,14 @@ export default function AddProjectDrawer({onClose, organizationId}: Props) {
       onCloseDrawer={onClose}
       canSubmit={!isAddDisabled()}
       onSubmit={onSubmitProject}
-      title='New Project'
-      submitButtonText='Add'
+      title='Nuevo Proyecto'
+      submitButtonText='Agregar'
     >
       <Grid container spacing={3} paddingY={5}>
         <Grid item xs={12}>
           <TextField
             name='name'
-            label='Name*'
+            label='Nombre*'
             variant='outlined'
             onChange={handleChange}
             value={watch().name}
@@ -137,7 +134,7 @@ export default function AddProjectDrawer({onClose, organizationId}: Props) {
         <Grid item xs={12}>
           <TextField
             name='field'
-            label='Category*'
+            label='Categoria*'
             variant='outlined'
             onChange={handleChange}
             value={watch().field}
@@ -150,7 +147,7 @@ export default function AddProjectDrawer({onClose, organizationId}: Props) {
         <Grid item xs={12}>
           <TextField
             name='description'
-            label='Description*'
+            label='Descripción*'
             variant='outlined'
             onChange={handleChange}
             value={watch().description}
@@ -164,7 +161,7 @@ export default function AddProjectDrawer({onClose, organizationId}: Props) {
         <Grid item xs={12}>
           <TextField
             name='location'
-            label='Location'
+            label='Ubicación'
             variant='outlined'
             onChange={handleChange}
             value={watch().location}
@@ -184,13 +181,13 @@ export default function AddProjectDrawer({onClose, organizationId}: Props) {
                 />
               }
               className={styles.checkbox}
-              label='Does this project accepts volunteers?'
+              label='¿Acepta voluntarios este proyecto?'
             />
           </FormGroup>
         </Grid>
         <Grid item xs={12}>
           <DatePicker
-            label='Start date'
+            label='Fechas'
             sx={{width: '100%'}}
             slotProps={{popper: {disablePortal: true}, textField: {helperText: errors?.startDate?.message}}}
             value={watch().startDate}
@@ -198,12 +195,16 @@ export default function AddProjectDrawer({onClose, organizationId}: Props) {
           />
         </Grid>
         <Grid item xs={12}>
-          <ImageInput imageUrl={watch().coverPhoto} onChange={handleCoverPhotoChange} label='Cover Photo' />
+          <ImageInput
+            imageUrl={watch().coverPhoto}
+            onChange={handleCoverPhotoChange}
+            label='Foto de Portada'
+          />
         </Grid>
         <Grid item xs={12}>
           <TextField
             name='video'
-            label='Youtube Video'
+            label='Video de Youtube'
             variant='outlined'
             onChange={handleChange}
             value={watch().video}

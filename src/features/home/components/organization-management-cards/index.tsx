@@ -5,19 +5,19 @@ import Card from '@mui/material/Card';
 
 const cards = [
   {
-    title: 'Donors',
-    linkTo: '/donators',
+    title: 'Donantes',
+    linkTo: '/donors',
     image: '/tacu2.jpeg',
   },
 
   {
-    title: 'Our Projects',
+    title: 'Sus Proyectos',
     linkTo: '/our-projects',
     image: '/collaboration.jpeg',
   },
   {
-    title: 'Donations',
-    linkTo: '/donators',
+    title: 'Donaciones',
+    linkTo: '/donations',
     image: '/help.jpeg',
   },
 ];
@@ -28,12 +28,12 @@ export default function OrganizationManagementCards() {
   return (
     <Box className={styles.managementContainer}>
       <Typography variant='h4' className={styles.title}>
-        Organization Management
+        Organization Gestión de su organización
       </Typography>
       <Typography variant='body1' className={styles.subtitle}>
-        This management page is specially designed to provide you with quick access to the principal aspects
-        of our nonprofit operations. Here, you can access all the critical links and tools to efficiently
-        manage your organization.
+        Esta página de gestión está especialmente diseñada para ofrecerle un acceso rápido a los principales
+        aspectos de nuestras operaciones sin ánimo de lucro. Aquí podrá acceder a todos los enlaces y
+        herramientas esenciales para gestionar eficazmente gestionar su organización.
       </Typography>
 
       <Grid container spacing={3}>

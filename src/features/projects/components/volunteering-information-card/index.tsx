@@ -25,7 +25,7 @@ export default function VolunteeringInformationCard({projectId, organizationId}:
   const [showAddVolunteerDrawer, setShowAddVolunteerDrawer] = useState(false);
   const [page, setPage] = useState(1);
   const variables = useMemo(
-    () => ({page, itemsPerPage: ITEMS_PER_PAGE, filter: '', projectId}),
+    () => ({page, itemsPerPage: ITEMS_PER_PAGE, filter: '', projectId: +projectId}),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [page]
   );
@@ -81,20 +81,24 @@ export default function VolunteeringInformationCard({projectId, organizationId}:
       <Card className={styles.volunteeringData}>
         <CardContent>
           <Typography variant='h5' component='h2' className={styles.title}>
-            <div>Project Volunteers</div>
+            <div>Voluntarios del Proyecto</div>
             <div className={styles.buttonsContainer}>
               <AddIcon className={styles.addButton} onClick={handleOpenAddVolunteerDrawer} />
               <PrimaryButton inverted onClick={handleOpenEmailVolunteersDrawer}>
-                Email Volunteers
+                Contactar Voluntarios
               </PrimaryButton>
               <PrimaryButton inverted onClick={handleOpenLoadHoursDrawer}>
-                Load Hours
+                Cargar Horas
               </PrimaryButton>
             </div>
           </Typography>
-          <CustomTable data={mappedVolunteers} columnLabels={['Name', 'Email', 'Phone', 'Hours']} />
+          <CustomTable
+            data={mappedVolunteers}
+            columnLabels={['Nombre', 'Correo Electrónico', 'Teléfono', 'Horas']}
+          />
           {totalPages > 0 && (
             <Pagination
+              page={page}
               className={styles.pagination}
               count={totalPages}
               onChange={onChangePage}

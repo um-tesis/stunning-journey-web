@@ -21,7 +21,7 @@ type Props = {
 
 export default function ProjectPage({user}: Props) {
   const router = useRouter();
-  const id = +router.query.id!;
+  const slug = router.query.slug!;
 
   const [isUpdateProjectDrawerOpen, setIsUpdateProjectDrawerOpen] = useState<boolean>(false);
 
@@ -35,7 +35,7 @@ export default function ProjectPage({user}: Props) {
   };
 
   const {data, loading, refetch} = useQuery(GET_PROJECT, {
-    variables: {id},
+    variables: {slug},
   });
 
   if (loading) return null;
@@ -45,7 +45,7 @@ export default function ProjectPage({user}: Props) {
     return null;
   }
 
-  const project = data.project;
+  const project = data.projectBySlug;
 
   return (
     <Container className={styles.pageContainer}>

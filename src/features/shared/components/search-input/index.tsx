@@ -37,7 +37,7 @@ export default function SearchInput({searchTerm, handleChange, handleSearch}: Se
           endAdornment: (
             <InputAdornment position='end'>
               <PrimaryButton auxClassNames={styles.searchButton} onClick={handleSearch}>
-                Search
+                Buscar
               </PrimaryButton>
             </InputAdornment>
           ),

@@ -54,7 +54,7 @@ export default function OurProjects({user}: Props) {
   };
 
   const goToProject = (row: any) => {
-    router.push(`/projects/${row.id}`);
+    router.push(`/projects/${row.slug}`);
   };
 
   return (
@@ -62,7 +62,7 @@ export default function OurProjects({user}: Props) {
       <Grid container spacing={5} justifyContent='space-between' alignItems='center'>
         <Grid item>
           <Typography variant='h3' fontWeight='bold' color='primary' className={styles.title}>
-            Our Projects
+            Sus Proyectos
           </Typography>
         </Grid>
         <Grid item>
@@ -73,11 +73,12 @@ export default function OurProjects({user}: Props) {
         <Grid item xs={12}>
           <CustomTable
             data={mappedProjects}
-            columnLabels={['Name', 'Field', 'Start Date', 'End Date', 'Monetary Objective']}
+            columnLabels={['Nombre', 'Campo', 'Fecha de Inicio', 'Fecha de Fin', 'Objetivo Monetario']}
             onClickRow={goToProject}
           />
           {totalPages > 0 && (
             <Pagination
+              page={page}
               className={styles.pagination}
               count={totalPages}
               onChange={onChangePage}

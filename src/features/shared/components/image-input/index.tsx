@@ -28,7 +28,7 @@ function ImageInput({imageUrl, onChange, label}: ImageInputProps) {
         <TextField
           className={styles.textField}
           disabled
-          label={label || 'Image URL'}
+          label={label || 'URL de la imagen'}
           variant='outlined'
           value={imageUrl}
           onChange={(event) => onChange(event.target.value)}
@@ -36,7 +36,7 @@ function ImageInput({imageUrl, onChange, label}: ImageInputProps) {
       </Grid>
       <Grid item>
         <PrimaryButton variant='contained' component='label'>
-          Upload
+          Cargar
           <input type='file' hidden accept='image/*' onChange={handleFileInputChange} />
         </PrimaryButton>
       </Grid>

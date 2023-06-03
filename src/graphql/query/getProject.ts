@@ -1,9 +1,9 @@
 import {gql} from '@apollo/client';
 
 export const GET_PROJECT = gql`
-  query project($id: Int!) {
-    project(id: $id) {
-      id
+  query project($slug: String!) {
+    projectBySlug(slug: $slug) {
+      slug
       organizationId
       name
       description

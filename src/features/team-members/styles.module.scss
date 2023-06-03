@@ -1,0 +1,20 @@
+.teamMembersContainer {
+  height: 680px;
+  padding: 50px 100px;
+  position: relative;
+  background-color: #fff;
+
+  .addButton {
+    background: #5d5a88;
+    color: #fff;
+    border-radius: 50%;
+    font-size: 40px;
+  }
+
+  .pagination {
+    position: absolute;
+    margin-top: 40px;
+    right: 60px;
+    bottom: 60px;
+  }
+}

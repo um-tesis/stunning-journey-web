@@ -8,13 +8,14 @@ export default function OurWork() {
     <div className={styles.ourWork}>
       <Box display='flex' alignItems='center' flexDirection='column'>
         <Typography variant='overline' fontWeight='bold'>
-          About our process
+          Acerca de nuestro proceso
         </Typography>
         <Typography variant='h4' fontWeight='bold'>
-          Get started as easy as 1, 2, 3
+          Empezar es tan fácil como 1, 2, 3
         </Typography>
         <Typography variant='subtitle2'>
-          Join the Giving Revolution with Libera: Three Simple Steps to Make a Difference Today
+          Únete a la revolución de las donaciones con Libera: Tres sencillos pasos para hacer la diferencia
+          hoy mismo
         </Typography>
       </Box>
       <Grid container columnSpacing={10} marginY={7}>

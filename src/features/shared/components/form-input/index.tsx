@@ -69,7 +69,7 @@ const FormInput: FC<Props> = ({
           <span className={styles.errorLabel}>{typeof error === 'string' ? error : error.message}</span>
         )}
 
-        {!error && optional && <label className={styles.optionalLabel}>&#40;Optional&#41;</label>}
+        {!error && optional && <label className={styles.optionalLabel}>&#40;Opcional&#41;</label>}
 
         {type !== 'password' && unit && (
           <label className={classNamesFilter(styles.unitLabel, !!value && styles.show)}>{unit}</label>

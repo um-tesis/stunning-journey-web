@@ -54,6 +54,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
       setClientToken(accessToken);
 
       req.session.user = user;
+      req.session.authorization = accessToken;
       await req.session.save();
       res.status(200);
       return res.json(response.data.login);
