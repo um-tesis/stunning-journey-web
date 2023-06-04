@@ -20,8 +20,7 @@ export default function Home({user}: Props) {
           <meta property='og:title' content='Libera' />
           <meta property='og:description' content='Navege los proyectos de Libera!' />
           <meta property='og:image' content={'/collaboration.jpeg'} />
-          {/* TODO: CHANGE THIS URL WHEN DEPLOYED TO PRODUCTION or NGROK URL FOR TESTING */}
-          <meta property='og:url' content={`http://www.libera.com`} />
+          <meta property='og:url' content={window.location.href} />
           <link rel='icon' href='/Logo-libera.png' />
         </Head>
         <Header user={user} />

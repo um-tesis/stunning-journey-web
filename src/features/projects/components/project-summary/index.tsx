@@ -6,6 +6,9 @@ import {useState} from 'react';
 import TabBar from '@/features/shared/components/tab-bar';
 import ProjectInformationCard from '../project-information-card';
 import VolunteeringInformationCard from '../volunteering-information-card';
+import {IconButton} from '@mui/material';
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+import useCopyToClipboard from '@/lib/hooks/useCopyToClipboard';
 
 type Props = {
   project: any;
@@ -13,6 +16,8 @@ type Props = {
 };
 
 export default function ProjectSummary({project, handleOpenUpdateProjectDrawer}: Props) {
+  const [_, copy] = useCopyToClipboard();
+
   const [selectedSection, setSelectedSection] = useState<number>(0);
 
   const {name, description, coverPhoto, acceptsVolunteers} = project;
@@ -21,6 +26,10 @@ export default function ProjectSummary({project, handleOpenUpdateProjectDrawer}:
     {key: 0, value: 'Información del Proyecto'},
     acceptsVolunteers && {key: 1, value: 'Voluntariado'},
   ];
+
+  const handleCopyToClipboard = () => {
+    copy(window.location.href);
+  };
 
   return (
     <div className={styles.projectContainer}>
@@ -36,6 +45,9 @@ export default function ProjectSummary({project, handleOpenUpdateProjectDrawer}:
           <Typography className={styles.description} variant='body2' component='p'>
             {description}
           </Typography>
+          <IconButton className={styles.copyToClipboard} onClick={handleCopyToClipboard}>
+            <ContentCopyIcon />
+          </IconButton>
         </CardContent>
       </Card>
       <br />

@@ -22,8 +22,7 @@ export default function ProjectsPage({user}: Props) {
         <meta property='og:title' content='Libera' />
         <meta property='og:description' content='Navege los proyectos de Libera!' />
         <meta property='og:image' content={'/collaboration.jpeg'} />
-        {/* TODO: CHANGE THIS URL WHEN DEPLOYED TO PRODUCTION or NGROK URL FOR TESTING */}
-        <meta property='og:url' content={`https://039f-186-53-166-7.ngrok-free.app/projects`} />
+        <meta property='og:url' content={window.location.href} />
       </Head>
 
       <Header user={user} />

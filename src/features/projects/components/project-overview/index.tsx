@@ -8,12 +8,17 @@ import {Gallery} from 'react-grid-gallery';
 import useImageDimensions from './useImageDimensions';
 import InstagramFeedWidget from '@/features/shared/components/instagram-feed-widget';
 import PrimaryButton from '@/features/shared/components/primary-button';
+import {IconButton} from '@mui/material';
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+import useCopyToClipboard from '@/lib/hooks/useCopyToClipboard';
 
 type Props = {
   project: any;
 };
 
 export default function ProjectOverview({project}: Props) {
+  const [_, copy] = useCopyToClipboard();
+
   const {name, description, coverPhoto} = project;
 
   const PHOTOS = [
@@ -55,6 +60,10 @@ export default function ProjectOverview({project}: Props) {
     },
   ];
 
+  const handleCopyToClipboard = () => {
+    copy(window.location.href);
+  };
+
   return (
     <div className={styles.projectContainer}>
       <Card
@@ -69,6 +78,9 @@ export default function ProjectOverview({project}: Props) {
           <Typography className={styles.description} variant='body2' component='p'>
             {description}
           </Typography>
+          <IconButton className={styles.copyToClipboard} onClick={handleCopyToClipboard}>
+            <ContentCopyIcon />
+          </IconButton>
           <PrimaryButton auxClassNames={styles.volunteeringButton} inverted>
             Ofrézcase como Voluntario!
           </PrimaryButton>

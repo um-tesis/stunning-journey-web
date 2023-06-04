@@ -56,8 +56,7 @@ export default function ProjectPage({user}: Props) {
         <meta property='og:title' content={project.name} />
         <meta property='og:description' content={project.description} />
         <meta property='og:image' content={project.coverPhoto} />
-        {/* TODO: CHANGE THIS URL WHEN DEPLOYED TO PRODUCTION or NGROK URL FOR TESTING */}
-        <meta property='og:url' content={`http://www.libera.com/projects/${slug}`} />
+        <meta property='og:url' content={window.location.href} />
       </Head>
 
       {user?.role === SYSTEM_ROLES.ORGADMIN && project.organizationId === user?.organizationId ? (
