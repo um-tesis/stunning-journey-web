@@ -1,13 +1,11 @@
 import styles from './styles.module.scss';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import DonationsBox from '../donations-box';
 import ImagesMasonry from '@/features/shared/components/images-masonry';
 import useImageDimensions from './useImageDimensions';
 import InstagramFeedWidget from '@/features/shared/components/instagram-feed-widget';
 import PrimaryButton from '@/features/shared/components/primary-button';
-import {Box, Container, Grid} from '@mui/material';
+import {Grid} from '@mui/material';
 
 type Props = {
   project: any;
@@ -85,7 +83,7 @@ export default function ProjectOverview({project}: Props) {
       </Grid>
       <Grid container>
         <Grid item className={styles.overlap}>
-          <DonationsBox />
+          <DonationsBox projectSlug={project.slug} />
         </Grid>
         <Grid item xs={12}>
           <ImagesMasonry />

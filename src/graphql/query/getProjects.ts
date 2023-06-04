@@ -10,7 +10,6 @@ export const GET_PROJECTS = gql`
         field
         description
         startDate
-        endDate
         coverPhoto
         acceptsVolunteers
       }

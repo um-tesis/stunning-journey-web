@@ -14,7 +14,7 @@ type Props = {
 };
 
 export default function ProjectInformationCard({project, handleOpenUpdateProjectDrawer}: Props) {
-  const {field, startDate, endDate, location, organization} = project;
+  const {field, startDate, location, organization} = project;
 
   return (
     <>
@@ -58,14 +58,6 @@ export default function ProjectInformationCard({project, handleOpenUpdateProject
                 </Typography>
                 <Typography className={styles.value} variant='body1' component='span'>
                   {startDate ? convertDateFromIso(startDate) : 'No Start Date'}
-                </Typography>
-              </div>
-              <div className={styles.endDate}>
-                <Typography className={styles.label} variant='body1' component='span'>
-                  Fecha de Finalización
-                </Typography>
-                <Typography className={styles.value} variant='body1' component='span'>
-                  {endDate ? convertDateFromIso(endDate) : 'No End Date'}
                 </Typography>
               </div>
             </Grid>

@@ -14,7 +14,7 @@ type Props = {
   isOpen: boolean;
   onCloseDrawer: () => void;
   canSubmit: boolean;
-  onSubmit: () => void;
+  onSubmit: () => Promise<void>;
 };
 
 export default function FormDrawer({

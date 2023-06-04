@@ -40,7 +40,6 @@ export default function OurProjects({user}: Props) {
     return {
       ...project,
       startDate: project.startDate ? convertDateFromIso(project.startDate) : undefined,
-      endDate: project.endDate ? convertDateFromIso(project.endDate) : undefined,
     };
   });
 

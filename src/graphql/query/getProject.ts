@@ -9,9 +9,9 @@ export const GET_PROJECT = gql`
       description
       field
       startDate
-      endDate
       coverPhoto
       acceptsVolunteers
+      mpPublicKey
       organization {
         name
       }
