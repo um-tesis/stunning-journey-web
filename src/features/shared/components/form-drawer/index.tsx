@@ -3,6 +3,7 @@ import Drawer from '../drawer';
 import PrimaryButton from '../primary-button';
 import CloseIcon from '@mui/icons-material/Close';
 import {Grid, IconButton, Typography} from '@mui/material';
+import styles from './styles.module.scss';
 
 type Props = {
   children: ReactNode;
@@ -54,7 +55,7 @@ export default function FormDrawer({
           {children}
         </Grid>
         <Grid item xs={12}>
-          <PrimaryButton disabled={!canSubmit} onClick={onSubmit} fullWidth>
+          <PrimaryButton disabled={!canSubmit} onClick={onSubmit} auxClassNames={styles.submitButton}>
             {submitButtonText}
           </PrimaryButton>
         </Grid>

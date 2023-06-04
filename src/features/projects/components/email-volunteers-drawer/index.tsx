@@ -10,6 +10,7 @@ import FormDrawer from '@/features/shared/components/form-drawer';
 import {EMAIL_VOLUNTEERS} from '@/graphql/mutation/emailVolunteers';
 import {SUCCESSFUL_VOLUNTEERS_BROADCAST} from '@/lib/utils/api-messages-helper';
 import TextBox from '@/features/shared/components/text-box';
+import styles from './styles.module.scss';
 
 type Props = {
   onClose: () => void;
@@ -83,14 +84,14 @@ export default function EmailVolunteersDrawer({onClose, projectId}: Props) {
       onCloseDrawer={onClose}
       canSubmit={!isAddDisabled()}
       onSubmit={onSubmitEmail}
-      title='Email Volunteers'
+      title='Enviar email'
       submitButtonText='Email'
     >
       <br />
       <br />
       <FormInput
         name='subject'
-        label='Subject'
+        label='Asunto'
         handleChange={handleChange}
         value={watch().subject}
         error={errors.subject}
@@ -103,7 +104,8 @@ export default function EmailVolunteersDrawer({onClose, projectId}: Props) {
         name='body'
         onChange={handleChange}
         value={watch().body}
-        placeholder='Enter your message here...'
+        placeholder='Ingrese su mensaje...'
+        auxClassNames={styles.bodyBox}
       />
     </FormDrawer>
   );

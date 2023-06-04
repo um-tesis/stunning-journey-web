@@ -43,9 +43,9 @@ export default function Projects() {
   return (
     <div className={styles.projectsContainer}>
       <div className={styles.browseSection}>
-        <Typography className={styles.title}>Browse Libera&apos;s projects</Typography>
+        <Typography className={styles.title}>Navega los proyectos de Libera</Typography>
         <Typography variant='subtitle1' className={styles.subtitle}>
-          Find the project that suits you best and start making a difference today!
+          Encuentre el proyecto que más le convenga y empiece a marcar la diferencia hoy mismo!
         </Typography>
         <div className={styles.searchBox}>
           <SearchInput
@@ -59,9 +59,9 @@ export default function Projects() {
         <Grid container spacing={2}>
           {projects &&
             projects.map((project: any) => (
-              <Grid key={project.id} item sm={12} md={6}>
+              <Grid key={project.slug} item sm={12} md={6}>
                 <ProjectCard
-                  projectId={project.id}
+                  projectSlug={project.slug}
                   name={project.name}
                   description={project.description}
                   coverPhoto={project.coverPhoto}
@@ -71,6 +71,7 @@ export default function Projects() {
         </Grid>
         {totalPages > 0 && (
           <Pagination
+            page={page}
             className={styles.pagination}
             count={totalPages}
             onChange={onChangePage}

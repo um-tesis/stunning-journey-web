@@ -57,7 +57,7 @@ export default function GetInTouchModal({}: Props) {
   useEffect(() => {
     if (sendGetInTouch.status === 'success') {
       form.reset(emptyForm);
-      toast.success('Thank you for your message!');
+      toast.success('Gracias por su mensaje!');
     }
     if (sendGetInTouch.status === 'error') {
       toast.error(sendGetInTouch.error);
@@ -74,10 +74,10 @@ export default function GetInTouchModal({}: Props) {
 
   return (
     <div className={styles.getInTouchModal}>
-      <Typography className={styles.title}>Get in touch today</Typography>
+      <Typography className={styles.title}>Póngase en contacto hoy mismo</Typography>
       <Typography className={styles.subtitle}>
-        We&apos;d love to hear from you! Get in touch to find out how you can support our cause and help make
-        a positive impact.
+        Nos encantaría tener noticias suyas! Póngase en contacto con nosotros para saber cómo puede apoyar
+        nuestra causa y ayudar a tener un impacto positivo.
       </Typography>
       <form onSubmit={handleSubmit(sendGetInTouch.execute)} className={styles.formContainer}>
         <Grid container spacing={3} rowSpacing={5}>
@@ -85,7 +85,7 @@ export default function GetInTouchModal({}: Props) {
             <TextField
               id='name'
               name='name'
-              label='Name'
+              label='Nombre'
               variant='outlined'
               fullWidth
               value={watch().name}
@@ -96,7 +96,7 @@ export default function GetInTouchModal({}: Props) {
             <TextField
               id='email'
               name='email'
-              label='Email'
+              label='Correo electrónico'
               variant='outlined'
               fullWidth
               value={watch().email}
@@ -107,7 +107,7 @@ export default function GetInTouchModal({}: Props) {
             <TextField
               id='phone'
               name='phone'
-              label='Phone'
+              label='Teléfono'
               variant='outlined'
               fullWidth
               value={watch().phone}
@@ -118,7 +118,7 @@ export default function GetInTouchModal({}: Props) {
             <TextField
               id='company'
               name='company'
-              label='Company'
+              label='Empresa'
               variant='outlined'
               fullWidth
               value={watch().company}
@@ -129,14 +129,14 @@ export default function GetInTouchModal({}: Props) {
             <TextareaAutosize
               id='message'
               name='message'
-              placeholder='Leave us a message...'
+              placeholder='Déjanos un mensaje...'
               value={watch().message}
               onChange={handleChange}
               className={styles.messageTextArea}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
-            <PrimaryButton type='submit'>Send Message</PrimaryButton>
+            <PrimaryButton type='submit'>Enviar mensaje</PrimaryButton>
           </Grid>
         </Grid>
       </form>

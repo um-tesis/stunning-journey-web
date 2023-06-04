@@ -69,8 +69,6 @@ export default function AddVolunteerDrawer({onClose, projectId, organizationId}:
         userId: res.data.createUser.id,
       },
     });
-
-    // we still need to assign the volunteer to the project
   }, false);
 
   const onSubmitVolunteer = async () => {
@@ -101,13 +99,13 @@ export default function AddVolunteerDrawer({onClose, projectId, organizationId}:
       onCloseDrawer={onClose}
       canSubmit={!isAddDisabled()}
       onSubmit={onSubmitVolunteer}
-      title='Add Volunteer'
-      submitButtonText='Add'
-      description='Add a new volunteer to the project. Make sure to provide accurate information about the volunteer to ensure proper assignment and communication within the project.'
+      title='Agregar Voluntario'
+      submitButtonText='Agregar'
+      description='Añada un nuevo voluntario al proyecto. Asegúrese de proporcionar información precisa sobre el voluntario para garantizar una asignación y comunicación adecuadas dentro del proyecto.'
     >
       <FormInput
         name='name'
-        label='Name'
+        label='Nombre'
         handleChange={handleChange}
         value={watch().name}
         error={errors.name}
@@ -115,7 +113,7 @@ export default function AddVolunteerDrawer({onClose, projectId, organizationId}:
 
       <FormInput
         name='email'
-        label='Email'
+        label='Correo Electrónico'
         handleChange={handleChange}
         value={watch().email}
         error={errors.email}
@@ -123,7 +121,7 @@ export default function AddVolunteerDrawer({onClose, projectId, organizationId}:
 
       <FormInput
         name='phone'
-        label='Phone'
+        label='Teléfono'
         handleChange={handleChange}
         value={watch().phone}
         error={errors.phone}

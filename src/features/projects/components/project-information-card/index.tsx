@@ -23,7 +23,7 @@ export default function ProjectInformationCard({project, handleOpenUpdateProject
           <Grid container spacing={5} alignItems='center' paddingBottom={4}>
             <Grid item>
               <Typography variant='h5' component='h2' className={styles.title}>
-                Project Information
+                Información del Proyecto
               </Typography>
             </Grid>
             <Grid item>
@@ -36,7 +36,7 @@ export default function ProjectInformationCard({project, handleOpenUpdateProject
             <Grid item xs={12} md={6}>
               <div className={styles.field}>
                 <Typography className={styles.label} variant='body1' component='span'>
-                  Field
+                  Campo
                 </Typography>
                 <Typography className={styles.value} variant='body1' component='span'>
                   {field}
@@ -44,7 +44,7 @@ export default function ProjectInformationCard({project, handleOpenUpdateProject
               </div>
               <div className={styles.organizationName}>
                 <Typography className={styles.label} variant='body1' component='span'>
-                  Organization Name
+                  Nombre de la Organización
                 </Typography>
                 <Typography className={styles.value} variant='body1' component='span'>
                   {organization.name}
@@ -54,7 +54,7 @@ export default function ProjectInformationCard({project, handleOpenUpdateProject
             <Grid item xs={12} md={6}>
               <div className={styles.startDate}>
                 <Typography className={styles.label} variant='body1' component='span'>
-                  Start Date
+                  Fecha de Inicio
                 </Typography>
                 <Typography className={styles.value} variant='body1' component='span'>
                   {startDate ? convertDateFromIso(startDate) : 'No Start Date'}
@@ -62,7 +62,7 @@ export default function ProjectInformationCard({project, handleOpenUpdateProject
               </div>
               <div className={styles.endDate}>
                 <Typography className={styles.label} variant='body1' component='span'>
-                  End Date
+                  Fecha de Finalización
                 </Typography>
                 <Typography className={styles.value} variant='body1' component='span'>
                   {endDate ? convertDateFromIso(endDate) : 'No End Date'}
@@ -74,7 +74,7 @@ export default function ProjectInformationCard({project, handleOpenUpdateProject
           <br />
           <div className={styles.location}>
             <Typography className={styles.label} variant='body1' component='span'>
-              Location
+              Ubicación
             </Typography>
             <Typography className={styles.value} variant='body1' component='span'>
               {location || '-'}
@@ -86,7 +86,7 @@ export default function ProjectInformationCard({project, handleOpenUpdateProject
           <div className={styles.mediaContainer}>
             <div className={styles.video}>
               <Typography className={styles.label} variant='body1' component='span'>
-                Video Preview
+                Video
               </Typography>
               <br />
               <VideoPlayer
@@ -96,11 +96,11 @@ export default function ProjectInformationCard({project, handleOpenUpdateProject
             </div>
             <div className={styles.photoGallery}>
               <Typography className={styles.label} variant='body1' component='span'>
-                Photo Gallery
+                Galería de Fotos
               </Typography>
               <br />
               <Typography className={styles.value} variant='body1' component='span'>
-                No photos added yet
+                No hay fotos agregadas aún
               </Typography>
             </div>
           </div>

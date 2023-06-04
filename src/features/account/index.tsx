@@ -37,7 +37,7 @@ export default function Account({user}: Props) {
       <Grid container paddingX={10} paddingY={5} spacing={5} className={styles.accountContainer}>
         <Grid container item alignItems='center' spacing={3}>
           <Grid item>
-            <Typography variant='h3'>Account Settings</Typography>
+            <Typography variant='h3'>Configuración de la Cuenta</Typography>
           </Grid>
           <Grid item spacing={2}>
             <IconButton onClick={handleOpenBasicInfoDrawer}>
@@ -47,7 +47,7 @@ export default function Account({user}: Props) {
         </Grid>
         <Grid item xs={2}>
           <Typography className={styles.label} variant='h6'>
-            Name
+            Nombre
           </Typography>
         </Grid>
         <Grid item xs={10}>
@@ -57,7 +57,7 @@ export default function Account({user}: Props) {
         </Grid>
         <Grid item xs={2}>
           <Typography className={styles.label} variant='h6'>
-            Email
+            Correo electrónico
           </Typography>
         </Grid>
         <Grid item xs={10}>
@@ -67,7 +67,7 @@ export default function Account({user}: Props) {
         </Grid>
         <Grid item xs={2}>
           <Typography className={styles.label} variant='h6'>
-            Role
+            Rol
           </Typography>
         </Grid>
         <Grid item xs={10}>
@@ -77,7 +77,7 @@ export default function Account({user}: Props) {
         </Grid>
         <Grid item xs={2}>
           <Typography className={styles.label} variant='h6'>
-            Phone
+            Teléfono
           </Typography>
         </Grid>
         <Grid item xs={10}>
@@ -86,7 +86,7 @@ export default function Account({user}: Props) {
           </Typography>
         </Grid>
         <Grid item>
-          <PrimaryButton onClick={handleOpenChangePasswordDrawer}>Change Password</PrimaryButton>
+          <PrimaryButton onClick={handleOpenChangePasswordDrawer}>Cambiar Contraseña</PrimaryButton>
         </Grid>
       </Grid>
       {showBasicInfoDrawer && (

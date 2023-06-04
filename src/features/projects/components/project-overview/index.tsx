@@ -70,7 +70,7 @@ export default function ProjectOverview({project}: Props) {
             {description}
           </Typography>
           <PrimaryButton auxClassNames={styles.volunteeringButton} inverted>
-            Offer As A Volunteer!
+            Ofrézcase como Voluntario!
           </PrimaryButton>
         </CardContent>
       </Card>

@@ -1,0 +1,18 @@
+.donationsContainer {
+  height: 720px;
+  padding: 50px 100px;
+  position: relative;
+  background-color: #fff;
+
+  .donationsTabBar {
+    background-color: #5d5a88;
+    margin: 0 0 20px 0;
+    border-radius: 10px;
+
+    ul {
+      li:hover {
+        border-radius: 10px;
+      }
+    }
+  }
+}

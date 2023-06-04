@@ -5,17 +5,17 @@ import {GetServerSidePropsContext} from 'next';
 import {withIronSessionSsr} from 'iron-session/next';
 import {ironSessionOptions} from '@/lib/utils/iron-session';
 import {UserData} from '@/features/shared/types';
-import OurProjects from '@/features/our-projects';
+import TeamMembers from '@/features/team-members';
 
 type Props = {
   user: UserData;
 };
 
-export default function OurProjectsPage({user}: Props) {
+export default function TeamMembersPage({user}: Props) {
   return (
     <Container className={styles.pageContainer}>
       <Header user={user} />
-      <OurProjects user={user} />
+      <TeamMembers user={user} />
     </Container>
   );
 }

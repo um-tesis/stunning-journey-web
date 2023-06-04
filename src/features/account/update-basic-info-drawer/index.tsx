@@ -105,15 +105,15 @@ export default function UpdateBasicInfoDrawer({onClose, user, setUser}: Props) {
       onCloseDrawer={onClose}
       canSubmit={!isAddDisabled()}
       onSubmit={onSubmitForm}
-      title='Basic Info'
-      submitButtonText='Update'
-      description='Update your account information.'
+      title='Información Básica'
+      submitButtonText='Actualizar'
+      description='Actualiza la información de su cuenta.'
     >
       <Grid container spacing={3} paddingY={5}>
         <Grid item xs={12}>
           <TextField
             name='name'
-            label='Name'
+            label='Nombre'
             variant='outlined'
             fullWidth
             onChange={handleChange}
@@ -126,7 +126,7 @@ export default function UpdateBasicInfoDrawer({onClose, user, setUser}: Props) {
         <Grid item xs={12}>
           <TextField
             name='email'
-            label='Email'
+            label='Correo Electrónico'
             variant='outlined'
             fullWidth
             onChange={handleChange}
@@ -139,7 +139,7 @@ export default function UpdateBasicInfoDrawer({onClose, user, setUser}: Props) {
         <Grid item xs={12}>
           <TextField
             name='phone'
-            label='Phone'
+            label='Teléfono'
             variant='outlined'
             type='number'
             fullWidth

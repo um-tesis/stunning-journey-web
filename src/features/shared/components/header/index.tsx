@@ -21,8 +21,19 @@ function Header({user}: Props) {
   const router = useRouter();
 
   const pages = user
-    ? ['Home', 'Projects', 'Our-Projects', 'Donators', 'Donations']
-    : ['Home', 'About', 'Projects', 'Our-Work'];
+    ? [
+        {text: 'Inicio', link: 'home'},
+        {text: 'Proyectos', link: 'projects'},
+        {text: 'Sus Proyectos', link: 'our-projects'},
+        {text: 'Miembros del Equipo', link: 'team-members'},
+        {text: 'Donaciones', link: 'donations'},
+      ]
+    : [
+        {text: 'Inicio', link: 'home'},
+        {text: 'Acerca de Nosotros', link: 'about'},
+        {text: 'Proyectos', link: 'projects'},
+        {text: 'Nuestro Trabajo', link: 'our-work'},
+      ];
 
   const handleAuthToggle = async () => {
     if (user) {
@@ -82,23 +93,21 @@ function Header({user}: Props) {
           >
             {pages.map((page) => (
               <PrimaryButton
-                key={page}
+                key={page.text}
                 inverted
                 hideOutlined
                 onClick={() => {
-                  router.push(`/${page.toLowerCase()}`);
+                  router.push(`/${page.link}`);
                 }}
                 auxClassNames={
-                  router && router.pathname.replace(/\//g, '') === page.toLowerCase().replace(/ /g, '-')
-                    ? styles.active
-                    : ''
+                  router && router.pathname.replace(/\//g, '') === page.link ? styles.active : ''
                 }
               >
-                {page.split('-').join(' ')}
+                {page.text}
               </PrimaryButton>
             ))}
             <PrimaryButton onClick={handleAuthToggle} inverted>
-              {user ? 'Logout' : 'Login'}
+              {user ? 'Cerrar Sesión' : 'Iniciar Sesión'}
             </PrimaryButton>
           </Box>
         </Toolbar>

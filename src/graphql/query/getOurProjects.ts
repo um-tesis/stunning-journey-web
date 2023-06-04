@@ -9,7 +9,7 @@ export const GET_OUR_PROJECTS = gql`
       filter: $filter
     ) {
       projects {
-        id
+        slug
         name
         field
         startDate

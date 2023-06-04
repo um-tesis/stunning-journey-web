@@ -41,16 +41,16 @@ function Footer() {
   return (
     <Container maxWidth='lg' className={styles.footer}>
       <Typography variant='h5' className={styles.title}>
-        Receive the latest updates!
+        Reciba las últimas actualizaciones!
       </Typography>
       <Typography variant='subtitle2' className={styles.subtitle}>
-        Lorem ipsum dolor sit amet consectetur adipiscing elit phasellus amet dui quam vitae quis leo.
+        Manténgase conectado: Únase a nuestra lista de correo para recibir noticias y ofertas exclusivas.
       </Typography>
       <div className={styles.subscription}>
         <TextField
           id='email'
           name='email'
-          label='Email'
+          label='Correo electrónico'
           variant='standard'
           value={email}
           onChange={(e) => setEmail(e.target.value)}
@@ -72,7 +72,7 @@ function Footer() {
       </div>
       <Divider flexItem />
       <Typography variant='body1' className={styles.copyright}>
-        Copyright © 2023 | All Rights Reserved
+        Copyright © 2023 | Derechos Reservados
       </Typography>
     </Container>
   );
