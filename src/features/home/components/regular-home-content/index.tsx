@@ -28,18 +28,18 @@ export default function RegularHomeContent({user}: Props) {
     <>
       <Box className={styles.homeSection}>
         <Typography variant='h1' className={styles.heroTitle}>
-          Join the Libera community
+          Únete a la comunidad Libera
         </Typography>
 
         <Typography variant='body1' className={styles.heroText}>
-          With Libera, you can donate safely and effectively to charitable organizations that are making a
-          real difference in the world
+          Con Libera, puedes donar de forma segura y eficaz a organizaciones benéficas que están marcando una
+          diferencia real en el mundo.
         </Typography>
         <div className={styles.buttonsContainer}>
           <PrimaryButton inverted onClick={() => router.push('/projects')}>
-            Projects
+            Proyectos
           </PrimaryButton>
-          <PrimaryButton onClick={() => router.push('/about')}>More Info</PrimaryButton>
+          <PrimaryButton onClick={() => router.push('/about')}>Más Info</PrimaryButton>
         </div>
       </Box>
       <ResultsSection user={user} results={results} />
@@ -48,15 +48,15 @@ export default function RegularHomeContent({user}: Props) {
           <div className={classNamesFilter(styles.homeSection, styles.homeSecondSection)}>
             <Image src='/collaboration.jpeg' width={500} height={350} alt='image' />
             <div className={styles.sectionRightContent}>
-              <Typography variant='h5'>Create your account today and get started for free!</Typography>
+              <Typography variant='h5'>Crea tu cuenta hoy mismo y empieza a colaborar gratis!</Typography>
               <Typography variant='subtitle2'>
-                Together we can unleash the potential of charitable organizations with Libera.
+                Juntos podemos liberar el potencial de las organizaciones benéficas con Libera.
               </Typography>
               <div className={styles.buttonsContainer}>
                 <PrimaryButton inverted onClick={() => router.push('/our-work')}>
-                  Get Started
+                  Comenzar
                 </PrimaryButton>
-                <PrimaryButton onClick={() => router.push('/about')}>About Us</PrimaryButton>
+                <PrimaryButton onClick={() => router.push('/about')}>Quiénes somos</PrimaryButton>
               </div>
             </div>
           </div>

@@ -93,19 +93,15 @@ export default function LoadHoursDrawer({onClose, projectId, volunteers}: Props)
       onCloseDrawer={onClose}
       canSubmit={!isAddDisabled()}
       onSubmit={onSubmitHours}
-      title='Load Hours'
-      submitButtonText='Load'
-      description='Load hours to a volunteer that has participated in this project in some way. This will be added to the volunteer hours. This way the volunteers will eventually to earn a Libera badge.'
+      title='Cargar Horas'
+      submitButtonText='Cargar'
+      description='Carga de horas a un voluntario que haya participado de alguna manera en este proyecto. Esto se sumará a las horas de voluntariado. De esta manera los voluntarios eventualmente ganarán una insignia Libera.'
     >
       <br />
       <br />
       <FormControl fullWidth sx={{zIndex: 100001}}>
-        <InputLabel>Pick a Volunteer to load hours</InputLabel>
-        <Select
-          value={selectedVolunteer}
-          label='Pick a Volunteer to load hours'
-          onChange={handleVolunteerSelection}
-        >
+        <InputLabel>Elija un voluntario</InputLabel>
+        <Select value={selectedVolunteer} label='Elija un voluntario' onChange={handleVolunteerSelection}>
           {volunteers.map((volunteer, index) => (
             <MenuItem key={index} value={volunteer}>
               {volunteer.name}
@@ -118,7 +114,7 @@ export default function LoadHoursDrawer({onClose, projectId, volunteers}: Props)
       <br />
       <FormInput
         name='hours'
-        label='Hours'
+        label='Horas'
         handleChange={handleChange}
         value={watch().hours}
         error={errors.hours}

@@ -22,11 +22,11 @@ type Props = {
 
 export default function ResultsSection({user, results}: Props) {
   const sectionTitle =
-    user && user.role !== SYSTEM_ROLES.USER ? `Your results in numbers` : 'Our results in numbers';
+    user && user.role !== SYSTEM_ROLES.USER ? `Sus resultados en cifras` : `Nuestros resultados en cifras`;
   const sectionDescription =
     user && user.role !== SYSTEM_ROLES.USER
-      ? `Your organization has achieved the following results:`
-      : 'Thanks to YOUR help, we have achieved the following results:';
+      ? `Su organización ha logrado los siguientes resultados:`
+      : 'Gracias a SU ayuda, hemos conseguido los siguientes resultados:';
 
   return (
     <Container className={styles.sectionContent}>
@@ -41,7 +41,7 @@ export default function ResultsSection({user, results}: Props) {
           <Grid item xs={6}>
             <div className={styles.anualDonations}>
               <Typography variant='h4' className={styles.description}>
-                Annual Donations
+                Donaciones anuales
               </Typography>
               <Typography variant='h2' className={styles.number}>
                 {results.annualDonations}
@@ -53,28 +53,28 @@ export default function ResultsSection({user, results}: Props) {
               <Grid item xs={6}>
                 <ResultCard
                   resultNumber={results.raisedMoney}
-                  resultDescription='Raised USD'
+                  resultDescription='USD recaudados'
                   Icon={<PaidIcon className={styles.cardIcon} />}
                 />
               </Grid>
               <Grid item xs={6}>
                 <ResultCard
                   resultNumber={results.donators}
-                  resultDescription='Donators'
+                  resultDescription='Donantes'
                   Icon={<VolunteerActivismIcon className={styles.cardIcon} />}
                 />
               </Grid>
               <Grid item xs={6}>
                 <ResultCard
                   resultNumber={results.activeProjects}
-                  resultDescription='Active Projects'
+                  resultDescription='Proyectos Activos'
                   Icon={<CorporateFareIcon className={styles.cardIcon} />}
                 />
               </Grid>
               <Grid item xs={6}>
                 <ResultCard
                   resultNumber={results.collaboratorsInvolved}
-                  resultDescription='Collaborators Involved'
+                  resultDescription='Colaboradores involucrados'
                   Icon={<PeopleIcon className={styles.cardIcon} />}
                 />
               </Grid>

@@ -103,7 +103,7 @@ export default function SignInSide() {
           </Grid>
           <Grid xs={12} item alignSelf='center'>
             <Typography variant='h4' color='#575484'>
-              Welcome to Libera
+              Bienvenido a Libera 🙂
             </Typography>
           </Grid>
           <Grid item xs={12}>
@@ -112,7 +112,7 @@ export default function SignInSide() {
                 <Grid item xs={12}>
                   <TextField
                     name='email'
-                    label='Email'
+                    label='Correo electrónico'
                     type='email'
                     value={watch().email}
                     onChange={handleChange}
@@ -124,7 +124,7 @@ export default function SignInSide() {
                 <Grid item xs={12}>
                   <TextField
                     name='password'
-                    label='Password'
+                    label='Contraseña'
                     type='password'
                     value={watch().password}
                     onChange={handleChange}
@@ -134,7 +134,7 @@ export default function SignInSide() {
                   />
                 </Grid>
                 <Grid item xs={12}>
-                  <PrimaryButton onClick={handleCredentialsSubmit}>Sign in</PrimaryButton>
+                  <PrimaryButton onClick={handleCredentialsSubmit}>Iniciar sesión</PrimaryButton>
                 </Grid>
               </Grid>
             </form>

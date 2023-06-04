@@ -1,24 +1,27 @@
-export const SUCCESSFUL_LOGOUT = 'Logout successful';
+export const SUCCESSFUL_LOGOUT = 'Cierre de sesión exitoso';
 
-export const GENERAL_SERVER_ERROR = 'Internal server error';
+export const GENERAL_SERVER_ERROR = 'Error interno del servidor';
 
-export const NO_CREDENTIALS = 'Missing credentials';
+export const NO_CREDENTIALS = 'Faltan credenciales';
 
 export const SUCCESSFUL_GET_IN_TOUCH =
-  'Thank you for getting in touch with us. We will get back to you shortly.';
+  'Gracias por ponerse en contacto con nosotros. Nos pondremos en contacto con usted en breve.';
 
-export const SUCCESSFUL_LOGIN = 'Login successful';
+export const SUCCESSFUL_LOGIN = 'Inicio de sesión correcto';
 
-export const PROJECT_CREATED = 'Project created successfully!';
+export const PROJECT_CREATED = 'Proyecto creado con éxito!';
 
-export const SUCCESSFUL_VOLUNTEERS_BROADCAST = 'Project Volunteers emailed successfully!';
+export const SUCCESSFUL_VOLUNTEERS_BROADCAST =
+  'Se ha enviado correctamente el correo electrónico a los voluntarios del proyecto!';
 
-export const SUCCESSFUL_PROJECT_HOURS_LOAD = 'Project hours loaded successfully!';
+export const SUCCESSFUL_PROJECT_HOURS_LOAD = 'Horas en el proyecto cargadas correctamente!';
 
-export const SUCCESSFUL_NEW_VOLUNTEER = 'Successfully added and assigned volunteer to project!';
+export const SUCCESSFUL_NEW_VOLUNTEER = 'Voluntario añadido y asignado con éxito al proyecto!';
 
-export const SUCCESSFUL_NEWSLETTER_SUBSCRIPTION = "Successfully subscribed to Libera's newsletter!";
+export const SUCCESSFUL_NEWSLETTER_SUBSCRIPTION = 'Suscrito con éxito al boletín de Libera!';
 
-export const SUCCESSFUL_USER_UPDATE = 'User updated successfully!';
+export const SUCCESSFUL_USER_UPDATE = 'Usuario actualizado con éxito!';
 
-export const SUCCESSFUL_PASSWORD_CHANGE = 'Password changed successfully!';
+export const SUCCESSFUL_PASSWORD_CHANGE = 'Cambio de contraseña realizado con éxito!';
+
+export const SUCCESSFUL_TEAM_MEMBER_ADDITION = 'Miembro del equipo añadido con éxito!';

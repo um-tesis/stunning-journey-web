@@ -18,8 +18,8 @@ export default function ProjectSummary({project, handleOpenUpdateProjectDrawer}:
   const {name, description, coverPhoto, acceptsVolunteers} = project;
 
   const navSections = [
-    {key: 0, value: 'Project Information'},
-    acceptsVolunteers && {key: 1, value: 'Volunteering'},
+    {key: 0, value: 'Información del Proyecto'},
+    acceptsVolunteers && {key: 1, value: 'Voluntariado'},
   ];
 
   return (

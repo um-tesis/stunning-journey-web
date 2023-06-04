@@ -8,7 +8,7 @@ function ErrorPage404() {
       <Error statusCode={404} />
       <div className='links'>
         <a href='#' onClick={() => router.back()}>
-          Go back
+          Regresar
         </a>
       </div>
     </div>

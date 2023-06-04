@@ -60,7 +60,7 @@ export default function ChangePasswordDrawer({onClose}: Props) {
     if (formValues.newPassword !== formValues.confirmNewPassword) {
       form.setError('confirmNewPassword', {
         type: 'manual',
-        message: 'New password and confirm new password must be the same.',
+        message: 'La nueva contraseña y la confirmación de la nueva contraseña deben ser iguales.',
       });
       return;
     }
@@ -94,15 +94,15 @@ export default function ChangePasswordDrawer({onClose}: Props) {
       onCloseDrawer={onClose}
       canSubmit={!isAddDisabled()}
       onSubmit={onSubmitForm}
-      title='Change Password'
-      submitButtonText='Update'
-      description='Passwords must be at least 8 characters long.'
+      title='Cambiar Contraseña'
+      submitButtonText='Actualizar'
+      description='Las contraseñas deben tener al menos 8 caracteres.'
     >
       <Grid container spacing={3} paddingY={5}>
         <Grid item xs={12}>
           <TextField
             name='oldPassword'
-            label='Old Password*'
+            label='Contraseña Actual*'
             variant='outlined'
             onChange={handleChange}
             value={watch().oldPassword}
@@ -114,7 +114,7 @@ export default function ChangePasswordDrawer({onClose}: Props) {
         <Grid item xs={12}>
           <TextField
             name='newPassword'
-            label='New Password*'
+            label='Nueva Contraseña*'
             variant='outlined'
             onChange={handleChange}
             value={watch().newPassword}
@@ -126,7 +126,7 @@ export default function ChangePasswordDrawer({onClose}: Props) {
         <Grid item xs={12}>
           <TextField
             name='confirmNewPassword'
-            label='Confirm New Password*'
+            label='Confirmar Nueva Contraseña*'
             variant='outlined'
             onChange={handleChange}
             value={watch().confirmNewPassword}

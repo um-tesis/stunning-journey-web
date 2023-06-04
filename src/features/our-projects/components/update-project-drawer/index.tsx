@@ -120,14 +120,14 @@ export default function UpdateProjectDrawer({onClose, project}: Props) {
       onCloseDrawer={onClose}
       canSubmit={!isUpdateDisabled()}
       onSubmit={onSubmitProject}
-      title='New Project'
-      submitButtonText='Update'
+      title='Actualizar Proyecto'
+      submitButtonText='Actualizar'
     >
       <Grid container spacing={3} paddingY={5}>
         <Grid item xs={12}>
           <TextField
             name='name'
-            label='Name*'
+            label='Nombre*'
             variant='outlined'
             onChange={handleChange}
             value={watch().name}
@@ -139,7 +139,7 @@ export default function UpdateProjectDrawer({onClose, project}: Props) {
         <Grid item xs={12}>
           <TextField
             name='field'
-            label='Category*'
+            label='Categoria*'
             variant='outlined'
             onChange={handleChange}
             value={watch().field}
@@ -152,7 +152,7 @@ export default function UpdateProjectDrawer({onClose, project}: Props) {
         <Grid item xs={12}>
           <TextField
             name='description'
-            label='Description*'
+            label='Descripción*'
             variant='outlined'
             onChange={handleChange}
             value={watch().description}
@@ -166,7 +166,7 @@ export default function UpdateProjectDrawer({onClose, project}: Props) {
         <Grid item xs={12}>
           <TextField
             name='location'
-            label='Location'
+            label='Ubicación'
             variant='outlined'
             onChange={handleChange}
             value={watch().location}
@@ -186,13 +186,13 @@ export default function UpdateProjectDrawer({onClose, project}: Props) {
                 />
               }
               className={styles.checkbox}
-              label='Does this project accepts volunteers?'
+              label='¿Acepta voluntarios este proyecto?'
             />
           </FormGroup>
         </Grid>
         <Grid item xs={12}>
           <DatePicker
-            label='Start date'
+            label='Fechas'
             sx={{width: '100%'}}
             slotProps={{popper: {disablePortal: true}, textField: {helperText: errors?.startDate?.message}}}
             value={watch().startDate}
@@ -200,12 +200,16 @@ export default function UpdateProjectDrawer({onClose, project}: Props) {
           />
         </Grid>
         <Grid item xs={12}>
-          <ImageInput imageUrl={watch().coverPhoto} onChange={handleCoverPhotoChange} label='Cover Photo' />
+          <ImageInput
+            imageUrl={watch().coverPhoto}
+            onChange={handleCoverPhotoChange}
+            label='Foto de Portada'
+          />
         </Grid>
         <Grid item xs={12}>
           <TextField
             name='video'
-            label='Youtube Video'
+            label='Video de Youtube'
             variant='outlined'
             onChange={handleChange}
             value={watch().video}

@@ -9,17 +9,17 @@ import {useRouter} from 'next/router';
 import styles from './styles.module.scss';
 
 type ProjectCardProps = {
-  projectId: number;
+  projectSlug: string;
   name: string;
   description: string;
   coverPhoto?: string;
 };
 
-export default function ProjectCard({projectId, name, description, coverPhoto}: ProjectCardProps) {
+export default function ProjectCard({projectSlug, name, description, coverPhoto}: ProjectCardProps) {
   const router = useRouter();
 
   const redirectToProject = () => {
-    router.push(`projects/${projectId}`);
+    router.push(`projects/${projectSlug}`);
   };
 
   return (

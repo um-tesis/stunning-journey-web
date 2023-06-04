@@ -2,29 +2,27 @@ import {useQuery} from '@apollo/client';
 import {Grid, IconButton, Pagination, Typography} from '@mui/material';
 import {useMemo, useState} from 'react';
 import styles from './styles.module.scss';
-import {GET_OUR_PROJECTS} from '@/graphql/query/getOurProjects';
 import {UserData} from '../shared/types';
 import AddIcon from '@mui/icons-material/Add';
 import CustomTable from '../shared/components/custom-table';
 import {convertDateFromIso} from '@/lib/utils/ui-helper';
-import AddProjectDrawer from './components/add-project-drawer';
-import {useRouter} from 'next/router';
+import {GET_ORGANIZATION_ADMINS} from '@/graphql/query/getOrganizationAdmins';
+import AddTeamMemberDrawer from './add-team-member-drawer';
 
 type Props = {
   user: UserData;
 };
 
-export default function OurProjects({user}: Props) {
-  const router = useRouter();
+export default function TeamMembers({user}: Props) {
   const ITEMS_PER_PAGE = 5;
-  const [isAddProjectOpen, setIsAddProjectOpen] = useState(false);
+  const [isAddMemberOpen, setIsAddMemberOpen] = useState(false);
   const [page, setPage] = useState(1);
   const variables = useMemo(
     () => ({page, itemsPerPage: ITEMS_PER_PAGE, filter: '', organizationId: user.organizationId}),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [page]
   );
-  const {data, loading, refetch} = useQuery(GET_OUR_PROJECTS, {
+  const {data, loading, refetch} = useQuery(GET_ORGANIZATION_ADMINS, {
     variables,
   });
 
@@ -32,15 +30,14 @@ export default function OurProjects({user}: Props) {
     return null;
   }
 
-  const projects = data?.organizationProjects.projects;
+  const members = data?.adminsByOrganizationId.admins;
 
-  const totalPages = Math.ceil(data?.organizationProjects.total / ITEMS_PER_PAGE);
+  const totalPages = Math.ceil(data?.adminsByOrganizationId.total / ITEMS_PER_PAGE);
 
-  const mappedProjects = projects.map((project: any) => {
+  const mappedMembers = members.map((member: any) => {
     return {
-      ...project,
-      startDate: project.startDate ? convertDateFromIso(project.startDate) : undefined,
-      endDate: project.endDate ? convertDateFromIso(project.endDate) : undefined,
+      ...member,
+      createdAt: member.createdAt ? convertDateFromIso(member.createdAt) : undefined,
     };
   });
 
@@ -48,33 +45,28 @@ export default function OurProjects({user}: Props) {
     setPage(newPage);
   };
 
-  const closeAddProjectDrawer = () => {
-    setIsAddProjectOpen(false);
+  const closeAddMemberDrawer = () => {
+    setIsAddMemberOpen(false);
     refetch();
   };
 
-  const goToProject = (row: any) => {
-    router.push(`/projects/${row.slug}`);
-  };
-
   return (
-    <div className={styles.ourProjectsContainer}>
+    <div className={styles.teamMembersContainer}>
       <Grid container spacing={5} justifyContent='space-between' alignItems='center'>
         <Grid item>
           <Typography variant='h3' fontWeight='bold' color='primary' className={styles.title}>
-            Sus Proyectos
+            Miembros del Equipo
           </Typography>
         </Grid>
         <Grid item>
-          <IconButton onClick={() => setIsAddProjectOpen(true)}>
+          <IconButton onClick={() => setIsAddMemberOpen(true)}>
             <AddIcon className={styles.addButton} />
           </IconButton>
         </Grid>
         <Grid item xs={12}>
           <CustomTable
-            data={mappedProjects}
-            columnLabels={['Nombre', 'Campo', 'Fecha de Inicio', 'Fecha de Fin', 'Objetivo Monetario']}
-            onClickRow={goToProject}
+            data={mappedMembers}
+            columnLabels={['Nombre', 'Email', 'Teléfono', 'Fecha de Creación']}
           />
           {totalPages > 0 && (
             <Pagination
@@ -88,8 +80,8 @@ export default function OurProjects({user}: Props) {
         </Grid>
       </Grid>
 
-      {isAddProjectOpen && (
-        <AddProjectDrawer onClose={closeAddProjectDrawer} organizationId={user.organizationId} />
+      {isAddMemberOpen && (
+        <AddTeamMemberDrawer onClose={closeAddMemberDrawer} organizationId={user.organizationId} />
       )}
     </div>
   );

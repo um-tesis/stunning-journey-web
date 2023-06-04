@@ -79,7 +79,7 @@ export default function ProjectOverview({project}: Props) {
         <Grid item xs={2} />
         <Grid item>
           <PrimaryButton auxClassNames={styles.volunteeringButton} inverted>
-            Offer As A Volunteer!
+            Ofrézcase como Voluntario!
           </PrimaryButton>
         </Grid>
       </Grid>

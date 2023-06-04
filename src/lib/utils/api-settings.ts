@@ -44,7 +44,7 @@ apiClient.interceptors.request.use(
 
 // Local Next JS provided API Server Configuration
 const localServer: AxiosInstance = axios.create({
-  baseURL: process.env.APP_BASE_URL,
+  baseURL: process.env.NEXT_PUBLIC_APP_BASE_URL,
   headers: {
     'Content-Type': 'application/json',
   },
@@ -55,7 +55,7 @@ export const serverHealthCheck = (): Promise<any> => {
   return axios({
     method: 'get',
     url: '/health',
-    baseURL: process.env.NEXT_PUBLIC_API_URL?.replace('/graphql', ''),
+    baseURL: process.env.SERVER_API_URL?.replace('/graphql', ''),
     headers: {
       'Content-Type': 'application/json',
     },

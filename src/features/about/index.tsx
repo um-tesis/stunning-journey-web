@@ -35,26 +35,27 @@ export default function About() {
           </Grid>
 
           <Typography className={styles.aboutSection}>
-            At Libera, we believe in the power of generosity to change the world. Our platform is designed to
-            make it easy and secure for donors to support charitable organizations that are making a real
-            difference in people&apos;s lives.
+            En Libera creemos en el poder de la generosidad para cambiar el mundo. Nuestra plataforma está
+            diseñada para que los donantes puedan apoyar de forma fácil y segura a organizaciones benéficas
+            que están marcando una diferencia real en la vida de las personas.
           </Typography>
           <Typography className={styles.aboutSection}>
-            We are a team of computer science students - Juan Martin Staricco, Joaquin Fernandez, and Jose
-            Pedro Algorta - who are passionate about using technology to create positive social impact. We
-            founded Libera to make it easier for people to give back to their communities and support causes
-            they care about.
+            Somos un equipo de estudiantes de informática - Juan Martín Staricco, Joaquín Fernández y José
+            Pedro Algorta - de la Universidad de Montevideo apasionados por el uso de la tecnología para crear
+            un impacto social positivo. Fundamos Libera para facilitar a la gente la tarea de devolver algo a
+            sus comunidades y apoyar las causas que les importan.
           </Typography>
           <Typography className={styles.aboutSection}>
-            With Libera, donors can easily search for and donate to a wide range of charities and non-profits,
-            knowing that their donations are going directly to support the causes they care about. Our
-            platform also provides helpful tools and resources for organizations to manage their donations and
-            connect with their supporters.
+            Con Libera, los donantes pueden buscar y donar fácilmente a una amplia gama de organizaciones
+            benéficas y sin ánimo de lucro, sabiendo que sus donaciones van directamente a apoyar las causas
+            que les importan. Nuestra plataforma también proporciona herramientas y recursos útiles para que
+            las organizaciones gestionen sus donaciones y conecten con sus simpatizantes.
           </Typography>
           <Typography className={styles.aboutSection}>
-            We are committed to creating a transparent and accountable platform, where donors and
-            organizations can trust that their donations are making a real impact. Join us in our mission to
-            unleash the power of generosity and make a difference in the world.
+            Estamos comprometidos con la creación de una plataforma transparente y responsable, en la que
+            donantes y organizaciones puedan confiar en que sus donaciones tienen un impacto real. Únete a
+            nosotros en nuestra misión de liberar el poder de la generosidad y marcar la diferencia en el
+            mundo.
           </Typography>
           <Grid container spacing={3} sx={{mt: 3}}>
             <Grid item>
