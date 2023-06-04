@@ -7,6 +7,7 @@ import {GetServerSidePropsContext} from 'next';
 import {withIronSessionSsr} from 'iron-session/next';
 import {ironSessionOptions} from '@/lib/utils/iron-session';
 import {UserData} from '@/features/shared/types';
+import Head from 'next/head';
 
 type Props = {
   user: UserData | null;
@@ -15,6 +16,16 @@ type Props = {
 export default function ProjectsPage({user}: Props) {
   return (
     <Container className={styles.pageContainer}>
+      <Head>
+        <title>Libera</title>
+        <meta name='viewport' content='initial-scale=1.0, width=device-width' />
+        <meta property='og:title' content='Libera' />
+        <meta property='og:description' content='Navege los proyectos de Libera!' />
+        <meta property='og:image' content={'/collaboration.jpeg'} />
+        {/* TODO: CHANGE THIS URL WHEN DEPLOYED TO PRODUCTION or NGROK URL FOR TESTING */}
+        <meta property='og:url' content={`https://039f-186-53-166-7.ngrok-free.app/projects`} />
+      </Head>
+
       <Header user={user} />
       <Projects />
       <Footer />

@@ -14,6 +14,7 @@ import {SYSTEM_ROLES} from '@/lib/utils/constants';
 import {useState} from 'react';
 import UpdateProjectDrawer from '@/features/our-projects/components/update-project-drawer';
 import ProjectOverview from '@/features/projects/components/project-overview';
+import Head from 'next/head';
 
 type Props = {
   user: UserData | null;
@@ -49,10 +50,19 @@ export default function ProjectPage({user}: Props) {
 
   return (
     <Container className={styles.pageContainer}>
-      <Header user={user} />
+      <Head>
+        <title>{project.name}</title>
+        <meta name='viewport' content='initial-scale=1.0, width=device-width' />
+        <meta property='og:title' content={project.name} />
+        <meta property='og:description' content={project.description} />
+        <meta property='og:image' content={project.coverPhoto} />
+        {/* TODO: CHANGE THIS URL WHEN DEPLOYED TO PRODUCTION or NGROK URL FOR TESTING */}
+        <meta property='og:url' content={`http://www.libera.com/projects/${slug}`} />
+      </Head>
 
       {user?.role === SYSTEM_ROLES.ORGADMIN && project.organizationId === user?.organizationId ? (
         <>
+          <Header user={user} />
           <ProjectSummary project={project} handleOpenUpdateProjectDrawer={handleOpenUpdateProjectDrawer} />
           {isUpdateProjectDrawerOpen && (
             <UpdateProjectDrawer project={project} onClose={handleCloseUpdateProjectDrawer} />
