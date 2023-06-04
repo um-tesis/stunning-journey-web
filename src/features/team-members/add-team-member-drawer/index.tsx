@@ -1,6 +1,5 @@
 import {useForm} from 'react-hook-form';
 import {useEffect} from 'react';
-import FormInput from '@/features/shared/components/form-input';
 import 'react-calendar/dist/Calendar.css';
 import useAsync from '@/lib/hooks/useAsync';
 import {useMutation} from '@apollo/client';
@@ -10,6 +9,7 @@ import {SUCCESSFUL_TEAM_MEMBER_ADDITION} from '@/lib/utils/api-messages-helper';
 import {SYSTEM_ROLES} from '@/lib/utils/constants';
 import {CREATE_USER} from '@/graphql/mutation/createUser';
 import {UserDataIn} from '@/features/shared/types';
+import {Grid, TextField} from '@mui/material';
 
 type Props = {
   onClose: () => void;
@@ -93,30 +93,47 @@ export default function AddTeamMemberDrawer({onClose, organizationId}: Props) {
       submitButtonText='Agregar'
       description='Añada un nuevo miembro administrador al equipo de trabajo de su organización. La persona recibira un email con las instrucciones para acceder a la plataforma y realizar su cambio de contraseña.'
     >
-      <FormInput
-        name='name'
-        label='Nombre'
-        handleChange={handleChange}
-        value={watch().name}
-        error={errors.name}
-      />
+      <Grid container spacing={3} paddingY={5}>
+        <Grid item xs={12}>
+          <TextField
+            name='name'
+            label='Nombre*'
+            variant='outlined'
+            onChange={handleChange}
+            value={watch().name}
+            error={!!errors?.name}
+            helperText={errors?.name?.message}
+            fullWidth
+            multiline
+            minRows={3}
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <TextField
+            name='email'
+            label='Correo Electrónico*'
+            variant='outlined'
+            onChange={handleChange}
+            value={watch().email}
+            error={!!errors?.email}
+            helperText={errors?.email?.message}
+            fullWidth
+          />
+        </Grid>
 
-      <FormInput
-        name='email'
-        label='Correo Electrónico'
-        handleChange={handleChange}
-        value={watch().email}
-        error={errors.email}
-      />
-
-      <FormInput
-        name='phone'
-        label='Teléfono'
-        handleChange={handleChange}
-        value={watch().phone}
-        error={errors.phone}
-        optional
-      />
+        <Grid item xs={12}>
+          <TextField
+            name='phone'
+            label='Teléfono*'
+            variant='outlined'
+            onChange={handleChange}
+            value={watch().phone}
+            error={!!errors?.phone}
+            helperText={errors?.phone?.message}
+            fullWidth
+          />
+        </Grid>
+      </Grid>
     </FormDrawer>
   );
 }

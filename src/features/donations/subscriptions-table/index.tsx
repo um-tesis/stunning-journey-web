@@ -53,7 +53,7 @@ export default function SubscriptionsTable({user}: Props) {
       <CustomTable
         data={mappedSubscriptions}
         columnLabels={[
-          'Donador',
+          'Donante',
           'Proyecto',
           'Monto',
           'Frecuencia',
