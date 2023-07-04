@@ -9,6 +9,7 @@ import VolunteeringInformationCard from '../volunteering-information-card';
 import {IconButton} from '@mui/material';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import useCopyToClipboard from '@/lib/hooks/useCopyToClipboard';
+import ProjectMetrics from '../project-metrics';
 
 type Props = {
   project: any;
@@ -24,7 +25,8 @@ export default function ProjectSummary({project, handleOpenUpdateProjectDrawer}:
 
   const navSections = [
     {key: 0, value: 'Información del Proyecto'},
-    acceptsVolunteers && {key: 1, value: 'Voluntariado'},
+    {key: 1, value: 'Métricas'},
+    acceptsVolunteers && {key: 2, value: 'Voluntariado'},
   ];
 
   const handleCopyToClipboard = () => {
@@ -63,7 +65,8 @@ export default function ProjectSummary({project, handleOpenUpdateProjectDrawer}:
           handleOpenUpdateProjectDrawer={handleOpenUpdateProjectDrawer}
         />
       )}
-      {selectedSection === 1 && (
+      {selectedSection === 1 && <ProjectMetrics />}
+      {selectedSection === 2 && (
         <VolunteeringInformationCard projectId={project.id} organizationId={project.organizationId} />
       )}
     </div>

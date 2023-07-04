@@ -16,9 +16,10 @@ type Props = {
   onClose: () => void;
   projectId: number;
   organizationId: number;
+  isOrgAdmin?: boolean;
 };
 
-export default function AddVolunteerDrawer({onClose, projectId, organizationId}: Props) {
+export default function AddVolunteerDrawer({onClose, projectId, organizationId, isOrgAdmin}: Props) {
   const [addVolunteer, {}] = useMutation(CREATE_USER);
   const [assignVolunteerToProject, {}] = useMutation(ASSIGN_VOLUNTEER_TO_PROJECT);
 
@@ -99,9 +100,13 @@ export default function AddVolunteerDrawer({onClose, projectId, organizationId}:
       onCloseDrawer={onClose}
       canSubmit={!isAddDisabled()}
       onSubmit={onSubmitVolunteer}
-      title='Agregar Voluntario'
-      submitButtonText='Agregar'
-      description='Añada un nuevo voluntario al proyecto. Asegúrese de proporcionar información precisa sobre el voluntario para garantizar una asignación y comunicación adecuadas dentro del proyecto.'
+      title={isOrgAdmin ? 'Agregar Voluntario' : 'Nuevo Voluntario'}
+      submitButtonText={isOrgAdmin ? 'Agregar' : 'Ofrecerse'}
+      description={
+        isOrgAdmin
+          ? 'Añada un nuevo voluntario al proyecto. Asegúrese de proporcionar información precisa sobre el voluntario para garantizar una asignación y comunicación adecuadas dentro del proyecto.'
+          : 'Asegúrese de proporcionar información precisa para garantizar una asignación y comunicación adecuadas dentro del proyecto.'
+      }
     >
       <FormInput
         name='name'

@@ -11,7 +11,7 @@ const cards = [
   },
 
   {
-    title: 'Sus Proyectos',
+    title: 'Mis Proyectos',
     linkTo: '/our-projects',
     image: '/collaboration.jpeg',
   },

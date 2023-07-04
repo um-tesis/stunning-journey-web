@@ -11,15 +11,20 @@ import PrimaryButton from '@/features/shared/components/primary-button';
 import {IconButton} from '@mui/material';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import useCopyToClipboard from '@/lib/hooks/useCopyToClipboard';
+import AddVolunteerDrawer from '../add-volunteer-drawer';
+import {useState} from 'react';
+import ProjectMetrics from '../project-metrics';
 
 type Props = {
   project: any;
 };
 
 export default function ProjectOverview({project}: Props) {
+  const [showAddVolunteerDrawer, setShowAddVolunteerDrawer] = useState(false);
+
   const [_, copy] = useCopyToClipboard();
 
-  const {name, description, coverPhoto} = project;
+  const {name, description, coverPhoto, projectId, organizationId} = project;
 
   const PHOTOS = [
     {
@@ -64,6 +69,14 @@ export default function ProjectOverview({project}: Props) {
     copy(window.location.href);
   };
 
+  const handleOpenAddVolunteerDrawer = () => {
+    setShowAddVolunteerDrawer(true);
+  };
+
+  const handleCloseAddVolunteerDrawer = () => {
+    setShowAddVolunteerDrawer(false);
+  };
+
   return (
     <div className={styles.projectContainer}>
       <Card
@@ -81,15 +94,28 @@ export default function ProjectOverview({project}: Props) {
           <IconButton className={styles.copyToClipboard} onClick={handleCopyToClipboard}>
             <ContentCopyIcon />
           </IconButton>
-          <PrimaryButton auxClassNames={styles.volunteeringButton} inverted>
+          <PrimaryButton
+            auxClassNames={styles.volunteeringButton}
+            inverted
+            onClick={handleOpenAddVolunteerDrawer}
+          >
             Ofrézcase como Voluntario!
           </PrimaryButton>
         </CardContent>
       </Card>
       <DonationsBox />
       <InstagramFeedWidget />
+      <ProjectMetrics />
+
       <Gallery images={PHOTOS} enableImageSelection={false} />
       <ImagesMasonry />
+      {showAddVolunteerDrawer && (
+        <AddVolunteerDrawer
+          organizationId={organizationId}
+          onClose={handleCloseAddVolunteerDrawer}
+          projectId={projectId}
+        />
+      )}
     </div>
   );
 }

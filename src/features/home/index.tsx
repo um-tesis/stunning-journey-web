@@ -5,12 +5,15 @@ import {UserData} from '../shared/types';
 import OrgAdminHomeContent from './components/org-admin-home-content';
 import RegularHomeContent from './components/regular-home-content';
 import Head from 'next/head';
+import {useRouter} from 'next/router';
 
 type Props = {
   user: UserData | null;
 };
 
 export default function Home({user}: Props) {
+  const router = useRouter();
+
   return (
     <Box sx={{backgroundColor: '#9795B5', height: '100%'}}>
       <div className={styles.mainHomeContainer}>
@@ -20,7 +23,7 @@ export default function Home({user}: Props) {
           <meta property='og:title' content='Libera' />
           <meta property='og:description' content='Navege los proyectos de Libera!' />
           <meta property='og:image' content={'/collaboration.jpeg'} />
-          <meta property='og:url' content={window.location.href} />
+          <meta property='og:url' content={process.env.NEXT_PUBLIC_APP_BASE_URL + router.asPath} />
           <link rel='icon' href='/Logo-libera.png' />
         </Head>
         <Header user={user} />

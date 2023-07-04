@@ -56,12 +56,12 @@ export default function ProjectPage({user}: Props) {
         <meta property='og:title' content={project.name} />
         <meta property='og:description' content={project.description} />
         <meta property='og:image' content={project.coverPhoto} />
-        <meta property='og:url' content={window.location.href} />
+        <meta property='og:url' content={process.env.NEXT_PUBLIC_APP_BASE_URL + router.asPath} />
       </Head>
+      <Header user={user} />
 
       {user?.role === SYSTEM_ROLES.ORGADMIN && project.organizationId === user?.organizationId ? (
         <>
-          <Header user={user} />
           <ProjectSummary project={project} handleOpenUpdateProjectDrawer={handleOpenUpdateProjectDrawer} />
           {isUpdateProjectDrawerOpen && (
             <UpdateProjectDrawer project={project} onClose={handleCloseUpdateProjectDrawer} />

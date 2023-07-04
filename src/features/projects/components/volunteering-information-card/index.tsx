@@ -3,7 +3,7 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import AddIcon from '@mui/icons-material/Add';
 import styles from './styles.module.scss';
-import {useQuery} from '@apollo/client';
+import {useLazyQuery, useQuery} from '@apollo/client';
 import {GET_PROJECT_VOLUNTEERS} from '@/graphql/query/volunteersByProject';
 import {Pagination} from '@mui/material';
 import {useMemo, useState} from 'react';
@@ -12,6 +12,7 @@ import PrimaryButton from '@/features/shared/components/primary-button';
 import EmailVolunteersDrawer from '../email-volunteers-drawer';
 import LoadHoursDrawer from '../load-hours-drawer';
 import AddVolunteerDrawer from '../add-volunteer-drawer';
+import CsvDownloader from '@/features/shared/components/csv-downloader';
 
 type Props = {
   projectId: number;
@@ -24,6 +25,7 @@ export default function VolunteeringInformationCard({projectId, organizationId}:
   const [showLoadHoursDrawer, setShowLoadHoursDrawer] = useState(false);
   const [showAddVolunteerDrawer, setShowAddVolunteerDrawer] = useState(false);
   const [page, setPage] = useState(1);
+  const [csvData, setCsvData] = useState([]);
   const variables = useMemo(
     () => ({page, itemsPerPage: ITEMS_PER_PAGE, filter: '', projectId: +projectId}),
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -32,6 +34,21 @@ export default function VolunteeringInformationCard({projectId, organizationId}:
   const {data, loading, refetch} = useQuery(GET_PROJECT_VOLUNTEERS, {
     variables,
   });
+
+  // useLazyQuery for all data
+  const [getVolunteersForCsv] = useLazyQuery(GET_PROJECT_VOLUNTEERS);
+
+  const handleDownload = async () => {
+    const res = await getVolunteersForCsv({variables: {projectId: projectId}});
+    const allVolunteers = res.data?.volunteersByProjectId?.volunteers;
+    const allMappedVolunteers = allVolunteers.map((volunteer: any) => {
+      return {
+        ...volunteer.user,
+        hours: volunteer.hours ? volunteer.hours : 0,
+      };
+    });
+    setCsvData(allMappedVolunteers);
+  };
 
   if (loading) return null;
 
@@ -76,6 +93,13 @@ export default function VolunteeringInformationCard({projectId, organizationId}:
     refetch();
   };
 
+  const columnLabels = [
+    {label: 'Nombre', key: 'name'},
+    {label: 'Correo Electrónico', key: 'email'},
+    {label: 'Teléfono', key: 'phone'},
+    {label: 'Horas', key: 'hours'},
+  ];
+
   return (
     <>
       <Card className={styles.volunteeringData}>
@@ -90,12 +114,15 @@ export default function VolunteeringInformationCard({projectId, organizationId}:
               <PrimaryButton inverted onClick={handleOpenLoadHoursDrawer}>
                 Cargar Horas
               </PrimaryButton>
+              <CsvDownloader
+                data={csvData}
+                columnLabels={columnLabels}
+                handleDownload={handleDownload}
+                filename={'Voluntarios.csv'}
+              />
             </div>
           </Typography>
-          <CustomTable
-            data={mappedVolunteers}
-            columnLabels={['Nombre', 'Correo Electrónico', 'Teléfono', 'Horas']}
-          />
+          <CustomTable data={mappedVolunteers} columnLabels={columnLabels} />
           {totalPages > 0 && (
             <Pagination
               page={page}
@@ -122,6 +149,7 @@ export default function VolunteeringInformationCard({projectId, organizationId}:
           organizationId={organizationId}
           onClose={handleCloseAddVolunteerDrawer}
           projectId={projectId}
+          isOrgAdmin
         />
       )}
     </>

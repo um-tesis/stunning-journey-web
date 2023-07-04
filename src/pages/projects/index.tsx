@@ -8,12 +8,15 @@ import {withIronSessionSsr} from 'iron-session/next';
 import {ironSessionOptions} from '@/lib/utils/iron-session';
 import {UserData} from '@/features/shared/types';
 import Head from 'next/head';
+import {useRouter} from 'next/router';
 
 type Props = {
   user: UserData | null;
 };
 
 export default function ProjectsPage({user}: Props) {
+  const router = useRouter();
+
   return (
     <Container className={styles.pageContainer}>
       <Head>
@@ -22,7 +25,7 @@ export default function ProjectsPage({user}: Props) {
         <meta property='og:title' content='Libera' />
         <meta property='og:description' content='Navege los proyectos de Libera!' />
         <meta property='og:image' content={'/collaboration.jpeg'} />
-        <meta property='og:url' content={window.location.href} />
+        <meta property='og:url' content={process.env.NEXT_PUBLIC_APP_BASE_URL + router.asPath} />
       </Head>
 
       <Header user={user} />
