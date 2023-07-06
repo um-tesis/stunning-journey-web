@@ -11,6 +11,11 @@ export const GET_PROJECT = gql`
       startDate
       coverPhoto
       acceptsVolunteers
+      monthlyEarnedMoney
+      activeSubscriptionsNumber
+      donatorsNumber
+      volunteersNumber
+      hoursVolunteered
       organization {
         name
       }

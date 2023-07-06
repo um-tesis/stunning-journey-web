@@ -31,8 +31,16 @@ export default function CustomTable({data, columnLabels, onClickRow}: Props) {
     }, {});
   });
 
+  const completeRows = data.map((item: any) => {
+    const keys = Object.keys(item);
+    return keys.reduce((acc: any, key: string) => {
+      acc[key] = item[key];
+      return acc;
+    }, {});
+  });
+
   const handleRowClick = (index: number) => {
-    const row = rows[index];
+    const row = completeRows[index];
     onClickRow && onClickRow(row);
   };
 
