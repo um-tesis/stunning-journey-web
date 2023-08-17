@@ -3,6 +3,7 @@ import {gql} from '@apollo/client';
 export const GET_PROJECT = gql`
   query project($slug: String!) {
     projectBySlug(slug: $slug) {
+      id
       slug
       organizationId
       name
@@ -10,6 +11,9 @@ export const GET_PROJECT = gql`
       field
       startDate
       coverPhoto
+      moneyEarned
+      location
+      video
       acceptsVolunteers
       monthlyEarnedMoney
       activeSubscriptionsNumber

@@ -105,7 +105,7 @@ export default function ProjectOverview({project}: Props) {
       </Card>
       <DonationsBox />
       <InstagramFeedWidget />
-      <ProjectMetrics />
+      <ProjectMetrics project={project} />
 
       <Gallery images={PHOTOS} enableImageSelection={false} />
       <ImagesMasonry />

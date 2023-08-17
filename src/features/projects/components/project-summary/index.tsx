@@ -65,7 +65,7 @@ export default function ProjectSummary({project, handleOpenUpdateProjectDrawer}:
           handleOpenUpdateProjectDrawer={handleOpenUpdateProjectDrawer}
         />
       )}
-      {selectedSection === 1 && <ProjectMetrics />}
+      {selectedSection === 1 && <ProjectMetrics project={project} />}
       {selectedSection === 2 && (
         <VolunteeringInformationCard projectId={project.id} organizationId={project.organizationId} />
       )}

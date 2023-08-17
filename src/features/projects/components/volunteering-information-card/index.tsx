@@ -60,6 +60,8 @@ export default function VolunteeringInformationCard({projectId, organizationId}:
 
   const volunteers = data?.volunteersByProjectId.volunteers;
 
+  if (!volunteers) return null;
+
   const mappedVolunteers = volunteers.map((volunteer: any) => {
     return {
       ...volunteer.user,
