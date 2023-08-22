@@ -9,13 +9,18 @@ import styles from './styles.module.scss';
 
 type Props = {
   data: any[];
-  columnLabels: string[];
+  columnLabels: {
+    label: string;
+    key: string;
+  }[];
   onClickRow?: (row: any) => void;
 };
 
 export default function CustomTable({data, columnLabels, onClickRow}: Props) {
   const getObjectKeys = (object: object) => {
-    return Object.keys(object).filter((key) => key !== '__typename');
+    return Object.keys(object)
+      .filter((key) => key !== '__typename')
+      .filter((key) => key !== 'slug');
   };
 
   const rows = data.map((item: any) => {
@@ -26,8 +31,16 @@ export default function CustomTable({data, columnLabels, onClickRow}: Props) {
     }, {});
   });
 
+  const completeRows = data.map((item: any) => {
+    const keys = Object.keys(item);
+    return keys.reduce((acc: any, key: string) => {
+      acc[key] = item[key];
+      return acc;
+    }, {});
+  });
+
   const handleRowClick = (index: number) => {
-    const row = rows[index];
+    const row = completeRows[index];
     onClickRow && onClickRow(row);
   };
 
@@ -36,15 +49,15 @@ export default function CustomTable({data, columnLabels, onClickRow}: Props) {
       <Table aria-label='simple table' className={styles.table}>
         <TableHead>
           <TableRow>
-            {columnLabels.map((label) => (
+            {columnLabels.map((col) => (
               <TableCell
-                key={label}
+                key={col.label}
                 align='left'
                 sx={{
                   fontWeight: 'bold',
                 }}
               >
-                {label}
+                {col.label}
               </TableCell>
             ))}
           </TableRow>
@@ -62,8 +75,8 @@ export default function CustomTable({data, columnLabels, onClickRow}: Props) {
                 return (
                   <TableCell
                     key={key}
-                    component={key === columnLabels[0] ? 'th' : 'td'}
-                    scope={key === columnLabels[0] ? 'row' : undefined}
+                    component={key === columnLabels[0].label ? 'th' : 'td'}
+                    scope={key === columnLabels[0].label ? 'row' : undefined}
                     align='left'
                   >
                     {row[key] || '-'}

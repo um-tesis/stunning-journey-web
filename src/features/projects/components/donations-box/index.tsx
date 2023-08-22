@@ -1,4 +1,3 @@
-import {classNamesFilter} from '@/lib/utils/ui-helper';
 import styles from './styles.module.scss';
 import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';

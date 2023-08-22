@@ -11,7 +11,7 @@ const cards = [
   },
 
   {
-    title: 'Sus Proyectos',
+    title: 'Mis Proyectos',
     linkTo: '/our-projects',
     image: '/collaboration.jpeg',
   },
@@ -28,7 +28,7 @@ export default function OrganizationManagementCards() {
   return (
     <Box className={styles.managementContainer}>
       <Typography variant='h4' className={styles.title}>
-        Organization Gestión de su organización
+        Gestión de su organización
       </Typography>
       <Typography variant='body1' className={styles.subtitle}>
         Esta página de gestión está especialmente diseñada para ofrecerle un acceso rápido a los principales

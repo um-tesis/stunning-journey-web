@@ -1,7 +1,7 @@
 import {gql} from '@apollo/client';
 
 export const GET_ORGANIZATION_DONATIONS = gql`
-  query donations($organizationId: Int!, $page: Int!, $itemsPerPage: Int!, $filter: String) {
+  query donations($organizationId: Int!, $page: Int, $itemsPerPage: Int, $filter: String) {
     donationsByOrganization(
       organizationId: $organizationId
       page: $page
@@ -10,7 +10,6 @@ export const GET_ORGANIZATION_DONATIONS = gql`
     ) {
       donations {
         amount
-        mpPreferenceId
         donor {
           email
         }

@@ -8,13 +8,23 @@ import {Gallery} from 'react-grid-gallery';
 import useImageDimensions from './useImageDimensions';
 import InstagramFeedWidget from '@/features/shared/components/instagram-feed-widget';
 import PrimaryButton from '@/features/shared/components/primary-button';
+import {IconButton} from '@mui/material';
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+import useCopyToClipboard from '@/lib/hooks/useCopyToClipboard';
+import AddVolunteerDrawer from '../add-volunteer-drawer';
+import {useState} from 'react';
+import ProjectMetrics from '../project-metrics';
 
 type Props = {
   project: any;
 };
 
 export default function ProjectOverview({project}: Props) {
-  const {name, description, coverPhoto} = project;
+  const [showAddVolunteerDrawer, setShowAddVolunteerDrawer] = useState(false);
+
+  const [_, copy] = useCopyToClipboard();
+
+  const {name, description, coverPhoto, projectId, organizationId} = project;
 
   const PHOTOS = [
     {
@@ -55,6 +65,18 @@ export default function ProjectOverview({project}: Props) {
     },
   ];
 
+  const handleCopyToClipboard = () => {
+    copy(window.location.href);
+  };
+
+  const handleOpenAddVolunteerDrawer = () => {
+    setShowAddVolunteerDrawer(true);
+  };
+
+  const handleCloseAddVolunteerDrawer = () => {
+    setShowAddVolunteerDrawer(false);
+  };
+
   return (
     <div className={styles.projectContainer}>
       <Card
@@ -69,15 +91,31 @@ export default function ProjectOverview({project}: Props) {
           <Typography className={styles.description} variant='body2' component='p'>
             {description}
           </Typography>
-          <PrimaryButton auxClassNames={styles.volunteeringButton} inverted>
+          <IconButton className={styles.copyToClipboard} onClick={handleCopyToClipboard}>
+            <ContentCopyIcon />
+          </IconButton>
+          <PrimaryButton
+            auxClassNames={styles.volunteeringButton}
+            inverted
+            onClick={handleOpenAddVolunteerDrawer}
+          >
             Ofrézcase como Voluntario!
           </PrimaryButton>
         </CardContent>
       </Card>
       <DonationsBox />
       <InstagramFeedWidget />
+      <ProjectMetrics project={project} />
+
       <Gallery images={PHOTOS} enableImageSelection={false} />
       <ImagesMasonry />
+      {showAddVolunteerDrawer && (
+        <AddVolunteerDrawer
+          organizationId={organizationId}
+          onClose={handleCloseAddVolunteerDrawer}
+          projectId={projectId}
+        />
+      )}
     </div>
   );
 }

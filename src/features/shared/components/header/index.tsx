@@ -24,7 +24,7 @@ function Header({user}: Props) {
     ? [
         {text: 'Inicio', link: 'home'},
         {text: 'Proyectos', link: 'projects'},
-        {text: 'Sus Proyectos', link: 'our-projects'},
+        {text: 'Mis Proyectos', link: 'our-projects'},
         {text: 'Miembros del Equipo', link: 'team-members'},
         {text: 'Donaciones', link: 'donations'},
       ]

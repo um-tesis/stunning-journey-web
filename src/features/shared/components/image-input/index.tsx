@@ -27,7 +27,7 @@ function ImageInput({imageUrl, onChange, label}: ImageInputProps) {
       <Grid item>
         <TextField
           className={styles.textField}
-          disabled
+          // disabled
           label={label || 'URL de la imagen'}
           variant='outlined'
           value={imageUrl}
