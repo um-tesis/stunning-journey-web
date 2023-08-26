@@ -1,4 +1,4 @@
-import {useQuery} from '@apollo/client';
+import {useLazyQuery, useQuery} from '@apollo/client';
 import {Grid, IconButton, Pagination, Typography} from '@mui/material';
 import {useMemo, useState} from 'react';
 import styles from './styles.module.scss';
@@ -9,6 +9,7 @@ import CustomTable from '../shared/components/custom-table';
 import {convertDateFromIso} from '@/lib/utils/ui-helper';
 import AddProjectDrawer from './components/add-project-drawer';
 import {useRouter} from 'next/router';
+import CsvDownloader from '../shared/components/csv-downloader';
 
 type Props = {
   user: UserData;
@@ -19,6 +20,7 @@ export default function OurProjects({user}: Props) {
   const ITEMS_PER_PAGE = 5;
   const [isAddProjectOpen, setIsAddProjectOpen] = useState(false);
   const [page, setPage] = useState(1);
+  const [csvData, setCsvData] = useState([]);
   const variables = useMemo(
     () => ({page, itemsPerPage: ITEMS_PER_PAGE, filter: '', organizationId: user.organizationId}),
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -27,6 +29,21 @@ export default function OurProjects({user}: Props) {
   const {data, loading, refetch} = useQuery(GET_OUR_PROJECTS, {
     variables,
   });
+
+  // useLazyQuery for all data
+  const [getProjectsForCSV] = useLazyQuery(GET_OUR_PROJECTS);
+
+  const handleDownload = async () => {
+    const res = await getProjectsForCSV({variables: {organizationId: user.organizationId}});
+    const allProjects = res.data?.organizationProjects?.projects;
+    const allMappedProjects = allProjects.map((project: any) => {
+      return {
+        ...project,
+        startDate: project.startDate ? convertDateFromIso(project.startDate) : undefined,
+      };
+    });
+    setCsvData(allMappedProjects);
+  };
 
   if (loading) {
     return null;
@@ -56,25 +73,33 @@ export default function OurProjects({user}: Props) {
     router.push(`/projects/${row.slug}`);
   };
 
+  const columnLabels = [
+    {label: 'Nombre', key: 'name'},
+    {label: 'Campo', key: 'field'},
+    {label: 'Fecha de Inicio', key: 'startDate'},
+  ];
+
   return (
     <div className={styles.ourProjectsContainer}>
       <Grid container spacing={5} justifyContent='space-between' alignItems='center'>
         <Grid item>
           <Typography variant='h3' fontWeight='bold' color='primary' className={styles.title}>
-            Sus Proyectos
+            Mis Proyectos
           </Typography>
         </Grid>
         <Grid item>
           <IconButton onClick={() => setIsAddProjectOpen(true)}>
             <AddIcon className={styles.addButton} />
           </IconButton>
+          <CsvDownloader
+            data={csvData}
+            columnLabels={columnLabels}
+            handleDownload={handleDownload}
+            filename={'Mis-Proyectos.csv'}
+          />
         </Grid>
         <Grid item xs={12}>
-          <CustomTable
-            data={mappedProjects}
-            columnLabels={['Nombre', 'Campo', 'Fecha de Inicio', 'Fecha de Fin', 'Objetivo Monetario']}
-            onClickRow={goToProject}
-          />
+          <CustomTable data={mappedProjects} columnLabels={columnLabels} onClickRow={goToProject} />
           {totalPages > 0 && (
             <Pagination
               page={page}

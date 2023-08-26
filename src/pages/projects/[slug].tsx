@@ -14,6 +14,7 @@ import {SYSTEM_ROLES} from '@/lib/utils/constants';
 import {useState} from 'react';
 import UpdateProjectDrawer from '@/features/our-projects/components/update-project-drawer';
 import ProjectOverview from '@/features/projects/components/project-overview';
+import Head from 'next/head';
 
 type Props = {
   user: UserData | null;
@@ -49,6 +50,14 @@ export default function ProjectPage({user}: Props) {
 
   return (
     <Container className={styles.pageContainer}>
+      <Head>
+        <title>{project.name}</title>
+        <meta name='viewport' content='initial-scale=1.0, width=device-width' />
+        <meta property='og:title' content={project.name} />
+        <meta property='og:description' content={project.description} />
+        <meta property='og:image' content={project.coverPhoto} />
+        <meta property='og:url' content={process.env.NEXT_PUBLIC_APP_BASE_URL + router.asPath} />
+      </Head>
       <Header user={user} />
 
       {user?.role === SYSTEM_ROLES.ORGADMIN && project.organizationId === user?.organizationId ? (

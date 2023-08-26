@@ -6,7 +6,7 @@ export type Project = {
   description: string;
   field: string;
   organizationId: number;
-  startDate?: Dayjs;
+  startDate?: string | Dayjs;
   acceptsVolunteers?: boolean;
   coverPhoto?: string;
   video?: string;

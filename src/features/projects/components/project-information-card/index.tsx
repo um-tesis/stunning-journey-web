@@ -14,7 +14,7 @@ type Props = {
 };
 
 export default function ProjectInformationCard({project, handleOpenUpdateProjectDrawer}: Props) {
-  const {field, startDate, location, organization} = project;
+  const {field, startDate, location, organization, video} = project;
 
   return (
     <>
@@ -57,21 +57,22 @@ export default function ProjectInformationCard({project, handleOpenUpdateProject
                   Fecha de Inicio
                 </Typography>
                 <Typography className={styles.value} variant='body1' component='span'>
-                  {startDate ? convertDateFromIso(startDate) : 'No Start Date'}
+                  {startDate ? convertDateFromIso(startDate) : '-'}
+                </Typography>
+              </div>
+              <div className={styles.location}>
+                <Typography className={styles.label} variant='body1' component='span'>
+                  Ubicación
+                </Typography>
+                <Typography className={styles.value} variant='body1' component='span'>
+                  {location || '-'}
                 </Typography>
               </div>
             </Grid>
           </Grid>
           <br />
           <br />
-          <div className={styles.location}>
-            <Typography className={styles.label} variant='body1' component='span'>
-              Ubicación
-            </Typography>
-            <Typography className={styles.value} variant='body1' component='span'>
-              {location || '-'}
-            </Typography>
-          </div>
+
           <br />
           <br />
 
@@ -81,10 +82,13 @@ export default function ProjectInformationCard({project, handleOpenUpdateProject
                 Video
               </Typography>
               <br />
-              <VideoPlayer
-                videoId={'https://www.youtube.com/watch?v=PTfntSlhnwY'}
-                auxClassNames={styles.videoPlayer}
-              />
+              {video ? (
+                <VideoPlayer videoId={video} auxClassNames={styles.videoPlayer} />
+              ) : (
+                <Typography className={styles.value} variant='body1' component='span'>
+                  No hay video de Youtube agregado aún
+                </Typography>
+              )}
             </div>
             <div className={styles.photoGallery}>
               <Typography className={styles.label} variant='body1' component='span'>
@@ -92,7 +96,7 @@ export default function ProjectInformationCard({project, handleOpenUpdateProject
               </Typography>
               <br />
               <Typography className={styles.value} variant='body1' component='span'>
-                No hay fotos agregadas aún
+                No hay fotos del proyecto agregadas aún
               </Typography>
             </div>
           </div>

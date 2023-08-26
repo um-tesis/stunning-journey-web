@@ -15,6 +15,8 @@ import FormDrawer from '@/features/shared/components/form-drawer';
 import {Grid, TextField} from '@mui/material';
 import {DatePicker} from '@mui/x-date-pickers';
 import dayjs from 'dayjs';
+import {useRouter} from 'next/router';
+import slugify from 'slugify';
 
 type Props = {
   onClose: () => void;
@@ -22,11 +24,12 @@ type Props = {
 };
 
 export default function UpdateProjectDrawer({onClose, project}: Props) {
+  const router = useRouter();
   const [updateProject, {}] = useMutation(UPDATE_PROJECT);
 
   // we do not use destructuring here because we project has some fields that are not in Project but come from the query
   const emptyProject: Project = {
-    id: Number(project.id),
+    id: +project.id,
     name: project.name,
     description: project.description,
     field: project.field,
@@ -97,9 +100,14 @@ export default function UpdateProjectDrawer({onClose, project}: Props) {
   // Effect to handle login request request status
   useEffect(() => {
     if (updateProjectRequest.status === 'success') {
-      form.reset(emptyProject);
+      if (form.getValues().name !== project.name) {
+        const newSlug = slugify(form.getValues().name, {lower: true});
+        router.replace(`/projects/${newSlug}`);
+      }
+
       toast.success(PROJECT_CREATED);
       onClose();
+      form.reset(emptyProject);
     }
     if (updateProjectRequest.status === 'error') {
       toast.error(updateProjectRequest.error);
@@ -125,7 +133,7 @@ export default function UpdateProjectDrawer({onClose, project}: Props) {
         <Grid item xs={12}>
           <TextField
             name='name'
-            label='Nombre*'
+            label='Nombre del Proyecto*'
             variant='outlined'
             onChange={handleChange}
             value={watch().name}
@@ -137,7 +145,7 @@ export default function UpdateProjectDrawer({onClose, project}: Props) {
         <Grid item xs={12}>
           <TextField
             name='field'
-            label='Categoria*'
+            label='Categoría*'
             variant='outlined'
             onChange={handleChange}
             value={watch().field}
@@ -190,7 +198,7 @@ export default function UpdateProjectDrawer({onClose, project}: Props) {
         </Grid>
         <Grid item xs={12}>
           <DatePicker
-            label='Fechas'
+            label='Fecha de Inicio'
             sx={{width: '100%'}}
             slotProps={{popper: {disablePortal: true}, textField: {helperText: errors?.startDate?.message}}}
             value={watch().startDate}
@@ -207,7 +215,7 @@ export default function UpdateProjectDrawer({onClose, project}: Props) {
         <Grid item xs={12}>
           <TextField
             name='video'
-            label='Video de Youtube'
+            label='Video de YouTube'
             variant='outlined'
             onChange={handleChange}
             value={watch().video}

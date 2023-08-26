@@ -6,13 +6,24 @@ import useImageDimensions from './useImageDimensions';
 import InstagramFeedWidget from '@/features/shared/components/instagram-feed-widget';
 import PrimaryButton from '@/features/shared/components/primary-button';
 import {Grid} from '@mui/material';
+import {IconButton} from '@mui/material';
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+import useCopyToClipboard from '@/lib/hooks/useCopyToClipboard';
+import AddVolunteerDrawer from '../add-volunteer-drawer';
+import {useState} from 'react';
+import ProjectMetrics from '../project-metrics';
+import {Gallery} from 'react-grid-gallery';
 
 type Props = {
   project: any;
 };
 
 export default function ProjectOverview({project}: Props) {
-  const {name, description, coverPhoto} = project;
+  const [showAddVolunteerDrawer, setShowAddVolunteerDrawer] = useState(false);
+
+  const [_, copy] = useCopyToClipboard();
+
+  const {name, description, coverPhoto, projectId, organizationId} = project;
 
   const PHOTOS = [
     {
@@ -53,6 +64,18 @@ export default function ProjectOverview({project}: Props) {
     },
   ];
 
+  const handleCopyToClipboard = () => {
+    copy(window.location.href);
+  };
+
+  const handleOpenAddVolunteerDrawer = () => {
+    setShowAddVolunteerDrawer(true);
+  };
+
+  const handleCloseAddVolunteerDrawer = () => {
+    setShowAddVolunteerDrawer(false);
+  };
+
   return (
     <>
       <Grid
@@ -76,7 +99,14 @@ export default function ProjectOverview({project}: Props) {
         </Grid>
         <Grid item xs={2} />
         <Grid item>
-          <PrimaryButton auxClassNames={styles.volunteeringButton} inverted>
+          <IconButton className={styles.copyToClipboard} onClick={handleCopyToClipboard}>
+            <ContentCopyIcon />
+          </IconButton>
+          <PrimaryButton
+            auxClassNames={styles.volunteeringButton}
+            inverted
+            onClick={handleOpenAddVolunteerDrawer}
+          >
             Ofrézcase como Voluntario!
           </PrimaryButton>
         </Grid>
@@ -85,14 +115,27 @@ export default function ProjectOverview({project}: Props) {
         <Grid item className={styles.overlap}>
           <DonationsBox projectSlug={project.slug} />
         </Grid>
-        <Grid item xs={12}>
-          <ImagesMasonry />
-        </Grid>
         <Grid item xs={1} />
         <Grid item xs={10}>
           <InstagramFeedWidget />
         </Grid>
+        <Grid item xs={12}>
+          <ImagesMasonry />
+        </Grid>
+        <Grid item xs={12}>
+          <ProjectMetrics project={project} />
+        </Grid>
+        <Grid item xs={12}>
+          <Gallery images={PHOTOS} enableImageSelection={false} />
+        </Grid>
       </Grid>
+      {showAddVolunteerDrawer && (
+        <AddVolunteerDrawer
+          organizationId={organizationId}
+          onClose={handleCloseAddVolunteerDrawer}
+          projectId={projectId}
+        />
+      )}
     </>
   );
 }
