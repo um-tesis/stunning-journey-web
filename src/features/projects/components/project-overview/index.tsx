@@ -91,13 +91,13 @@ export default function ProjectOverview({project}: Props) {
             {name}
           </Typography>
         </Grid>
-        <Grid item xs={2} />
-        <Grid item xs={8}>
+        <Grid item xs={false} sm={1} md={2} />
+        <Grid item xs={12} sm={10} md={8}>
           <Typography variant='subtitle2' textAlign='center'>
             {description}
           </Typography>
         </Grid>
-        <Grid item xs={2} />
+        <Grid item xs={false} sm={1} md={2} />
         <Grid item>
           <Box display='flex'>
             <PrimaryButton inverted onClick={handleOpenAddVolunteerDrawer} sx={{mr: 3}}>

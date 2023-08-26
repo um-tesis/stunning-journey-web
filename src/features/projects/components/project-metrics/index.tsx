@@ -29,26 +29,26 @@ export default function ProjectMetrics({project}: Props) {
           Métricas
         </Typography>
       </Grid>
-      <Grid item xs={12} sm={4}>
+      <Grid item xs={12} md={6} lg={4}>
         <MetricCard title='Recaudación Total' total={moneyEarned} icon={<AttachMoneyIcon />} />
       </Grid>
-      <Grid item xs={12} sm={4}>
+      <Grid item xs={12} md={6} lg={4}>
         <MetricCard title='Recaudación Mensual' total={monthlyEarnedMoney} icon={<CalendarMonthIcon />} />
       </Grid>
-      <Grid item xs={12} sm={4}>
+      <Grid item xs={12} md={6} lg={4}>
         <MetricCard title='Número de Voluntarios' total={volunteersNumber} icon={<VolunteerActivismIcon />} />
       </Grid>
-      <Grid item xs={12} sm={4}>
+      <Grid item xs={12} md={6} lg={4}>
         <MetricCard title='Número de Donadores Totales' total={donatorsNumber} icon={<PeopleIcon />} />
       </Grid>
-      <Grid item xs={12} sm={4}>
+      <Grid item xs={12} md={6} lg={4}>
         <MetricCard
           title='Número de Suscripciones Activas'
           total={activeSubscriptionsNumber}
           icon={<CardMembershipIcon />}
         />
       </Grid>
-      <Grid item xs={12} sm={4}>
+      <Grid item xs={12} md={6} lg={4}>
         <MetricCard
           title='Horas totales de voluntariado'
           total={hoursVolunteered}

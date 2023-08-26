@@ -109,8 +109,8 @@ const OneTimeDonation: React.FC<Props> = ({projectSlug}) => {
           <Grid item xs={12} className={styles.donationTitle}>
             <Typography variant='h5'>Donación</Typography>
           </Grid>
-          <Grid item xs={4} />
-          <Grid item xs={4}>
+          <Grid item xs={3} md={4} />
+          <Grid item xs={6} md={4}>
             <DonationsTextField
               name='amount'
               type='number'
@@ -120,7 +120,7 @@ const OneTimeDonation: React.FC<Props> = ({projectSlug}) => {
               helperText={errors.amount?.message || ' '}
             />
           </Grid>
-          <Grid item xs={4} />
+          <Grid item xs={3} md={4} />
 
           <Grid item xs={12}>
             <Typography variant='body2' className={styles.donationDescription}>
@@ -205,7 +205,7 @@ const RecurringDonation: React.FC<Props> = ({projectSlug}) => {
           <Grid item xs={12} className={styles.donationTitle}>
             <Typography variant='h5'>Suscripción</Typography>
           </Grid>
-          <Grid item xs={4}>
+          <Grid item xs={6} md={4}>
             <DonationsTextField
               name='amount'
               type='number'
@@ -215,7 +215,7 @@ const RecurringDonation: React.FC<Props> = ({projectSlug}) => {
               helperText='/ mes'
             />
           </Grid>
-          <Grid item xs={8}>
+          <Grid item xs={12} md={8}>
             <TextField
               name='payerEmail'
               type='email'
