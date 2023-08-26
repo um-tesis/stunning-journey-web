@@ -205,7 +205,6 @@ const RecurringDonation: React.FC<Props> = ({projectSlug}) => {
           <Grid item xs={12} className={styles.donationTitle}>
             <Typography variant='h5'>Suscripción</Typography>
           </Grid>
-          <Grid item xs={4} />
           <Grid item xs={4}>
             <DonationsTextField
               name='amount'
@@ -216,8 +215,6 @@ const RecurringDonation: React.FC<Props> = ({projectSlug}) => {
               helperText='/ mes'
             />
           </Grid>
-          <Grid item xs={4} />
-          <Grid item xs={2} />
           <Grid item xs={8}>
             <TextField
               name='payerEmail'
@@ -237,7 +234,6 @@ const RecurringDonation: React.FC<Props> = ({projectSlug}) => {
               }}
             />
           </Grid>
-          <Grid item xs={2} />
 
           <Grid item xs={12}>
             <Typography variant='body2' className={styles.donationDescription}>

@@ -23,45 +23,38 @@ export default function ProjectMetrics({project}: Props) {
   } = project;
 
   return (
-    <>
-      <Typography variant='h4' align='left' pb={2} px={10} color={'white'}>
-        Métricas
-      </Typography>
-      <Grid container spacing={3} px={10}>
-        <Grid item xs={12} sm={4} px={3}>
-          <MetricCard title='Recaudación Total' total={moneyEarned} icon={<AttachMoneyIcon />} />
-        </Grid>
-        <Grid item xs={12} sm={4} px={3}>
-          <MetricCard title='Recaudación Mensual' total={monthlyEarnedMoney} icon={<CalendarMonthIcon />} />
-        </Grid>
-        <Grid item xs={12} sm={4} px={3}>
-          <MetricCard
-            title='Número de Voluntarios'
-            total={volunteersNumber}
-            icon={<VolunteerActivismIcon />}
-          />
-        </Grid>
+    <Grid container spacing={3} padding={10}>
+      <Grid item xs={12} pb={-5}>
+        <Typography variant='h4' color={'white'}>
+          Métricas
+        </Typography>
       </Grid>
-
-      <Grid container spacing={3} py={4} px={10}>
-        <Grid item xs={12} sm={4} px={3}>
-          <MetricCard title='Número de Donadores Totales' total={donatorsNumber} icon={<PeopleIcon />} />
-        </Grid>
-        <Grid item xs={12} sm={4} px={3}>
-          <MetricCard
-            title='Número de Suscripciones Activas'
-            total={activeSubscriptionsNumber}
-            icon={<CardMembershipIcon />}
-          />
-        </Grid>
-        <Grid item xs={12} sm={4} px={3}>
-          <MetricCard
-            title='Horas totales de voluntariado'
-            total={hoursVolunteered}
-            icon={<QueryBuilderIcon />}
-          />
-        </Grid>
+      <Grid item xs={12} sm={4}>
+        <MetricCard title='Recaudación Total' total={moneyEarned} icon={<AttachMoneyIcon />} />
       </Grid>
-    </>
+      <Grid item xs={12} sm={4}>
+        <MetricCard title='Recaudación Mensual' total={monthlyEarnedMoney} icon={<CalendarMonthIcon />} />
+      </Grid>
+      <Grid item xs={12} sm={4}>
+        <MetricCard title='Número de Voluntarios' total={volunteersNumber} icon={<VolunteerActivismIcon />} />
+      </Grid>
+      <Grid item xs={12} sm={4}>
+        <MetricCard title='Número de Donadores Totales' total={donatorsNumber} icon={<PeopleIcon />} />
+      </Grid>
+      <Grid item xs={12} sm={4}>
+        <MetricCard
+          title='Número de Suscripciones Activas'
+          total={activeSubscriptionsNumber}
+          icon={<CardMembershipIcon />}
+        />
+      </Grid>
+      <Grid item xs={12} sm={4}>
+        <MetricCard
+          title='Horas totales de voluntariado'
+          total={hoursVolunteered}
+          icon={<QueryBuilderIcon />}
+        />
+      </Grid>
+    </Grid>
   );
 }
