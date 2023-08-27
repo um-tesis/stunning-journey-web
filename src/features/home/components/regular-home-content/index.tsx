@@ -61,9 +61,10 @@ export default function RegularHomeContent({user}: Props) {
             </div>
           </div>
           <GetInTouchSection />
-          <Footer />
         </>
       )}
+      <Box sx={{height: 20}} />
+      <Footer />
     </>
   );
 }
