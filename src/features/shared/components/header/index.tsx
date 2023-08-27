@@ -18,6 +18,7 @@ import {
   List,
   ListItem,
   ListItemButton,
+  ListItemIcon,
   ListItemText,
   Menu,
   MenuItem,
@@ -26,6 +27,7 @@ import {
   Tooltip,
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
+import {Logout, Person, Settings} from '@mui/icons-material';
 
 type Props = {
   user: UserData | null;
@@ -70,11 +72,12 @@ const Header = ({user}: Props) => {
         {text: 'Proyectos', link: 'projects'},
         {text: 'Nosotros', link: 'about'},
         {text: '¿Cómo funciona?', link: 'our-work'},
+        {text: 'Iniciar sesión', link: 'login'},
       ];
 
   const settings = [
-    {text: 'Account', link: 'account'},
-    {text: 'Logout', link: 'logout'},
+    {text: 'Settings', link: 'account', icon: <Settings fontSize='small' />},
+    {text: 'Logout', link: 'logout', icon: <Logout fontSize='small' />},
   ];
 
   const handleDrawerToggle = () => {
@@ -209,6 +212,13 @@ const Header = ({user}: Props) => {
                   open={Boolean(anchorElUser)}
                   onClose={handleCloseUserMenu}
                 >
+                  <MenuItem component='div' sx={{pointerEvents: 'none'}}>
+                    <ListItemIcon>
+                      <Person fontSize='small' />
+                    </ListItemIcon>
+                    {user.name}
+                  </MenuItem>
+                  <Divider />
                   {settings.map((setting) => {
                     const onClick =
                       setting.link === 'logout'
@@ -220,7 +230,8 @@ const Header = ({user}: Props) => {
 
                     return (
                       <MenuItem key={setting.link} onClick={onClick}>
-                        <Typography textAlign='center'>{setting.text}</Typography>
+                        <ListItemIcon>{setting.icon}</ListItemIcon>
+                        {setting.text}
                       </MenuItem>
                     );
                   })}
