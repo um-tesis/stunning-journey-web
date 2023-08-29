@@ -6,7 +6,7 @@ import ImageInput from '@/features/shared/components/image-input';
 import useAsync from '@/lib/hooks/useAsync';
 import {useMutation} from '@apollo/client';
 import {toast} from 'react-hot-toast';
-import {PROJECT_CREATED} from '@/lib/utils/api-messages-helper';
+import {PROJECT_UPDATED} from '@/lib/utils/api-messages-helper';
 import Checkbox from '@mui/material/Checkbox';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -17,6 +17,7 @@ import {DatePicker} from '@mui/x-date-pickers';
 import dayjs from 'dayjs';
 import {useRouter} from 'next/router';
 import slugify from 'slugify';
+import MultipleImageInput from '@/features/shared/components/multiple-image-input';
 
 type Props = {
   onClose: () => void;
@@ -68,6 +69,10 @@ export default function UpdateProjectDrawer({onClose, project}: Props) {
     form.setValue('coverPhoto', imageUrl);
   };
 
+  const handlePhotoGalleryChange = (imageUrls: string[]) => {
+    form.setValue('photoGallery', imageUrls);
+  };
+
   useEffect(() => {
     form.reset();
   }, [form]);
@@ -105,7 +110,7 @@ export default function UpdateProjectDrawer({onClose, project}: Props) {
         router.replace(`/projects/${newSlug}`);
       }
 
-      toast.success(PROJECT_CREATED);
+      toast.success(PROJECT_UPDATED);
       onClose();
       form.reset(emptyProject);
     }
@@ -192,7 +197,7 @@ export default function UpdateProjectDrawer({onClose, project}: Props) {
                 />
               }
               className={styles.checkbox}
-              label='¿Acepta voluntarios este proyecto?'
+              label='¿Este proyecto acepta voluntarios?'
             />
           </FormGroup>
         </Grid>
@@ -210,6 +215,13 @@ export default function UpdateProjectDrawer({onClose, project}: Props) {
             imageUrl={watch().coverPhoto}
             onChange={handleCoverPhotoChange}
             label='Foto de Portada'
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <MultipleImageInput
+            imageUrls={watch().photoGallery}
+            onChange={handlePhotoGalleryChange}
+            label='Galería de Fotos'
           />
         </Grid>
         <Grid item xs={12}>

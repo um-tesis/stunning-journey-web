@@ -13,6 +13,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormDrawer from '@/features/shared/components/form-drawer';
 import {Grid, TextField, Checkbox} from '@mui/material';
 import {DatePicker} from '@mui/x-date-pickers';
+import MultipleImageInput from '@/features/shared/components/multiple-image-input';
 
 type Props = {
   onClose: () => void;
@@ -58,6 +59,10 @@ export default function AddProjectDrawer({onClose, organizationId}: Props) {
 
   const handleCoverPhotoChange = (imageUrl: string) => {
     form.setValue('coverPhoto', imageUrl);
+  };
+
+  const handlePhotoGalleryChange = (imageUrls: string[]) => {
+    form.setValue('photoGallery', imageUrls);
   };
 
   useEffect(() => {
@@ -178,13 +183,13 @@ export default function AddProjectDrawer({onClose, organizationId}: Props) {
                 />
               }
               className={styles.checkbox}
-              label='¿Acepta voluntarios este proyecto?'
+              label='¿Este proyecto acepta voluntarios?'
             />
           </FormGroup>
         </Grid>
         <Grid item xs={12}>
           <DatePicker
-            label='Fechas'
+            label='Fecha de Inicio'
             sx={{width: '100%'}}
             slotProps={{popper: {disablePortal: true}, textField: {helperText: errors?.startDate?.message}}}
             value={watch().startDate}
@@ -196,6 +201,13 @@ export default function AddProjectDrawer({onClose, organizationId}: Props) {
             imageUrl={watch().coverPhoto}
             onChange={handleCoverPhotoChange}
             label='Foto de Portada'
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <MultipleImageInput
+            imageUrls={watch().photoGallery}
+            onChange={handlePhotoGalleryChange}
+            label='Galería de Fotos'
           />
         </Grid>
         <Grid item xs={12}>

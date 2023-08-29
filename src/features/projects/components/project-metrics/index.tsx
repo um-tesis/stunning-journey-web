@@ -25,7 +25,7 @@ export default function ProjectMetrics({project}: Props) {
   return (
     <>
       <Typography variant='h4' align='left' pb={2} px={10} color={'white'}>
-        Métricas
+        Sobre {project.name}
       </Typography>
       <Grid container spacing={3} px={10}>
         <Grid item xs={12} sm={4} px={3}>

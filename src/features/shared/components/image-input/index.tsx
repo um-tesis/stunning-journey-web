@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
-import React, {ChangeEvent} from 'react';
-import {Grid, TextField} from '@mui/material';
+import React, {ChangeEvent, useState} from 'react';
+import {Grid, TextField, CircularProgress} from '@mui/material';
 import styles from './styles.module.scss';
 import PrimaryButton from '../primary-button';
 
@@ -11,14 +11,31 @@ interface ImageInputProps {
 }
 
 function ImageInput({imageUrl, onChange, label}: ImageInputProps) {
-  const handleFileInputChange = (event: ChangeEvent<HTMLInputElement>) => {
+  const [loading, setLoading] = useState(false);
+
+  const handleFileInputChange = async (event: any) => {
     const file = event.target.files && event.target.files[0];
     if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        onChange(reader.result as string);
-      };
-      reader.readAsDataURL(file);
+      try {
+        setLoading(true);
+
+        const response = await fetch('/api/getCoverPhotoUploadUrl?fileType=' + file.type);
+        const {uploadURL, key} = await response.json();
+
+        await fetch(uploadURL, {
+          method: 'PUT',
+          body: file,
+          headers: {
+            'Content-Type': file.type,
+          },
+        });
+
+        onChange(`https://projects-cover-photos.s3.amazonaws.com/${key}`);
+      } catch (error) {
+        console.error('File upload failed:', error);
+      } finally {
+        setLoading(false);
+      }
     }
   };
 
@@ -27,7 +44,7 @@ function ImageInput({imageUrl, onChange, label}: ImageInputProps) {
       <Grid item>
         <TextField
           className={styles.textField}
-          // disabled
+          disabled
           label={label || 'URL de la imagen'}
           variant='outlined'
           value={imageUrl}
@@ -35,8 +52,8 @@ function ImageInput({imageUrl, onChange, label}: ImageInputProps) {
         />
       </Grid>
       <Grid item>
-        <PrimaryButton variant='contained' component='label'>
-          Cargar
+        <PrimaryButton variant='contained' component='label' disabled={loading}>
+          {loading ? <CircularProgress size={24} /> : 'Cargar'}
           <input type='file' hidden accept='image/*' onChange={handleFileInputChange} />
         </PrimaryButton>
       </Grid>
