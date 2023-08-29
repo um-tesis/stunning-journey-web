@@ -1,7 +1,6 @@
 import {classNamesFilter} from '@/lib/utils/ui-helper';
 import React from 'react';
 import YouTube from 'react-youtube';
-import styles from './styles.module.scss';
 
 type Props = {
   videoId: string;
