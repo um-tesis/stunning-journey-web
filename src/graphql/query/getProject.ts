@@ -11,6 +11,7 @@ export const GET_PROJECT = gql`
       field
       startDate
       coverPhoto
+      photoGallery
       moneyEarned
       location
       video

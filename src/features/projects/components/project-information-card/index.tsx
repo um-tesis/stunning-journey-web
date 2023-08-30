@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import {convertDateFromIso} from '@/lib/utils/ui-helper';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -7,6 +8,7 @@ import Grid from '@mui/material/Grid';
 import styles from './styles.module.scss';
 import VideoPlayer from '@/features/shared/components/video-player';
 import {IconButton} from '@mui/material';
+import ImageSlider from '@/features/shared/components/image-slider';
 
 type Props = {
   project: any;
@@ -14,7 +16,7 @@ type Props = {
 };
 
 export default function ProjectInformationCard({project, handleOpenUpdateProjectDrawer}: Props) {
-  const {field, startDate, location, organization, video} = project;
+  const {field, startDate, location, organization, video, photoGallery} = project;
 
   return (
     <>
@@ -95,9 +97,17 @@ export default function ProjectInformationCard({project, handleOpenUpdateProject
                 Galería de Fotos
               </Typography>
               <br />
-              <Typography className={styles.value} variant='body1' component='span'>
-                No hay fotos del proyecto agregadas aún
-              </Typography>
+              {photoGallery ? (
+                <ImageSlider
+                  images={photoGallery}
+                  containerClassName={styles.carouselContainer}
+                  carouselImageClassName={styles.carouselImage}
+                />
+              ) : (
+                <Typography className={styles.value} variant='body1' component='span'>
+                  No hay fotos del proyecto agregadas aún
+                </Typography>
+              )}
             </div>
           </div>
         </CardContent>

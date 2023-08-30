@@ -55,4 +55,14 @@
       width: 95%;
     }
   }
+
+  .photoGallery {
+    .carouselContainer {
+      width: 100%;
+      margin: 0;
+      .carouselImage {
+        height: 400px;
+      }
+    }
+  }
 }

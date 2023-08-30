@@ -43,11 +43,11 @@ export default function ProjectCard({projectSlug, name, description, coverPhoto}
       </CardContent>
       <CardActions className={styles.actions}>
         <PrimaryButton size='small' color='primary' onClick={redirectToProject}>
-          Learn More{' '}
+          Más info{' '}
           <ArrowForwardIcon
             fontSize={'small'}
             sx={{
-              marginBottom: '-8px',
+              marginLeft: '4px',
             }}
           />
         </PrimaryButton>

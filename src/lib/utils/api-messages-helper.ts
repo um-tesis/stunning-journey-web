@@ -11,6 +11,8 @@ export const SUCCESSFUL_LOGIN = 'Inicio de sesión correcto';
 
 export const PROJECT_CREATED = 'Proyecto creado con éxito!';
 
+export const PROJECT_UPDATED = 'Proyecto actualizado con éxito!';
+
 export const SUCCESSFUL_VOLUNTEERS_BROADCAST =
   'Se ha enviado correctamente el correo electrónico a los voluntarios del proyecto!';
 
