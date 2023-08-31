@@ -20,7 +20,7 @@ const InstagramFeedWidget = ({}: Props) => {
   }, []);
 
   return (
-    <Paper className={styles.outerContainer} sx={{borderRadius: '3em'}} component='div'>
+    <Paper className={styles.outerContainer} sx={{borderRadius: '3em', m: 2}} component='div'>
       <div className={styles.container}>
         <div id='elfsight-container' className='elfsight-app-189b2f33-cd71-4f56-881f-a62922746b19' />
         <div className={styles.box}></div>

@@ -81,20 +81,32 @@ export default function ProjectOverview({project}: Props) {
         </Grid>
       </Grid>
       <Grid container>
-        <Grid item xs={1} />
-        <Grid item xs={10}>
-          <InstagramFeedWidget />
-        </Grid>
-        <Grid item xs={1} />
-        <Grid item xs={12}>
-          <ImagesMasonry />
+        {video ? (
+          <>
+            <Grid item xs={12} md={6} p={2} marginY={'auto'}>
+              <VideoPlayer videoId={video} width='100%' auxClassNames={styles.videoPlayer} />
+            </Grid>
+            <Grid item xs={12} md={6}>
+              <InstagramFeedWidget />
+            </Grid>
+          </>
+        ) : (
+          <>
+            <Grid item xs={1} />
+            <Grid item xs={10}>
+              <InstagramFeedWidget />
+            </Grid>
+            <Grid item xs={1} />
+          </>
+        )}
+        <Grid item xs={12} py={5} sx={{backgroundColor: '#fff'}}>
+          {photoGallery && <ImageSlider images={photoGallery} />}
         </Grid>
         <Grid item xs={12}>
           <ProjectMetrics project={project} />
         </Grid>
         <Grid item xs={12}>
-          {video && <VideoPlayer videoId={video} auxClassNames={styles.videoPlayer} />}
-          {photoGallery && <ImageSlider images={photoGallery} />}
+          <ImagesMasonry />
         </Grid>
       </Grid>
       {showAddVolunteerDrawer && (

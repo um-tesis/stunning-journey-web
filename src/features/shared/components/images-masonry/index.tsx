@@ -6,10 +6,10 @@ const ImagesMasonry = () => {
   const images = [
     '/ayudar.png',
     '/collaboration.jpeg',
+    '/manos.jpeg',
     '/help.jpeg',
     '/tacu1.jpeg',
     '/tacu2.jpeg',
-    '/manos.jpeg',
   ];
 
   const breakpointColumnsObj = {

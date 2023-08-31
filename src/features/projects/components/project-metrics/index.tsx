@@ -23,7 +23,7 @@ export default function ProjectMetrics({project}: Props) {
   } = project;
 
   return (
-    <Grid container spacing={3} padding={10}>
+    <Grid container spacing={3} px={10} py={5}>
       <Grid item xs={12} pb={-5}>
         <Typography variant='h4' color={'white'}>
           Métricas
