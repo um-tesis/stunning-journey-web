@@ -6,6 +6,12 @@
   justify-content: center;
   padding: 6%;
   color: #fff;
+
+  background-image: url('/volunteering.jpeg');
+  background-repeat: no-repeat;
+  background-color: #5d5a88;
+  background-size: cover;
+  background-position: center;
   & > * {
     margin-bottom: 45px;
   }
@@ -15,6 +21,7 @@
     font-size: 56px;
     line-height: 66px;
     width: 650px;
+    color: #fff;
   }
   .heroText {
     font-style: normal;

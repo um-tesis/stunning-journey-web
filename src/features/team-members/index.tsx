@@ -15,7 +15,7 @@ type Props = {
 };
 
 export default function TeamMembers({user}: Props) {
-  const ITEMS_PER_PAGE = 5;
+  const ITEMS_PER_PAGE = 10;
   const [isAddMemberOpen, setIsAddMemberOpen] = useState(false);
   const [page, setPage] = useState(1);
   const [csvData, setCsvData] = useState([]);

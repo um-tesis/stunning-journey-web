@@ -2,40 +2,62 @@ import {useLazyQuery, useQuery} from '@apollo/client';
 import {Grid, Pagination} from '@mui/material';
 import {useMemo, useState} from 'react';
 import styles from './styles.module.scss';
-import {UserData} from '../../shared/types';
 import CustomTable from '../../shared/components/custom-table';
 import {convertDateFromIso} from '@/lib/utils/ui-helper';
 import {GET_ORGANIZATION_DONATIONS} from '@/graphql/query/getOrganizationDonations';
 import CsvDownloader from '@/features/shared/components/csv-downloader';
+import {GET_PROJECT_DONATIONS} from '@/graphql/query/getProjectDonations';
 
 type Props = {
-  user: UserData;
+  entityId: number;
+  isProjectData?: boolean;
 };
 
-export default function SingleDonationTable({user}: Props) {
-  const ITEMS_PER_PAGE = 5;
+export default function SingleDonationTable({entityId, isProjectData}: Props) {
+  const ITEMS_PER_PAGE = 10;
   const [page, setPage] = useState(1);
   const [csvData, setCsvData] = useState([]);
+
+  const tableQuery = isProjectData ? GET_PROJECT_DONATIONS : GET_ORGANIZATION_DONATIONS;
   const variables = useMemo(
-    () => ({page, itemsPerPage: ITEMS_PER_PAGE, filter: '', organizationId: user.organizationId}),
+    () => ({
+      page,
+      itemsPerPage: ITEMS_PER_PAGE,
+      filter: '',
+      projectId: isProjectData ? entityId : undefined,
+      organizationId: !isProjectData ? entityId : undefined,
+    }),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [page]
   );
 
-  const {data, loading} = useQuery(GET_ORGANIZATION_DONATIONS, {
+  const {data, loading} = useQuery(tableQuery, {
     variables,
   });
 
-  const donations = data?.donationsByOrganization.donations;
+  const donations = isProjectData
+    ? data?.donationsByProject.donations
+    : data?.donationsByOrganization.donations;
 
-  const totalPages = Math.ceil(data?.donationsByOrganization.total / ITEMS_PER_PAGE);
+  const totalPages = Math.ceil(
+    isProjectData
+      ? data?.donationsByProject.total / ITEMS_PER_PAGE
+      : data?.donationsByOrganization.total / ITEMS_PER_PAGE
+  );
 
   // useLazyQuery for all data
-  const [getDonationsForCsv] = useLazyQuery(GET_ORGANIZATION_DONATIONS);
+  const [getDonationsForCsv] = useLazyQuery(tableQuery);
 
   const handleDownload = async () => {
-    const res = await getDonationsForCsv({variables: {organizationId: user.organizationId}});
-    const allDonations = res.data?.donationsByOrganization?.donations;
+    const res = await getDonationsForCsv({
+      variables: {
+        projectId: isProjectData ? entityId : undefined,
+        organizationId: !isProjectData ? entityId : undefined,
+      },
+    });
+    const allDonations = isProjectData
+      ? res.data?.donationsByProject?.donations
+      : res.data?.donationsByOrganization?.donations;
     const allMappedDonations = allDonations.map((donation: any) => {
       return {
         donator: donation.donor.email,
@@ -66,7 +88,7 @@ export default function SingleDonationTable({user}: Props) {
   };
 
   const columnLabels = [
-    {label: 'Donador', key: 'donator'},
+    {label: 'Donante', key: 'donator'},
     {label: 'Proyecto', key: 'project'},
     {label: 'Monto', key: 'amount'},
     {label: 'Fecha', key: 'date'},

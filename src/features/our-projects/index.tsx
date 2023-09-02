@@ -17,7 +17,7 @@ type Props = {
 
 export default function OurProjects({user}: Props) {
   const router = useRouter();
-  const ITEMS_PER_PAGE = 5;
+  const ITEMS_PER_PAGE = 10;
   const [isAddProjectOpen, setIsAddProjectOpen] = useState(false);
   const [page, setPage] = useState(1);
   const [csvData, setCsvData] = useState([]);

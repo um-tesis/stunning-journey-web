@@ -39,7 +39,7 @@ export default function ProjectMetrics({project}: Props) {
         <MetricCard title='Número de Voluntarios' total={volunteersNumber} icon={<VolunteerActivismIcon />} />
       </Grid>
       <Grid item xs={12} md={6} lg={4}>
-        <MetricCard title='Número de Donadores Totales' total={donatorsNumber} icon={<PeopleIcon />} />
+        <MetricCard title='Número de Donantes Totales' total={donatorsNumber} icon={<PeopleIcon />} />
       </Grid>
       <Grid item xs={12} md={6} lg={4}>
         <MetricCard
