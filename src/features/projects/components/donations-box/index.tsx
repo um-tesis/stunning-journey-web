@@ -50,7 +50,7 @@ const DonationsTextField: React.FC<TextFieldProps> = (props) => (
 );
 
 const OneTimeDonation: React.FC<Props> = ({projectSlug}) => {
-  const [createPreference, {}] = useMutation(CREATE_PREFERENCE, {errorPolicy: 'all', onError: (e) => e});
+  const [createPreference, {}] = useMutation(CREATE_PREFERENCE);
   const [loading, setLoading] = useState<boolean>(false);
   const donationParams = useMemo(() => ({amount: 100}), []);
 
