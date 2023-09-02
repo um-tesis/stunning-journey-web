@@ -33,8 +33,8 @@ export default function Donations({user}: Props) {
             {title}
           </Typography>
         </Grid>
-        {selectedSection === 0 && <SingleDonationTable user={user} />}
-        {selectedSection === 1 && <SubscriptionsTable user={user} />}
+        {selectedSection === 0 && <SingleDonationTable entityId={user.organizationId} />}
+        {selectedSection === 1 && <SubscriptionsTable entityId={user.organizationId} />}
       </Grid>
     </div>
   );

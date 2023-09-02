@@ -7,9 +7,11 @@ import TabBar from '@/features/shared/components/tab-bar';
 import ProjectInformationCard from '../project-information-card';
 import VolunteeringInformationCard from '../volunteering-information-card';
 import {IconButton} from '@mui/material';
-import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+import {Share as ShareIcon} from '@mui/icons-material';
 import useCopyToClipboard from '@/lib/hooks/useCopyToClipboard';
 import ProjectMetrics from '../project-metrics';
+import ProjectSingleDonations from '../project-single-donations';
+import ProjectSubscriptions from '../project-subscriptions';
 
 type Props = {
   project: any;
@@ -21,12 +23,14 @@ export default function ProjectSummary({project, handleOpenUpdateProjectDrawer}:
 
   const [selectedSection, setSelectedSection] = useState<number>(0);
 
-  const {name, description, coverPhoto, acceptsVolunteers} = project;
+  const {name, description, coverPhoto, acceptsVolunteers, organizationId} = project;
 
   const navSections = [
     {key: 0, value: 'Información del Proyecto'},
     {key: 1, value: 'Métricas'},
-    acceptsVolunteers && {key: 2, value: 'Voluntariado'},
+    {key: 2, value: 'Donaciones Puntuales'},
+    {key: 3, value: 'Suscripciones'},
+    acceptsVolunteers && {key: 4, value: 'Voluntariado'},
   ];
 
   const handleCopyToClipboard = () => {
@@ -48,7 +52,7 @@ export default function ProjectSummary({project, handleOpenUpdateProjectDrawer}:
             {description}
           </Typography>
           <IconButton className={styles.copyToClipboard} onClick={handleCopyToClipboard}>
-            <ContentCopyIcon />
+            <ShareIcon />
           </IconButton>
         </CardContent>
       </Card>
@@ -66,7 +70,9 @@ export default function ProjectSummary({project, handleOpenUpdateProjectDrawer}:
         />
       )}
       {selectedSection === 1 && <ProjectMetrics project={project} />}
-      {selectedSection === 2 && (
+      {selectedSection === 2 && <ProjectSingleDonations projectId={project.id} />}
+      {selectedSection === 3 && <ProjectSubscriptions projectId={project.id} />}
+      {selectedSection === 4 && (
         <VolunteeringInformationCard projectId={project.id} organizationId={project.organizationId} />
       )}
     </div>

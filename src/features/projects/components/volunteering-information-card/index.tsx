@@ -20,7 +20,7 @@ type Props = {
 };
 
 export default function VolunteeringInformationCard({projectId, organizationId}: Props) {
-  const ITEMS_PER_PAGE = 5;
+  const ITEMS_PER_PAGE = 10;
   const [showEmailVolunteersDrawer, setShowEmailVolunteersDrawer] = useState(false);
   const [showLoadHoursDrawer, setShowLoadHoursDrawer] = useState(false);
   const [showAddVolunteerDrawer, setShowAddVolunteerDrawer] = useState(false);

@@ -77,7 +77,9 @@ const OneTimeDonation: React.FC<Props> = ({projectSlug}) => {
     });
 
     if (response.errors) {
+      // @ts-ignore
       if (response.errors?.networkError)
+        // @ts-ignore
         toast.error(response.errors?.networkError?.result?.errors[0].message);
       else toast.error(response.errors[0].message);
       setLoading(false);
@@ -166,7 +168,9 @@ const RecurringDonation: React.FC<Props> = ({projectSlug}) => {
     });
 
     if (response.errors) {
+      // @ts-ignore
       if (response.errors?.networkError)
+        // @ts-ignore
         toast.error(response.errors?.networkError?.result?.errors[0].message);
       else toast.error(response.errors[0].message);
       setLoading(false);

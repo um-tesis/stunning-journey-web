@@ -7,7 +7,7 @@ import SearchInput from '../shared/components/search-input';
 import styles from './styles.module.scss';
 
 export default function Projects() {
-  const ITEMS_PER_PAGE = 9;
+  const ITEMS_PER_PAGE = 10;
   const [filter, setFilter] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
   const [page, setPage] = useState(1);

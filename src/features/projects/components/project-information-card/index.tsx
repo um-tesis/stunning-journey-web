@@ -19,99 +19,97 @@ export default function ProjectInformationCard({project, handleOpenUpdateProject
   const {field, startDate, location, organization, video, photoGallery} = project;
 
   return (
-    <>
-      <Card className={styles.projectData}>
-        <CardContent>
-          <Grid container spacing={5} alignItems='center' paddingBottom={4}>
-            <Grid item>
-              <Typography variant='h5' component='h2' className={styles.title}>
-                Información del Proyecto
-              </Typography>
-            </Grid>
-            <Grid item>
-              <IconButton onClick={handleOpenUpdateProjectDrawer}>
-                <EditIcon className={styles.editIcon} />
-              </IconButton>
-            </Grid>
+    <Card className={styles.projectData}>
+      <CardContent>
+        <Grid container spacing={5} alignItems='center' paddingBottom={4}>
+          <Grid item>
+            <Typography variant='h5' component='h2' className={styles.title}>
+              Información del Proyecto
+            </Typography>
           </Grid>
-          <Grid container justifyContent='space-between' alignItems='center' spacing={2}>
-            <Grid item xs={12} md={6}>
-              <div className={styles.field}>
-                <Typography className={styles.label} variant='body1' component='span'>
-                  Campo
-                </Typography>
-                <Typography className={styles.value} variant='body1' component='span'>
-                  {field}
-                </Typography>
-              </div>
-              <div className={styles.organizationName}>
-                <Typography className={styles.label} variant='body1' component='span'>
-                  Nombre de la Organización
-                </Typography>
-                <Typography className={styles.value} variant='body1' component='span'>
-                  {organization.name}
-                </Typography>
-              </div>
-            </Grid>
-            <Grid item xs={12} md={6}>
-              <div className={styles.startDate}>
-                <Typography className={styles.label} variant='body1' component='span'>
-                  Fecha de Inicio
-                </Typography>
-                <Typography className={styles.value} variant='body1' component='span'>
-                  {startDate ? convertDateFromIso(startDate) : '-'}
-                </Typography>
-              </div>
-              <div className={styles.location}>
-                <Typography className={styles.label} variant='body1' component='span'>
-                  Ubicación
-                </Typography>
-                <Typography className={styles.value} variant='body1' component='span'>
-                  {location || '-'}
-                </Typography>
-              </div>
-            </Grid>
+          <Grid item>
+            <IconButton onClick={handleOpenUpdateProjectDrawer}>
+              <EditIcon className={styles.editIcon} />
+            </IconButton>
           </Grid>
-          <br />
-          <br />
-
-          <br />
-          <br />
-
-          <div className={styles.mediaContainer}>
-            <div className={styles.video}>
+        </Grid>
+        <Grid container justifyContent='space-between' alignItems='center' spacing={2}>
+          <Grid item xs={12} md={6}>
+            <div className={styles.field}>
               <Typography className={styles.label} variant='body1' component='span'>
-                Video
+                Campo
               </Typography>
-              <br />
-              {video ? (
-                <VideoPlayer videoId={video} auxClassNames={styles.videoPlayer} />
-              ) : (
-                <Typography className={styles.value} variant='body1' component='span'>
-                  No hay video de Youtube agregado aún
-                </Typography>
-              )}
+              <Typography className={styles.value} variant='body1' component='span'>
+                {field}
+              </Typography>
             </div>
-            <div className={styles.photoGallery}>
+            <div className={styles.organizationName}>
               <Typography className={styles.label} variant='body1' component='span'>
-                Galería de Fotos
+                Nombre de la Organización
               </Typography>
-              <br />
-              {photoGallery ? (
-                <ImageSlider
-                  images={photoGallery}
-                  containerClassName={styles.carouselContainer}
-                  carouselImageClassName={styles.carouselImage}
-                />
-              ) : (
-                <Typography className={styles.value} variant='body1' component='span'>
-                  No hay fotos del proyecto agregadas aún
-                </Typography>
-              )}
+              <Typography className={styles.value} variant='body1' component='span'>
+                {organization.name}
+              </Typography>
             </div>
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <div className={styles.startDate}>
+              <Typography className={styles.label} variant='body1' component='span'>
+                Fecha de Inicio
+              </Typography>
+              <Typography className={styles.value} variant='body1' component='span'>
+                {startDate ? convertDateFromIso(startDate) : '-'}
+              </Typography>
+            </div>
+            <div className={styles.location}>
+              <Typography className={styles.label} variant='body1' component='span'>
+                Ubicación
+              </Typography>
+              <Typography className={styles.value} variant='body1' component='span'>
+                {location || '-'}
+              </Typography>
+            </div>
+          </Grid>
+        </Grid>
+        <br />
+        <br />
+
+        <br />
+        <br />
+
+        <div className={styles.mediaContainer}>
+          <div className={styles.video}>
+            <Typography className={styles.label} variant='body1' component='span'>
+              Video
+            </Typography>
+            <br />
+            {video ? (
+              <VideoPlayer videoId={video} auxClassNames={styles.videoPlayer} />
+            ) : (
+              <Typography className={styles.value} variant='body1' component='span'>
+                No hay video de Youtube agregado aún
+              </Typography>
+            )}
           </div>
-        </CardContent>
-      </Card>
-    </>
+          <div className={styles.photoGallery}>
+            <Typography className={styles.label} variant='body1' component='span'>
+              Galería de Fotos
+            </Typography>
+            <br />
+            {photoGallery && photoGallery.length > 0 ? (
+              <ImageSlider
+                images={photoGallery}
+                containerClassName={styles.carouselContainer}
+                carouselImageClassName={styles.carouselImage}
+              />
+            ) : (
+              <Typography className={styles.value} variant='body1' component='span'>
+                No hay fotos del proyecto agregadas aún
+              </Typography>
+            )}
+          </div>
+        </div>
+      </CardContent>
+    </Card>
   );
 }

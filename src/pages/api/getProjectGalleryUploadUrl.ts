@@ -1,4 +1,5 @@
 import {S3} from 'aws-sdk';
+import {NextApiRequest, NextApiResponse} from 'next';
 
 // Initialize S3 client
 const s3 = new S3({
@@ -7,7 +8,7 @@ const s3 = new S3({
   region: process.env.AWS_S3_REGION,
 });
 
-export default async function handler(req, res) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
   if (req.method !== 'GET') {
     return res.status(405).end();
   }

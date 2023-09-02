@@ -25,7 +25,7 @@ export default function TabBar({sections, selectedSection, setSelectedSection, a
             key={section.key}
             onClick={() => setSelectedSection(section.key)}
           >
-            <Typography variant='h6' color='white'>
+            <Typography variant='subtitle2' color='white'>
               {section.value}
             </Typography>
           </li>
