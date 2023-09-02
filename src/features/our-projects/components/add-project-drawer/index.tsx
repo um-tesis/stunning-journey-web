@@ -8,10 +8,17 @@ import {useMutation} from '@apollo/client';
 import {CREATE_PROJECT} from '@/graphql/mutation/createProject';
 import {toast} from 'react-hot-toast';
 import {PROJECT_CREATED} from '@/lib/utils/api-messages-helper';
-import FormGroup from '@mui/material/FormGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
 import FormDrawer from '@/features/shared/components/form-drawer';
-import {Grid, TextField, Checkbox} from '@mui/material';
+import {
+  Grid,
+  TextField,
+  Checkbox,
+  FormGroup,
+  FormControlLabel,
+  Divider,
+  Alert,
+  AlertTitle,
+} from '@mui/material';
 import {DatePicker} from '@mui/x-date-pickers';
 import MultipleImageInput from '@/features/shared/components/multiple-image-input';
 
@@ -30,6 +37,9 @@ export default function AddProjectDrawer({onClose, organizationId}: Props) {
     location: '',
     organizationId,
     acceptsVolunteers: false,
+    mpAccessToken: '',
+    mpPublicKey: '',
+    mpApplicationId: '',
     coverPhoto: '',
     photoGallery: [],
     video: '',
@@ -80,6 +90,9 @@ export default function AddProjectDrawer({onClose, organizationId}: Props) {
           location: formValues.location,
           startDate: formValues.startDate,
           organizationId: formValues.organizationId,
+          mpAccessToken: formValues.mpAccessToken,
+          mpPublicKey: formValues.mpPublicKey,
+          mpApplicationId: formValues.mpApplicationId,
           acceptsVolunteers: formValues.acceptsVolunteers,
           coverPhoto: formValues.coverPhoto,
           photoGallery: formValues.photoGallery,
@@ -101,6 +114,9 @@ export default function AddProjectDrawer({onClose, organizationId}: Props) {
       onClose();
     }
     if (createProjectRequest.status === 'error') {
+      console.log('=====');
+      console.log(createProjectRequest.error);
+      console.log('=====');
       toast.error(createProjectRequest.error);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -159,6 +175,81 @@ export default function AddProjectDrawer({onClose, organizationId}: Props) {
             multiline
             minRows={3}
           />
+        </Grid>
+        <Grid item xs={12}>
+          <Divider />
+          <Alert severity='info' sx={{mt: 1}}>
+            <AlertTitle>Pasarela de pagos</AlertTitle>
+            Para poder recibir donaciones, es necesario que cuentes con una cuenta de Mercado Pago.
+            <br />
+            <br />
+            <strong>¿Cómo crear una cuenta de Mercado Pago?</strong>
+            <br />
+            <br />
+            <a
+              href='https://www.mercadopago.com.uy/hub/registration/landing'
+              target='_blank'
+              rel='noopener noreferrer'
+            >
+              <strong>1. Registrate en Mercado Pago</strong>
+            </a>
+            <br />
+            <br />
+            <a
+              href='https://www.mercadopago.com.uy/developers/panel/app'
+              target='_blank'
+              rel='noopener noreferrer'
+            >
+              <strong>2. Crea una aplicación</strong>
+            </a>
+            <br />
+            <br />
+            <strong>3. Obtené tus credenciales de producción</strong>
+            <br />
+            <br />
+            <strong>
+              Nota: Las credenciales deben empezar con <code>APP_USR-</code>
+            </strong>
+          </Alert>
+        </Grid>
+        <Grid item xs={12}>
+          <TextField
+            name='mpPublicKey'
+            label='Public Key de Mercado Pago*'
+            variant='outlined'
+            onChange={handleChange}
+            value={watch().mpPublicKey}
+            error={!!errors?.mpPublicKey}
+            helperText={errors?.mpPublicKey?.message}
+            fullWidth
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <TextField
+            name='mpAccessToken'
+            label='Access Token de Mercado Pago*'
+            variant='outlined'
+            onChange={handleChange}
+            value={watch().mpAccessToken}
+            error={!!errors?.mpAccessToken}
+            helperText={errors?.mpAccessToken?.message || '¡Descuida! Esta información es privada.'}
+            fullWidth
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <TextField
+            name='mpApplicationId'
+            label='ID de Aplicación de Mercado Pago*'
+            variant='outlined'
+            onChange={handleChange}
+            value={watch().mpApplicationId}
+            error={!!errors?.mpApplicationId}
+            helperText={errors?.mpApplicationId?.message}
+            fullWidth
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <Divider />
         </Grid>
         <Grid item xs={12}>
           <TextField

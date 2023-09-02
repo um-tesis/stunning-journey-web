@@ -8,6 +8,9 @@ export type Project = {
   organizationId: number;
   startDate?: string | Dayjs;
   acceptsVolunteers?: boolean;
+  mpAccessToken: string;
+  mpPublicKey: string;
+  mpApplicationId: string;
   coverPhoto?: string;
   video?: string;
   photoGallery?: string[];

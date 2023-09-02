@@ -1,4 +1,4 @@
-import {createTheme} from '@mui/material';
+import {createTheme, responsiveFontSizes} from '@mui/material';
 import {DM_Sans} from '@next/font/google';
 
 export const dmSans = DM_Sans({
@@ -11,7 +11,7 @@ export const dmSans = DM_Sans({
 const primaryColor = '#5d5a88';
 const secondaryColor = '#473BF0';
 
-export default createTheme({
+const theme = createTheme({
   palette: {
     primary: {
       main: primaryColor,
@@ -43,3 +43,5 @@ export default createTheme({
     },
   },
 });
+
+export default responsiveFontSizes(theme);

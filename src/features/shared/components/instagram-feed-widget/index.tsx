@@ -1,5 +1,6 @@
 import React, {useEffect} from 'react';
 import styles from './styles.module.scss';
+import {Paper} from '@mui/material';
 
 type Props = {};
 
@@ -19,10 +20,12 @@ const InstagramFeedWidget = ({}: Props) => {
   }, []);
 
   return (
-    <div className={styles.container}>
-      <div id='elfsight-container' className='elfsight-app-189b2f33-cd71-4f56-881f-a62922746b19' />
-      <div className={styles.box}></div>
-    </div>
+    <Paper className={styles.outerContainer} sx={{borderRadius: '3em', m: 2}} component='div'>
+      <div className={styles.container}>
+        <div id='elfsight-container' className='elfsight-app-189b2f33-cd71-4f56-881f-a62922746b19' />
+        <div className={styles.box}></div>
+      </div>
+    </Paper>
   );
 };
 

@@ -16,6 +16,7 @@ export const GET_PROJECT = gql`
       location
       video
       acceptsVolunteers
+      mpPublicKey
       monthlyEarnedMoney
       activeSubscriptionsNumber
       donatorsNumber

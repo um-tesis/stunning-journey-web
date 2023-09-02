@@ -7,6 +7,8 @@ import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import {classNamesFilter} from '@/lib/utils/ui-helper';
 import PlayCircleIcon from '@mui/icons-material/PlayCircle';
 import PauseCircleIcon from '@mui/icons-material/PauseCircle';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import {useTheme} from '@mui/material/styles';
 
 type Props = {
   images: string[];
@@ -16,13 +18,15 @@ type Props = {
 
 export default function ImageSlider({images, containerClassName, carouselImageClassName}: Props) {
   const [autoplayEnabled, setAutoplayEnabled] = React.useState(true);
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down('lg'));
 
   const settings = {
     adaptiveHeightAnimation: true,
     autoplay: autoplayEnabled,
     autoplayInterval: 3000,
     wrapAround: true,
-    slidesToShow: 1,
+    slidesToShow: Math.min(images.length, isSmallScreen ? 2 : 5),
     renderCenterLeftControls: ({previousSlide}: any) => (
       <div onClick={previousSlide} className={styles.carouselControl}>
         <NavigateBeforeIcon />

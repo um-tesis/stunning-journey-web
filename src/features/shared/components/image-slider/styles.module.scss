@@ -1,18 +1,9 @@
 .carouselContainer {
-  margin: 2% 20%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  width: 60%;
   .carouselImage {
-    width: 100%; /* Your fixed width */
-    height: 400px; /* Your fixed height */
-    overflow: hidden; /* Hide anything that goes beyond the container */
+    height: 400px;
+    overflow: hidden;
     img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover; /* Maintain aspect ratio */
+      object-fit: cover;
     }
   }
 

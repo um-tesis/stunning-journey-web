@@ -19,7 +19,6 @@ export default function MyApp({Component, pageProps}: AppProps) {
       <Head>
         <title>Libera</title>
         <meta name='viewport' content='initial-scale=1, width=device-width' />
-        <link rel='stylesheet' href='/css/video-react.css' />
         <link rel='icon' href='/Logo-libera.png' />
       </Head>
 

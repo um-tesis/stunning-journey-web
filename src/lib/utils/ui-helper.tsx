@@ -1,3 +1,4 @@
+import {dmSans} from '@/assets/styles/theme';
 import {DateTime} from 'luxon';
 
 export const classNamesFilter = (...classes: any[]) => {
@@ -14,6 +15,7 @@ export const capitalizeTheFirstLetterOfEachWord = (words: string) => {
 
 export const toastOptions = {
   style: {
+    fontFamily: dmSans.style.fontFamily,
     background: '#000',
     color: '#FFF',
   },

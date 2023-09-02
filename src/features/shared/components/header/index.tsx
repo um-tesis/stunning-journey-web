@@ -193,7 +193,7 @@ const Header = ({user}: Props) => {
               <Box sx={{flexGrow: 0}}>
                 <Tooltip title='Open settings'>
                   <IconButton onClick={handleOpenUserMenu} sx={{p: 0, m: 2}} size='large'>
-                    <Avatar alt={user.name} src='/static/images/avatar/2.jpg' />
+                    <Avatar alt={user.name} />
                   </IconButton>
                 </Tooltip>
                 <Menu

@@ -1,17 +1,16 @@
 import styles from './styles.module.scss';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import DonationsBox from '../donations-box';
 import ImagesMasonry from '@/features/shared/components/images-masonry';
 import InstagramFeedWidget from '@/features/shared/components/instagram-feed-widget';
 import PrimaryButton from '@/features/shared/components/primary-button';
+import {Box, Grid, Tooltip} from '@mui/material';
 import {IconButton} from '@mui/material';
-import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import useCopyToClipboard from '@/lib/hooks/useCopyToClipboard';
 import AddVolunteerDrawer from '../add-volunteer-drawer';
 import {useState} from 'react';
 import ProjectMetrics from '../project-metrics';
+import {Share as ShareIcon} from '@mui/icons-material';
 import VideoPlayer from '@/features/shared/components/video-player';
 import ImageSlider from '@/features/shared/components/image-slider';
 
@@ -39,37 +38,77 @@ export default function ProjectOverview({project}: Props) {
   };
 
   return (
-    <div className={styles.projectContainer}>
-      <Card
+    <>
+      <Grid
+        container
+        padding={10}
+        spacing={3}
         className={styles.projectHeader}
+        justifyContent='center'
         sx={{backgroundImage: `url(${coverPhoto ? coverPhoto : '/collaboration.jpeg'})`}}
       >
-        <div className={styles.overlay} />
-        <CardContent className={styles.content}>
-          <Typography className={styles.title} variant='h6' component='h3'>
+        <Grid item xs={12}>
+          <Typography variant='h2' textAlign='center' color='white'>
             {name}
           </Typography>
-          <Typography className={styles.description} variant='body2' component='p'>
+        </Grid>
+        <Grid item xs={false} sm={1} md={2} />
+        <Grid item xs={12} sm={10} md={8}>
+          <Typography variant='subtitle2' textAlign='center'>
             {description}
           </Typography>
-          <IconButton className={styles.copyToClipboard} onClick={handleCopyToClipboard}>
-            <ContentCopyIcon />
-          </IconButton>
-          <PrimaryButton
-            auxClassNames={styles.volunteeringButton}
-            inverted
-            onClick={handleOpenAddVolunteerDrawer}
-          >
-            Ofrézcase como Voluntario!
-          </PrimaryButton>
-        </CardContent>
-      </Card>
-      <DonationsBox />
-      <InstagramFeedWidget />
-      <ProjectMetrics project={project} />
-      {video && <VideoPlayer videoId={video} auxClassNames={styles.videoPlayer} />}
-      {photoGallery && <ImageSlider images={photoGallery} />}
-      <ImagesMasonry />
+        </Grid>
+        <Grid item xs={false} sm={1} md={2} />
+        <Grid item>
+          <Box display='flex'>
+            <PrimaryButton inverted onClick={handleOpenAddVolunteerDrawer} sx={{mr: 3}}>
+              Ofrézcase como Voluntario!
+            </PrimaryButton>
+            <Tooltip title='Compartir'>
+              <IconButton
+                className={styles.copyToClipboard}
+                size='large'
+                color='primary'
+                onClick={handleCopyToClipboard}
+              >
+                <ShareIcon />
+              </IconButton>
+            </Tooltip>
+          </Box>
+        </Grid>
+        <Grid item mt={3}>
+          <DonationsBox projectSlug={project.slug} />
+        </Grid>
+      </Grid>
+      <Grid container>
+        {video ? (
+          <>
+            <Grid item xs={12} md={6} p={2} marginY={'auto'}>
+              <VideoPlayer videoId={video} width='100%' auxClassNames={styles.videoPlayer} />
+            </Grid>
+            <Grid item xs={12} md={6}>
+              <InstagramFeedWidget />
+            </Grid>
+          </>
+        ) : (
+          <>
+            <Grid item xs={1} />
+            <Grid item xs={10}>
+              <InstagramFeedWidget />
+            </Grid>
+            <Grid item xs={1} />
+          </>
+        )}
+        <Grid item xs={12} py={5} sx={{backgroundColor: '#fff'}}>
+          {photoGallery && <ImageSlider images={photoGallery} />}
+        </Grid>
+        <Grid item xs={12}>
+          <ProjectMetrics project={project} />
+        </Grid>
+        <Grid item xs={12}>
+          <ImagesMasonry />
+        </Grid>
+      </Grid>
       {showAddVolunteerDrawer && (
         <AddVolunteerDrawer
           organizationId={organizationId}
@@ -77,6 +116,6 @@ export default function ProjectOverview({project}: Props) {
           projectId={projectId}
         />
       )}
-    </div>
+    </>
   );
 }
