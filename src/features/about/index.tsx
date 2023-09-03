@@ -9,14 +9,14 @@ export default function About() {
     <Grid container spacing={2} className={styles.us}>
       <Grid item xs={12} md={6}>
         <div className={styles.imageSection}>
-          <Image src='/jjj.jpeg' width={640} height={640} alt='image' />
+          <Image src='/vatos.jpeg' width={640} height={640} alt='image' />
         </div>
       </Grid>
       <Grid item xs={12} md={6}>
         <div className={styles.about}>
-          <Grid container spacing={1} direction='row' sx={{mb: 6}} alignItems='center'>
+          <Grid container spacing={1} direction='row' sx={{mb: 0}} alignItems='center'>
             <Grid item>
-              <VerifiedIcon fontSize='large' sx={{mr: 1, color: 'white'}} color='primary' />
+              <VerifiedIcon fontSize='large' sx={{mr: 1, color: '#5d5a88'}} color='primary' />
             </Grid>
             <Grid item>
               <Typography
@@ -25,7 +25,7 @@ export default function About() {
                 sx={{
                   fontWeight: 700,
                   letterSpacing: '.3rem',
-                  color: 'white',
+                  color: '#5d5a88',
                   textDecoration: 'none',
                 }}
               >
@@ -57,15 +57,15 @@ export default function About() {
             nosotros en nuestra misión de liberar el poder de la generosidad y marcar la diferencia en el
             mundo.
           </Typography>
-          <Grid container spacing={3} sx={{mt: 3}}>
+          <Grid container spacing={3}>
             <Grid item>
-              <Chip label='José Pedro Algorta' variant='outlined' sx={{color: 'white'}} />
+              <Chip label='José Pedro Algorta' variant='outlined' sx={{color: '#5d5a88'}} />
             </Grid>
             <Grid item>
-              <Chip label='Joaquín Fernandez' variant='outlined' sx={{color: 'white'}} />
+              <Chip label='Juan Martín Staricco' variant='outlined' sx={{color: '#5d5a88'}} />
             </Grid>
             <Grid item>
-              <Chip label='Juan Martín Staricco' variant='outlined' sx={{color: 'white'}} />
+              <Chip label='Joaquín Fernandez' variant='outlined' sx={{color: '#5d5a88'}} />
             </Grid>
           </Grid>
         </div>

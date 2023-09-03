@@ -11,7 +11,7 @@ export default function OurWorkSteps({title, description, Icon}: OurWorkStepsPro
   return (
     <Box display='flex' alignItems='center' flexDirection='column' gap={3} className={styles.steps}>
       <Box>{Icon}</Box>
-      <Typography variant='h6' textAlign='center'>
+      <Typography variant='h6' textAlign='center' className={styles.steps}>
         {title}
       </Typography>
       <Typography variant='body2'>{description}</Typography>
