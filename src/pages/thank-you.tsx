@@ -28,7 +28,7 @@ export default function ThankYouPage({user, query, projectSlug}: any) {
 
 export const getServerSideProps = withIronSessionSsr(async function (ctx: GetServerSidePropsContext) {
   const userData = ctx.req.session.user as UserData;
-  const projectSlug = ctx.query.external_reference as string;
+  const projectSlug = ctx.query?.external_reference as string;
 
   return {
     props: {

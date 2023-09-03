@@ -6,7 +6,7 @@ import React from 'react';
 
 type Props = {
   paymentId: string;
-  status: 'approved' | 'pending' | 'rejected' | null;
+  status: 'approved' | 'authorized' | 'pending' | 'rejected' | null;
   projectName: string;
 };
 
@@ -19,19 +19,15 @@ const ThankYou = ({paymentId, status, projectName}: Props) => {
         </Link>
       </Grid>
       <Grid item xs={12} sx={{textAlign: 'center'}}>
-        {status === 'approved' ? (
-          <Verified sx={{fontSize: '15em', color: theme.palette.success.main}} />
-        ) : (
-          <NewReleases sx={{fontSize: '15em', color: theme.palette.warning.main}} />
-        )}
+        <Verified sx={{fontSize: '15em', color: theme.palette.success.main}} />
       </Grid>
       <Grid item xs={12}>
         <Typography gutterBottom variant='h4' textAlign='center'>
           ¡Gracias por tu donación!
         </Typography>
-        {status !== 'approved' && (
+        {!['approved', 'authorized'].includes(status) && (
           <Typography variant='subtitle2' gutterBottom textAlign='center' color='primary'>
-            Tu pago está pendiente de aprobación.
+            Tu pago está <strong style={{fontWeight: 700}}>pendiente</strong> de aprobación.
           </Typography>
         )}
         <Typography variant='h3' textAlign='center' fontWeight='bold' color='primary'>
@@ -41,11 +37,11 @@ const ThankYou = ({paymentId, status, projectName}: Props) => {
       <Grid item justifySelf='center'>
         <Card>
           <CardContent>
-            <Typography sx={{fontSize: 14}} color='text.secondary' gutterBottom>
+            <Typography sx={{fontSize: '12px !important'}} color='text.secondary' gutterBottom>
               Detalles de la donación
             </Typography>
-            <Typography sx={{fontSize: 16}}>Estado: {status}</Typography>
-            <Typography sx={{fontSize: 16}}>Payment ID: {paymentId}</Typography>
+            <Typography sx={{fontSize: '10px !important'}}>Estado: {status}</Typography>
+            <Typography sx={{fontSize: '10px !important'}}>Payment ID: {paymentId}</Typography>
           </CardContent>
         </Card>
       </Grid>
