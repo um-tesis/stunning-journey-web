@@ -1,13 +1,17 @@
 .us {
   height: 80%;
-  width: 110%;
-  padding: 3% 10%;
+  width: 101%;
+  padding: 50px 110px;
+  background-color: #fff;
   display: flex;
 
   .imageSection {
     height: 100%;
     img {
-      border-radius: 10px;
+      width: 100%;
+      padding-right: 16px;
+      object-fit: cover;
+      border-radius: 20px;
     }
   }
 
@@ -15,7 +19,7 @@
     height: 100%;
     .aboutSection {
       font-size: 1.125em;
-      color: white;
+      color: #9795b5;
       line-height: 1.5em;
       margin-bottom: 20px;
     }

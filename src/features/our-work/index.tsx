@@ -10,7 +10,7 @@ export default function OurWork() {
         <Typography variant='overline' fontWeight='bold'>
           Acerca de nuestro proceso
         </Typography>
-        <Typography variant='h4' fontWeight='bold'>
+        <Typography variant='h4' fontWeight='bold' className={styles.title}>
           Empezar es tan fácil como 1, 2, 3
         </Typography>
         <Typography variant='subtitle2'>

@@ -8,7 +8,7 @@ type Props = {};
 export default function GetInTouchSection({}: Props) {
   return (
     <Box width={'100%'} sx={{backgroundColor: '#fff'}} className={styles.sectionContent}>
-      <Image src='/tacu2.jpeg' width={1100} height={745} alt='image' />
+      <Image src='/v1.webp' width={1100} height={745} alt='image' />
       <GetInTouchModal />
     </Box>
   );

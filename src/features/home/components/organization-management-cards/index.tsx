@@ -7,18 +7,18 @@ const cards = [
   {
     title: 'Donantes',
     linkTo: '/donors',
-    image: '/tacu2.jpeg',
+    image: '/don1.jpeg',
   },
 
   {
     title: 'Mis Proyectos',
     linkTo: '/our-projects',
-    image: '/collaboration.jpeg',
+    image: '/v3.jpeg',
   },
   {
     title: 'Donaciones',
     linkTo: '/donations',
-    image: '/help.jpeg',
+    image: '/don3.jpeg',
   },
 ];
 
@@ -31,9 +31,9 @@ export default function OrganizationManagementCards() {
         Gestión de su organización
       </Typography>
       <Typography variant='body1' className={styles.subtitle}>
-        Esta página de gestión está especialmente diseñada para ofrecerle un acceso rápido a los principales
-        aspectos de nuestras operaciones sin ánimo de lucro. Aquí podrá acceder a todos los enlaces y
-        herramientas esenciales para gestionar eficazmente gestionar su organización.
+        Esta página está especialmente diseñada para ofrecerle un acceso rápido a los principales aspectos de
+        nuestras operaciones sin fines de lucro. Aquí podrá acceder a todos los enlaces y herramientas
+        esenciales para gestionar eficazmente su organización asi como a métricas de la misma
       </Typography>
 
       <Grid container spacing={3}>

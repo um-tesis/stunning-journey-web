@@ -28,14 +28,14 @@ export default function UpdateProjectDrawer({onClose, project}: Props) {
   const router = useRouter();
   const [updateProject, {}] = useMutation(UPDATE_PROJECT);
 
-  // we do not use destructuring here because we project has some fields that are not in Project but come from the query
+  // we do not use destructuring here because project has some fields that are not in the type Project but come from the query
   const emptyProject: Project = {
     id: +project.id,
     name: project.name,
     description: project.description,
     field: project.field,
     location: project.location,
-    startDate: dayjs(project.startDate),
+    startDate: project.startDate ? dayjs(project.startDate) : undefined,
     organizationId: project.organizationId,
     acceptsVolunteers: project.acceptsVolunteers,
     coverPhoto: project.coverPhoto,
