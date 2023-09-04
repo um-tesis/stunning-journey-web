@@ -42,7 +42,7 @@ export default function RegularHomeContent({user}: Props) {
           <PrimaryButton onClick={() => router.push('/about')}>Más Info</PrimaryButton>
         </div>
       </Box>
-      <ResultsSection user={user} results={results} />
+      <ResultsSection user={user} />
       {user && user.role === 'USER' && (
         <>
           <div className={classNamesFilter(styles.homeSection, styles.homeSecondSection)}>

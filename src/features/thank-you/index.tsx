@@ -25,7 +25,7 @@ const ThankYou = ({paymentId, status, projectName}: Props) => {
         <Typography gutterBottom variant='h4' textAlign='center'>
           ¡Gracias por tu donación!
         </Typography>
-        {!['approved', 'authorized'].includes(status) && (
+        {!['approved', 'authorized'].includes(status || '') && (
           <Typography variant='subtitle2' gutterBottom textAlign='center' color='primary'>
             Tu pago está <strong style={{fontWeight: 700}}>pendiente</strong> de aprobación.
           </Typography>
