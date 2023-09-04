@@ -67,7 +67,10 @@ const Header = ({user}: Props) => {
   };
 
   const pages = user
-    ? [{text: 'Mis Proyectos', link: 'our-projects'}]
+    ? [
+        {text: 'Miembros del Equipo', link: 'team-members'},
+        {text: 'Mis Proyectos', link: 'our-projects'},
+      ]
     : [
         {text: 'Proyectos', link: 'projects'},
         {text: 'Nosotros', link: 'about'},
