@@ -9,18 +9,10 @@ type Props = {
 };
 
 export default function OrgAdminHomeContent({user}: Props) {
-  const results = {
-    annualDonations: 13213,
-    raisedMoney: 12314,
-    donators: 1546,
-    activeProjects: 88,
-    collaboratorsInvolved: 1220,
-  };
-
   return (
     <Box className={styles.homeContentContainer}>
       <OrganizationManagementCards />
-      <ResultsSection user={user} results={results} />
+      <ResultsSection user={user} />
     </Box>
   );
 }
