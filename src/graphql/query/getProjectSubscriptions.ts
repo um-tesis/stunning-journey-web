@@ -7,13 +7,10 @@ export const GET_PROJECT_SUBSCRIPTIONS = gql`
         frequencyInterval
         amount
         createdAt
-        billingDayOfMonth
+        payerEmail
         status
         mpSubscriptionId
         createdAt
-        donor {
-          email
-        }
         project {
           name
         }

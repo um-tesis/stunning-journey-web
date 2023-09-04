@@ -50,12 +50,11 @@ export default function SubscriptionsTable({entityId, isProjectData}: Props) {
       : res.data?.subscriptionsByOrganization?.subscriptions;
     const allMappedSubscriptions = allSubscriptions.map((subscription: any) => {
       return {
-        donator: subscription.donor.email,
+        payerEmail: subscription.payerEmail,
         project: subscription.project.name,
         amount: subscription.amount,
         frequencyInterval: subscription.frequencyInterval,
         status: subscription.status,
-        billingDayOfMonth: subscription.billingDayOfMonth,
         date: convertDateFromIso(subscription.createdAt),
       };
     });
@@ -76,16 +75,14 @@ export default function SubscriptionsTable({entityId, isProjectData}: Props) {
       : data?.subscriptionsByOrganization.total / ITEMS_PER_PAGE
   );
   const mappedSubscriptions = subscriptions.map((subscription: any) => {
-    const mappedSubscription = {
-      donator: subscription.donor.email,
+    return {
+      payerEmail: subscription.payerEmail,
       project: subscription.project.name,
       amount: subscription.amount,
       frequencyInterval: subscription.frequencyInterval,
       status: subscription.status,
-      billingDayOfMonth: subscription.billingDayOfMonth,
       date: convertDateFromIso(subscription.createdAt),
     };
-    return mappedSubscription;
   });
 
   const onChangePage = (_event: any, newPage: number) => {
@@ -93,12 +90,11 @@ export default function SubscriptionsTable({entityId, isProjectData}: Props) {
   };
 
   const columnLabels = [
-    {label: 'Donante', key: 'donator'},
+    {label: 'Email Donante', key: 'payerEmail'},
     {label: 'Proyecto', key: 'project'},
     {label: 'Monto', key: 'amount'},
     {label: 'Frecuencia', key: 'frequencyInterval'},
     {label: 'Estado', key: 'status'},
-    {label: 'Día de facturación', key: 'billingDayOfMonth'},
     {label: 'Fecha de Inicio', key: 'date'},
   ];
 

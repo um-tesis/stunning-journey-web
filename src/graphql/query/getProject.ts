@@ -18,10 +18,12 @@ export const GET_PROJECT = gql`
       acceptsVolunteers
       mpPublicKey
       monthlyEarnedMoney
+      fixedEarningsWithSubscriptions
       activeSubscriptionsNumber
       donatorsNumber
       volunteersNumber
       hoursVolunteered
+      amountToPay
       organization {
         name
       }

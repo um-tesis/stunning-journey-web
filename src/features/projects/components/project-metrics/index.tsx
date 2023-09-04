@@ -15,7 +15,7 @@ type Props = {
 export default function ProjectMetrics({project}: Props) {
   const {
     moneyEarned,
-    hoursVolunteered,
+    fixedEarningsWithSubscriptions,
     activeSubscriptionsNumber,
     donatorsNumber,
     volunteersNumber,
@@ -30,30 +30,38 @@ export default function ProjectMetrics({project}: Props) {
         </Typography>
       </Grid>
       <Grid item xs={12} md={6} lg={4}>
-        <MetricCard title='Recaudación Total' total={moneyEarned} icon={<AttachMoneyIcon />} />
+        <MetricCard
+          title='Recaudación con donaciones'
+          total={`$ ${moneyEarned / 100}`}
+          icon={<AttachMoneyIcon />}
+        />
       </Grid>
       <Grid item xs={12} md={6} lg={4}>
-        <MetricCard title='Recaudación Mensual' total={monthlyEarnedMoney} icon={<CalendarMonthIcon />} />
-      </Grid>
-      <Grid item xs={12} md={6} lg={4}>
-        <MetricCard title='Número de Voluntarios' total={volunteersNumber} icon={<VolunteerActivismIcon />} />
-      </Grid>
-      <Grid item xs={12} md={6} lg={4}>
-        <MetricCard title='Número de Donantes Totales' total={donatorsNumber} icon={<PeopleIcon />} />
+        <MetricCard title='Número de donantes totales' total={donatorsNumber} icon={<PeopleIcon />} />
       </Grid>
       <Grid item xs={12} md={6} lg={4}>
         <MetricCard
-          title='Número de Suscripciones Activas'
+          title='Recaudación este mes'
+          total={`$ ${monthlyEarnedMoney / 100}`}
+          icon={<CalendarMonthIcon />}
+        />
+      </Grid>
+      <Grid item xs={12} md={6} lg={4}>
+        <MetricCard
+          title='Número de suscripciones activas'
           total={activeSubscriptionsNumber}
           icon={<CardMembershipIcon />}
         />
       </Grid>
       <Grid item xs={12} md={6} lg={4}>
         <MetricCard
-          title='Horas totales de voluntariado'
-          total={hoursVolunteered}
+          title='Recaudación con subscripciones / mes'
+          total={`$ ${fixedEarningsWithSubscriptions / 100}`}
           icon={<QueryBuilderIcon />}
         />
+      </Grid>
+      <Grid item xs={12} md={6} lg={4}>
+        <MetricCard title='Número de voluntarios' total={volunteersNumber} icon={<VolunteerActivismIcon />} />
       </Grid>
     </Grid>
   );

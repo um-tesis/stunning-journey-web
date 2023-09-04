@@ -17,7 +17,7 @@ type Props = {
   color?: string;
   icon?: React.ReactNode;
   title: string;
-  total: number;
+  total: string | number;
   sx?: object;
 };
 

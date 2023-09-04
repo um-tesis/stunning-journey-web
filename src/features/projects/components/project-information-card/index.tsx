@@ -7,8 +7,10 @@ import EditIcon from '@mui/icons-material/Edit';
 import Grid from '@mui/material/Grid';
 import styles from './styles.module.scss';
 import VideoPlayer from '@/features/shared/components/video-player';
-import {IconButton} from '@mui/material';
+import {Button, IconButton} from '@mui/material';
 import ImageSlider from '@/features/shared/components/image-slider';
+import {PAY_BILLING} from '@/graphql/mutation/payBilling';
+import {useMutation} from '@apollo/client';
 
 type Props = {
   project: any;
@@ -16,14 +18,23 @@ type Props = {
 };
 
 export default function ProjectInformationCard({project, handleOpenUpdateProjectDrawer}: Props) {
-  const {field, startDate, location, organization, video, photoGallery} = project;
+  const {field, startDate, location, organization, video, photoGallery, amountToPay} = project;
+  const [payBilling, {}] = useMutation(PAY_BILLING);
+
+  const pay = async () => {
+    await payBilling({
+      variables: {
+        projectId: parseInt(project.id),
+      },
+    });
+  };
 
   return (
     <Card className={styles.projectData}>
       <CardContent>
         <Grid container spacing={5} alignItems='center' paddingBottom={4}>
           <Grid item>
-            <Typography variant='h5' component='h2' className={styles.title}>
+            <Typography variant='h5' component='h2' color='gray' fontWeight={700}>
               Información del Proyecto
             </Typography>
           </Grid>
@@ -43,9 +54,9 @@ export default function ProjectInformationCard({project, handleOpenUpdateProject
                 {field}
               </Typography>
             </div>
-            <div className={styles.organizationName}>
+            <div className={styles.field}>
               <Typography className={styles.label} variant='body1' component='span'>
-                Nombre de la Organización
+                Organización
               </Typography>
               <Typography className={styles.value} variant='body1' component='span'>
                 {organization.name}
@@ -53,7 +64,7 @@ export default function ProjectInformationCard({project, handleOpenUpdateProject
             </div>
           </Grid>
           <Grid item xs={12} md={6}>
-            <div className={styles.startDate}>
+            <div className={styles.field}>
               <Typography className={styles.label} variant='body1' component='span'>
                 Fecha de Inicio
               </Typography>
@@ -61,7 +72,7 @@ export default function ProjectInformationCard({project, handleOpenUpdateProject
                 {startDate ? convertDateFromIso(startDate) : '-'}
               </Typography>
             </div>
-            <div className={styles.location}>
+            <div className={styles.field}>
               <Typography className={styles.label} variant='body1' component='span'>
                 Ubicación
               </Typography>
@@ -71,11 +82,21 @@ export default function ProjectInformationCard({project, handleOpenUpdateProject
             </div>
           </Grid>
         </Grid>
-        <br />
-        <br />
-
-        <br />
-        <br />
+        <Grid container spacing={2} alignItems='center' py={5}>
+          <Grid item xs={12}>
+            <div className={styles.field}>
+              <Typography className={styles.label} variant='body1' component='span'>
+                Monto a pagar
+              </Typography>
+              <Typography className={styles.value} variant='body1' component='span' mr={2}>
+                $ {amountToPay / 100 || 0}
+              </Typography>
+              <Button variant='contained' color='primary' size='small' disabled={!amountToPay} onClick={pay}>
+                Pagar
+              </Button>
+            </div>
+          </Grid>
+        </Grid>
 
         <div className={styles.mediaContainer}>
           <div className={styles.video}>
@@ -96,7 +117,7 @@ export default function ProjectInformationCard({project, handleOpenUpdateProject
               Galería de Fotos
             </Typography>
             <br />
-            {photoGallery && photoGallery.length > 0 ? (
+            {photoGallery?.length ? (
               <ImageSlider
                 images={photoGallery}
                 containerClassName={styles.carouselContainer}
