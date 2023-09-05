@@ -15,6 +15,11 @@ import {useState} from 'react';
 import UpdateProjectDrawer from '@/features/our-projects/components/update-project-drawer';
 import ProjectOverview from '@/features/projects/components/project-overview';
 import Head from 'next/head';
+import getConfig from 'next/config';
+
+const {
+  publicRuntimeConfig: {processEnv},
+} = getConfig();
 
 type Props = {
   user: UserData | null;
@@ -56,7 +61,7 @@ export default function ProjectPage({user}: Props) {
         <meta property='og:title' content={project.name} />
         <meta property='og:description' content={project.description} />
         <meta property='og:image' content={project.coverPhoto} />
-        <meta property='og:url' content={process.env.NEXT_PUBLIC_APP_BASE_URL + router.asPath} />
+        <meta property='og:url' content={processEnv.NEXT_PUBLIC_APP_BASE_URL + router.asPath} />
       </Head>
       <Header user={user} />
 

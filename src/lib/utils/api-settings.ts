@@ -1,4 +1,9 @@
 import axios, {AxiosInstance} from 'axios';
+import getConfig from 'next/config';
+
+const {
+  publicRuntimeConfig: {processEnv},
+} = getConfig();
 
 // Server Side API Server Configuration
 const apiServer: AxiosInstance = axios.create({
@@ -24,7 +29,7 @@ apiServer.interceptors.request.use(
 
 // Client Side API Server Configuration
 const apiClient: AxiosInstance = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_URL,
+  baseURL: processEnv.NEXT_PUBLIC_API_URL,
   headers: {
     'Content-type': 'application/json',
   },
@@ -44,7 +49,7 @@ apiClient.interceptors.request.use(
 
 // Local Next JS provided API Server Configuration
 const localServer: AxiosInstance = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_APP_BASE_URL,
+  baseURL: processEnv.NEXT_PUBLIC_APP_BASE_URL,
   headers: {
     'Content-Type': 'application/json',
   },

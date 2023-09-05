@@ -1,5 +1,10 @@
 import {S3} from 'aws-sdk';
 import {NextApiRequest, NextApiResponse} from 'next';
+import getConfig from 'next/config';
+
+const {
+  publicRuntimeConfig: {processEnv},
+} = getConfig();
 
 // Initialize S3 client
 const s3 = new S3({
@@ -17,7 +22,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     const fileType = req.query.fileType || 'image/jpeg'; // you can allow the client to specify fileType
 
     const params = {
-      Bucket: process.env.NEXT_PUBLIC_AWS_BUCKET_NAME,
+      Bucket: processEnv.NEXT_PUBLIC_AWS_BUCKET_NAME,
       Key: `${Date.now()}.jpg`, // Change this to be more unique and specific to your use case
       Expires: 60,
       ContentType: fileType,
