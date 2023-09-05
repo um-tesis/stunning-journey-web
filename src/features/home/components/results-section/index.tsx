@@ -61,7 +61,7 @@ export default function ResultsSection({user}: Props) {
               <Grid item xs={6}>
                 <ResultCard
                   resultNumber={totalDonations}
-                  resultDescription='USD recaudados'
+                  resultDescription='Dinero recaudado'
                   Icon={<PaidIcon className={styles.cardIcon} />}
                 />
               </Grid>
