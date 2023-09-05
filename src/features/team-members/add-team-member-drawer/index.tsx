@@ -49,7 +49,7 @@ export default function AddTeamMemberDrawer({onClose, organizationId}: Props) {
     const formValues = form.getValues();
     await addTeamMember({
       variables: {
-        input: {
+        data: {
           name: formValues.name,
           email: formValues.email,
           phone: formValues.phone,
