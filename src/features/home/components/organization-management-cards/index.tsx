@@ -5,8 +5,8 @@ import Card from '@mui/material/Card';
 
 const cards = [
   {
-    title: 'Donantes',
-    linkTo: '/donors',
+    title: 'Miembros',
+    linkTo: '/team-members',
     image: '/don1.jpeg',
   },
 
