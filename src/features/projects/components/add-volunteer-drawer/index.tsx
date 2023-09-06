@@ -66,8 +66,8 @@ export default function AddVolunteerDrawer({onClose, projectId, organizationId, 
 
     await assignVolunteerToProject({
       variables: {
-        projectId,
-        userId: res.data.createUser.id,
+        projectId: +projectId,
+        userId: +res.data.createUser.id,
       },
     });
   }, false);
