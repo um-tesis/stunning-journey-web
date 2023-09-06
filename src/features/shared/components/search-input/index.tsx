@@ -1,7 +1,50 @@
-import {Container, InputAdornment, TextField} from '@mui/material';
+import {Grid, InputBase} from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
-import styles from './styles.module.scss';
 import PrimaryButton from '../primary-button';
+import {styled, alpha} from '@mui/material/styles';
+
+const Search = styled('div')(({theme}) => ({
+  position: 'relative',
+  borderRadius: 30,
+  backgroundColor: alpha(theme.palette.common.white, 0.7),
+  '&:hover': {
+    backgroundColor: alpha(theme.palette.common.white, 0.9),
+  },
+  marginRight: theme.spacing(2),
+  marginLeft: 0,
+  minWidth: 250,
+  width: '100%',
+  height: '100% !important',
+  [theme.breakpoints.up('sm')]: {
+    marginLeft: theme.spacing(3),
+    width: 'auto',
+  },
+}));
+
+const SearchIconWrapper = styled('div')(({theme}) => ({
+  padding: theme.spacing(0, 2),
+  height: '100%',
+  position: 'absolute',
+  pointerEvents: 'none',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+}));
+
+const StyledInputBase = styled(InputBase)(({theme}) => ({
+  color: 'inherit',
+  '& .MuiInputBase-input': {
+    padding: theme.spacing(1, 1, 1, 0),
+    // vertical padding + font size from searchIcon
+    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
+    transition: theme.transitions.create('width'),
+    width: '100%',
+    height: 44,
+    [theme.breakpoints.up('md')]: {
+      width: '20ch',
+    },
+  },
+}));
 
 type SearchInputProps = {
   searchTerm: string;
@@ -11,39 +54,25 @@ type SearchInputProps = {
 
 export default function SearchInput({searchTerm, handleChange, handleSearch}: SearchInputProps) {
   return (
-    <Container maxWidth='md'>
-      <TextField
-        id='search'
-        type='search'
-        value={searchTerm}
-        onChange={handleChange}
-        onKeyPress={handleChange}
-        sx={{
-          width: 400,
-          height: 45,
-          backgroundColor: '#F9F9FF',
-          borderRadius: 10,
-          '& .MuiInputBase-input': {
-            marginTop: 0.5,
-          },
-        }}
-        variant='standard'
-        InputProps={{
-          startAdornment: (
-            <InputAdornment position='start'>
-              <SearchIcon className={styles.searchIcon} />
-            </InputAdornment>
-          ),
-          endAdornment: (
-            <InputAdornment position='end'>
-              <PrimaryButton auxClassNames={styles.searchButton} onClick={handleSearch}>
-                Buscar
-              </PrimaryButton>
-            </InputAdornment>
-          ),
-          disableUnderline: true,
-        }}
-      />
-    </Container>
+    <Grid container spacing={2} justifyContent='center'>
+      <Grid item>
+        <Search>
+          <SearchIconWrapper>
+            <SearchIcon color='primary' />
+          </SearchIconWrapper>
+          <StyledInputBase
+            placeholder='e.g. Oratorio Tacurú'
+            inputProps={{'aria-label': 'search'}}
+            id='search'
+            type='search'
+            value={searchTerm}
+            onChange={handleChange}
+          />
+        </Search>
+      </Grid>
+      <Grid item>
+        <PrimaryButton onClick={handleSearch}>Buscar</PrimaryButton>
+      </Grid>
+    </Grid>
   );
 }

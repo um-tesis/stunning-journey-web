@@ -1,6 +1,6 @@
 import Container from '@mui/material/Container';
 import styles from './styles.module.scss';
-import {TextField, Typography, Divider} from '@mui/material';
+import {TextField, Typography, Divider, Box} from '@mui/material';
 import PrimaryButton from '../primary-button';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import TwitterIcon from '@mui/icons-material/Twitter';
@@ -39,14 +39,14 @@ function Footer() {
   }, [subscribeRequest.status]);
 
   return (
-    <Container maxWidth='lg' className={styles.footer}>
-      <Typography variant='h5' className={styles.title}>
+    <Container className={styles.footer} sx={{pt: 8}}>
+      <Typography variant='h5' fontWeight='bold' gutterBottom>
         Reciba las últimas actualizaciones!
       </Typography>
       <Typography variant='subtitle2' className={styles.subtitle}>
         Manténgase conectado: Únase a nuestra lista de correo para recibir noticias y ofertas exclusivas.
       </Typography>
-      <div className={styles.subscription}>
+      <Box className={styles.subscription} my={3}>
         <TextField
           id='email'
           name='email'
@@ -62,16 +62,16 @@ function Footer() {
         >
           Subscribe
         </PrimaryButton>
-      </div>
-      <div className={styles.socials}>
+      </Box>
+      <Box className={styles.socials} my={3}>
         <FacebookIcon color='primary' />
         <TwitterIcon color='primary' />
         <InstagramIcon color='primary' />
         <LinkedInIcon color='primary' />
         <YouTubeIcon color='primary' />
-      </div>
+      </Box>
       <Divider flexItem />
-      <Typography variant='body1' className={styles.copyright}>
+      <Typography variant='caption' className={styles.copyright}>
         Copyright © 2023 | Derechos Reservados
       </Typography>
     </Container>

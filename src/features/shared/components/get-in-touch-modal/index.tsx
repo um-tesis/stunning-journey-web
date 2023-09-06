@@ -1,6 +1,7 @@
 import useAsync from '@/lib/hooks/useAsync';
 import {capitalizeTheFirstLetterOfEachWord} from '@/lib/utils/ui-helper';
-import {Grid, TextareaAutosize, TextField, Typography} from '@mui/material';
+import {Box, Grid, TextareaAutosize, TextField, Typography, useMediaQuery} from '@mui/material';
+import {useTheme} from '@mui/material/styles';
 import {useEffect} from 'react';
 import {useForm} from 'react-hook-form';
 import {toast} from 'react-hot-toast';
@@ -22,6 +23,8 @@ type GetInTouchForm = {
 
 export default function GetInTouchModal({}: Props) {
   const [postContactForm, {}] = useMutation(GET_IN_TOUCH);
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down('md'));
 
   const emptyForm: GetInTouchForm = {
     name: '',
@@ -73,7 +76,19 @@ export default function GetInTouchModal({}: Props) {
   }
 
   return (
-    <div className={styles.getInTouchModal}>
+    <Box
+      className={styles.getInTouchModal}
+      p={isSmallScreen ? 3 : 8}
+      sx={{
+        width: isSmallScreen ? '100%' : '850px',
+        borderRadius: isSmallScreen ? 0 : 10,
+        position: isSmallScreen ? 'relative' : 'absolute',
+        // top: isSmallScreen ? 0 : 10,
+        transform: isSmallScreen ? 'none' : 'translateY(-50%)',
+        top: '50%',
+        right: isSmallScreen ? 0 : 50,
+      }}
+    >
       <Typography className={styles.title}>Póngase en contacto hoy mismo</Typography>
       <Typography className={styles.subtitle}>
         Nos encantaría tener noticias suyas! Póngase en contacto con nosotros para saber cómo puede apoyar
@@ -125,21 +140,26 @@ export default function GetInTouchModal({}: Props) {
               onChange={handleChange}
             />
           </Grid>
-          <Grid item xl={12}>
-            <TextareaAutosize
+          <Grid item xs={12}>
+            <TextField
               id='message'
               name='message'
+              label='Mensaje'
+              className={styles.messageTextArea}
+              variant='outlined'
               placeholder='Déjanos un mensaje...'
               value={watch().message}
               onChange={handleChange}
-              className={styles.messageTextArea}
+              multiline
+              rows={3}
+              fullWidth
             />
           </Grid>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12}>
             <PrimaryButton type='submit'>Enviar mensaje</PrimaryButton>
           </Grid>
         </Grid>
       </form>
-    </div>
+    </Box>
   );
 }

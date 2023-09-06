@@ -1,6 +1,5 @@
 import {Box} from '@mui/material';
 import Header from '../shared/components/header';
-import styles from './styles.module.scss';
 import {UserData} from '../shared/types';
 import OrgAdminHomeContent from './components/org-admin-home-content';
 import RegularHomeContent from './components/regular-home-content';
@@ -21,7 +20,7 @@ export default function Home({user}: Props) {
 
   return (
     <Box sx={{backgroundColor: '#9795B5', height: '100%'}}>
-      <div className={styles.mainHomeContainer}>
+      <div>
         <Head>
           <title>Libera</title>
           <meta name='viewport' content='initial-scale=1.0, width=device-width' />

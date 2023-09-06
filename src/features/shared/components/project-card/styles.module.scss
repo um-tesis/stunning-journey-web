@@ -1,28 +1,30 @@
 .card {
-  border: 1px solid #d4d2e3;
+  display: flex;
+  position: relative;
   border-radius: 24px;
-  margin-bottom: 16px;
+
+  .media {
+    width: 40%;
+    max-width: 40%;
+  }
 
   .content {
     padding: 24px;
     padding-bottom: 10px;
 
-    .name {
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-
     .description {
-      height: 75px;
       overflow: hidden;
       text-overflow: ellipsis;
       display: -webkit-box;
-      -webkit-line-clamp: 3;
+      -webkit-line-clamp: 4;
       -webkit-box-orient: vertical;
+      margin-bottom: 95px;
     }
   }
 }
 .actions {
-  padding: 24px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 16px;
 }

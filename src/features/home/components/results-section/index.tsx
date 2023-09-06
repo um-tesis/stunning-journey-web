@@ -1,6 +1,6 @@
 import {Box} from '@mui/system';
 import styles from './styles.module.scss';
-import {Container, Grid, Typography} from '@mui/material';
+import {Grid, Typography} from '@mui/material';
 import {UserData} from '@/features/shared/types';
 import ResultCard from '../result-card';
 import VolunteerActivismIcon from '@mui/icons-material/VolunteerActivism';
@@ -37,59 +37,59 @@ export default function ResultsSection({user}: Props) {
   const {totalDonations, totalDonors, totalProjects, totalEarnings, totalVolunteers} = organizationMetrics;
 
   return (
-    <Container className={styles.sectionContent}>
+    <Box className={styles.sectionContent} p={3} pt={5}>
       <Box>
-        <Typography className={styles.sectionTitle}>{sectionTitle}</Typography>
+        <Typography variant='h5' fontWeight='bold' textAlign='center'>
+          {sectionTitle}
+        </Typography>
+        <Typography variant='subtitle2' color='gray' textAlign='center'>
+          {sectionDescription}
+        </Typography>
       </Box>
-      <Box className={styles.sectionDescription}>
-        <Typography variant='body2'>{sectionDescription}</Typography>
-      </Box>
-      <Box className={styles.resultsContainer}>
-        <Grid container>
-          <Grid item xs={6}>
-            <div className={styles.anualDonations}>
+      <Box className={styles.resultsContainer} mt={5}>
+        <Grid container spacing={4}>
+          <Grid item xs={12} lg={6}>
+            <Box className={styles.anualDonations} borderRadius={5}>
               <Typography variant='h4' className={styles.description}>
                 Donaciones anuales
               </Typography>
               <Typography variant='h2' className={styles.number}>
-                {totalEarnings}
+                $ {Math.round(totalEarnings / 100)}
               </Typography>
-            </div>
+            </Box>
           </Grid>
-          <Grid item xs={6}>
-            <Grid container rowSpacing={1} columnSpacing={{xs: 1, sm: 2, md: 3}}>
-              <Grid item xs={6}>
-                <ResultCard
-                  resultNumber={totalDonations}
-                  resultDescription='Dinero recaudado'
-                  Icon={<PaidIcon className={styles.cardIcon} />}
-                />
-              </Grid>
-              <Grid item xs={6}>
-                <ResultCard
-                  resultNumber={totalDonors}
-                  resultDescription='Donantes'
-                  Icon={<VolunteerActivismIcon className={styles.cardIcon} />}
-                />
-              </Grid>
-              <Grid item xs={6}>
-                <ResultCard
-                  resultNumber={totalProjects}
-                  resultDescription='Proyectos Activos'
-                  Icon={<CorporateFareIcon className={styles.cardIcon} />}
-                />
-              </Grid>
-              <Grid item xs={6}>
-                <ResultCard
-                  resultNumber={totalVolunteers}
-                  resultDescription='Colaboradores involucrados'
-                  Icon={<PeopleIcon className={styles.cardIcon} />}
-                />
-              </Grid>
+          <Grid item container xs={12} lg={6} spacing={4}>
+            <Grid item xs={12} sm={6} md={3} lg={6}>
+              <ResultCard
+                result={`$ ${Math.round(totalDonations / 100)}`}
+                resultDescription='Dinero recaudado'
+                Icon={<PaidIcon className={styles.cardIcon} />}
+              />
+            </Grid>
+            <Grid item xs={12} sm={6} md={3} lg={6}>
+              <ResultCard
+                result={totalDonors}
+                resultDescription='Donantes'
+                Icon={<VolunteerActivismIcon className={styles.cardIcon} />}
+              />
+            </Grid>
+            <Grid item xs={12} sm={6} md={3} lg={6}>
+              <ResultCard
+                result={totalProjects}
+                resultDescription='Proyectos Activos'
+                Icon={<CorporateFareIcon className={styles.cardIcon} />}
+              />
+            </Grid>
+            <Grid item xs={12} sm={6} md={3} lg={6}>
+              <ResultCard
+                result={totalVolunteers}
+                resultDescription='Colaboradores'
+                Icon={<PeopleIcon className={styles.cardIcon} />}
+              />
             </Grid>
           </Grid>
         </Grid>
       </Box>
-    </Container>
+    </Box>
   );
 }

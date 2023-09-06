@@ -1,11 +1,22 @@
-.steps {
-  color: aliceblue;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.stepTitle {
+  font-weight: 700;
+  font-size: 25px;
+  line-height: 34px;
+  text-align: center;
+}
 
+.stepSubtitle {
+  color: #9795B5;
+  font-size: 18px;
+  line-height: 30px;
+  text-align: center;
+}
+
+.stepIcon {
   svg {
-    width: 80px;
-    height: 80px;
+    font-weight: 900;
+    width: 100px;
+    height: 100px;
+    color: #5548FF;
   }
 }

@@ -1,6 +1,6 @@
 import {GET_PROJECTS} from '@/graphql/query/getProjects';
 import {useQuery} from '@apollo/client';
-import {Grid, Pagination, Typography} from '@mui/material';
+import {Box, Container, Grid, Pagination, Typography} from '@mui/material';
 import {useMemo, useState} from 'react';
 import ProjectCard from '../shared/components/project-card';
 import SearchInput from '../shared/components/search-input';
@@ -41,25 +41,27 @@ export default function Projects() {
   };
 
   return (
-    <div className={styles.projectsContainer}>
-      <div className={styles.browseSection}>
-        <Typography className={styles.title}>Navega los proyectos de Libera</Typography>
-        <Typography variant='subtitle1' className={styles.subtitle}>
+    <Box className={styles.projectsContainer}>
+      <Box className={styles.browseSection} p={7}>
+        <Typography variant='h5' fontWeight='bold' gutterBottom>
+          Navega los proyectos de Libera
+        </Typography>
+        <Typography variant='subtitle2' className={styles.subtitle}>
           Encuentre el proyecto que más le convenga y empiece a marcar la diferencia hoy mismo!
         </Typography>
-        <div className={styles.searchBox}>
+        <Box mt={7} textAlign='center'>
           <SearchInput
             searchTerm={searchTerm}
             handleChange={handleFilterChange}
             handleSearch={handleRefetch}
           />
-        </div>
-      </div>
-      <div className={styles.projects}>
+        </Box>
+      </Box>
+      <Container maxWidth='lg' sx={{mt: 4}}>
         <Grid container spacing={2}>
           {projects &&
             projects.map((project: any) => (
-              <Grid key={project.slug} item sm={12} md={6}>
+              <Grid key={project.slug} item sm={12}>
                 <ProjectCard
                   projectSlug={project.slug}
                   name={project.name}
@@ -69,16 +71,10 @@ export default function Projects() {
               </Grid>
             ))}
         </Grid>
-        {totalPages > 0 && (
-          <Pagination
-            page={page}
-            className={styles.pagination}
-            count={totalPages}
-            onChange={onChangePage}
-            color='primary'
-          />
-        )}
-      </div>
-    </div>
+        <Box my={5} display='flex' justifyContent='center'>
+          <Pagination page={page} count={totalPages + 1} onChange={onChangePage} color='primary' />
+        </Box>
+      </Container>
+    </Box>
   );
 }

@@ -1,29 +1,7 @@
 .sectionContent {
-  position: relative;
-  height: 705px;
-  max-width: 100%;
   background-color: #fff;
-  padding-top: 56px;
-
-  .sectionTitle {
-    font-style: normal;
-    font-weight: 700;
-    font-size: 32px;
-    line-height: 42px;
-    text-align: center;
-    color: #575484;
-  }
-
-  .sectionDescription {
-    font-weight: 400;
-    font-size: 15px;
-    line-height: 26px;
-    text-align: center;
-    color: #adabc3;
-  }
 
   .resultsContainer {
-    margin-top: 54px;
 
     .cardIcon {
       width: 60px;
@@ -37,15 +15,16 @@
   }
 
   .anualDonations {
-    border-radius: 20px;
     background-image: url('/ayudar.png');
-    margin-right: 30px;
     background-repeat: no-repeat;
-    height: 450px;
+    background-size: cover;
+    background-position: center;
+    min-height: 450px;
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    padding: 40px 30px;
+    padding: 2em 2em;
 
     .description {
       font-weight: 700;

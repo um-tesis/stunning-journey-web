@@ -1,35 +1,29 @@
+.overline {
+  font-size: 20px;
+  font-weight: 700;
+  text-align: center;
+  letter-spacing: 4.5px;
+  text-transform: uppercase;
+  color: #ADABC3;
+}
+
+ .title {
+   font-weight: 700;
+   font-size: 32px;
+   line-height: 42px;
+   text-align: center;
+   color: #575484;
+ }
+
+.subtitle {
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 26px;
+  text-align: center;
+  color: #9B9ECE;
+}
+
 .ourWork {
-  height: 80%;
-  width: 100%;
-  padding: 3% 8%;
-  padding-bottom: 0;
-  display: flex;
-  flex-direction: column;
-  background: #9795b5;
-  color: #ffffff;
-
-  .upperTitle {
-    font-weight: 700;
-    font-size: 20px;
-    line-height: 22px;
-    text-align: center;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-  }
-  .title {
-    font-weight: 700;
-    font-size: 36px;
-    line-height: 46px;
-    text-align: center;
-    color: #fff;
-  }
-  .subtitle {
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 30px;
-    text-align: center;
-  }
-
   .stepsContainer {
     display: flex;
     justify-content: space-between;

@@ -1,22 +1,10 @@
 .us {
-  height: 80%;
-  width: 101%;
-  padding: 50px 110px;
-  background-color: #fff;
-  display: flex;
-
   .imageSection {
-    height: 100%;
-    img {
-      width: 100%;
-      padding-right: 16px;
-      object-fit: cover;
-      border-radius: 20px;
-    }
+    width: 100%;
+    border-radius: 20px;
   }
 
   .about {
-    height: 100%;
     .aboutSection {
       font-size: 1.125em;
       color: #9795b5;

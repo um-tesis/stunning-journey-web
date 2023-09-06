@@ -1,44 +1,13 @@
 .projectsContainer {
-  height: 100%;
-  width: 100%;
   .browseSection {
-    width: 100%;
-    height: 350px;
     display: flex;
     flex-direction: column;
     align-items: center;
     background: #f2f1fa;
-    .title {
-      font-weight: 700;
-      font-size: 36px;
-      line-height: 46px;
-      text-align: center;
-      color: #5d5a88;
-      margin-top: 60px;
-    }
+    text-align: center;
 
     .subtitle {
-      font-weight: 400;
-      font-size: 18px;
-      line-height: 30px;
-      text-align: center;
       color: #9795b5;
-      width: 600px;
-      margin-top: 16px;
-    }
-
-    .searchBox {
-      margin-top: 60px;
-    }
-  }
-  .projects {
-    width: 100%;
-    padding: 80px 110px;
-
-    .pagination {
-      display: flex;
-      justify-content: right;
-      margin-top: 60px;
     }
   }
 }

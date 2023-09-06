@@ -1,22 +1,22 @@
-import {Typography} from '@mui/material';
+import {Box, Typography} from '@mui/material';
 import styles from './styles.module.scss';
 
 type Props = {
-  resultNumber: number;
+  result: string;
   resultDescription: string;
   Icon: React.ReactNode;
 };
 
-export default function ResultCard({resultNumber, resultDescription, Icon}: Props) {
+export default function ResultCard({result, resultDescription, Icon}: Props) {
   return (
-    <div className={styles.result}>
+    <Box className={styles.result} borderRadius={5}>
       {Icon}
-      <Typography variant='h4' className={styles.resultDescription}>
+      <Typography variant='h4' className={styles.resultDescription} gutterBottom>
         {resultDescription}
       </Typography>
       <Typography variant='h4' className={styles.resultNumber}>
-        {resultNumber}
+        {result}
       </Typography>
-    </div>
+    </Box>
   );
 }

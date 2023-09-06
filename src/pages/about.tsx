@@ -15,7 +15,7 @@ type Props = {
 
 export default function AboutPage({user}: Props) {
   return (
-    <Container className={styles.pageContainer}>
+    <Container className={styles.pageContainer} sx={{backgroundColor: 'white !important'}}>
       <Header user={user} />
       <About />
       <GetInTouchSection />
