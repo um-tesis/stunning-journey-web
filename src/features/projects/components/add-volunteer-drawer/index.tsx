@@ -53,7 +53,7 @@ export default function AddVolunteerDrawer({onClose, projectId, organizationId, 
     const formValues = form.getValues();
     const res = await addVolunteer({
       variables: {
-        input: {
+        data: {
           name: formValues.name,
           email: formValues.email,
           phone: formValues.phone,
