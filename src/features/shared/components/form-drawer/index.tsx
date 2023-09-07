@@ -30,16 +30,16 @@ export default function FormDrawer({
 }: Props) {
   return (
     <Drawer isOpen={isOpen} onClose={onCloseDrawer}>
-      <Grid container padding={5} spacing={3}>
+      <Grid container py={5} px={3} spacing={3}>
         <Grid container item xs={12} justifyContent='space-between' alignItems='center'>
           <Grid item>
-            <Typography variant='h4' color='primary'>
+            <Typography variant='h5' color='primary'>
               {title}
             </Typography>
             {subtitle && <Typography variant='subtitle2'>{subtitle}</Typography>}
           </Grid>
           <Grid item>
-            <IconButton onClick={onCloseDrawer} color='primary' size='large'>
+            <IconButton onClick={onCloseDrawer} color='primary'>
               <CloseIcon fontSize='inherit' />
             </IconButton>
           </Grid>
@@ -47,7 +47,7 @@ export default function FormDrawer({
 
         {description && (
           <Grid item xs={12}>
-            <Typography variant='body1'>{description}</Typography>
+            <Typography variant='subtitle2'>{description}</Typography>
           </Grid>
         )}
 

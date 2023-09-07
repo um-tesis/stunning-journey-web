@@ -19,7 +19,7 @@ export default function Home({user}: Props) {
   const router = useRouter();
 
   return (
-    <Box sx={{backgroundColor: '#9795B5', height: '100%'}}>
+    <Box sx={{backgroundColor: '#FAFAFF', height: '100%'}}>
       <div>
         <Head>
           <title>Libera</title>

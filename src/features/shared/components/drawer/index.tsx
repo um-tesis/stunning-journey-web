@@ -2,6 +2,8 @@ import React from 'react';
 import styles from './styles.module.scss';
 import {useRef, useEffect} from 'react';
 import {classNamesFilter} from '@utils/ui-helper';
+import {Box, useMediaQuery} from '@mui/material';
+import {useTheme} from '@mui/material/styles';
 
 type Props = {
   isOpen: boolean;
@@ -13,6 +15,8 @@ type Props = {
 
 const Drawer = ({isOpen, children, className, onClose, isLarge}: Props) => {
   const bodyRef = useRef(typeof window !== 'undefined' ? document.querySelector('body') : null);
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down('md'));
 
   // Effect to disable the scroll of the page when the drawer is opened
   useEffect(() => {
@@ -39,21 +43,19 @@ const Drawer = ({isOpen, children, className, onClose, isLarge}: Props) => {
   };
 
   return (
-    <div aria-hidden={isOpen} className={classNamesFilter(styles.drawerContainer, isOpen && styles.open)}>
-      <div
+    <Box aria-hidden={isOpen} className={classNamesFilter(styles.drawerContainer, isOpen && styles.open)}>
+      <Box
         data-testid='drawer'
-        className={classNamesFilter(
-          styles.drawer,
-          className && getDrawerClass(className),
-          styles.right,
-          isLarge && styles.isLarge
-        )}
+        className={classNamesFilter(styles.drawer, className && getDrawerClass(className), styles.right)}
+        sx={{
+          width: isSmallScreen ? '90%' : 500,
+        }}
         role='dialog'
       >
         {children}
-      </div>
+      </Box>
       <div data-testid='backdrop' className={styles.backdrop} onClick={onClose} />
-    </div>
+    </Box>
   );
 };
 
