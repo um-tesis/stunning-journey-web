@@ -48,7 +48,7 @@ export default function EmailVolunteersDrawer({onClose, projectId}: Props) {
     await emailVolunteers({
       variables: {
         input: {
-          projectId: formValues.projectId,
+          projectId: +formValues.projectId,
           subject: formValues.subject,
           body: formValues.body,
         },
