@@ -11,7 +11,7 @@
   overflow: auto;
   position: fixed;
   transition: transform var(--transition-speed) ease;
-  z-index: 100000;
+  z-index: 9999;
   padding: 3.2rem 0 3.2rem 3.2rem;
   height: 100%;
   max-height: 100%;
@@ -58,5 +58,5 @@
   visibility: visible;
   opacity: 1;
   pointer-events: auto;
-  z-index: 99999;
+  z-index: 999;
 }

@@ -58,7 +58,7 @@ export default function LoadHoursDrawer({onClose, projectId, volunteers}: Props)
     const formValues = form.getValues();
     await loadProjectHours({
       variables: {
-        projectId: formValues.projectId,
+        projectId: +formValues.projectId,
         userId: formValues.userId,
         hours: +formValues.hours,
       },

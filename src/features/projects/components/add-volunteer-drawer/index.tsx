@@ -84,7 +84,7 @@ export default function AddVolunteerDrawer({onClose, projectId, organizationId, 
       toast.success(SUCCESSFUL_NEW_VOLUNTEER);
     }
     if (addVolunteerRequest.status === 'error') {
-      toast.error(addVolunteerRequest.error);
+      toast.error('El email ya tiene un usuario asignado en el sistema');
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [addVolunteerRequest.status]);

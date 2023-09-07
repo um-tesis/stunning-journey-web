@@ -73,7 +73,7 @@ export default function AddTeamMemberDrawer({onClose, organizationId}: Props) {
       toast.success(SUCCESSFUL_TEAM_MEMBER_ADDITION);
     }
     if (addTeamMemberRequest.status === 'error') {
-      toast.error(addTeamMemberRequest.error);
+      toast.error('El email ya tiene un usuario asignado en el sistema');
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [addTeamMemberRequest.status]);
