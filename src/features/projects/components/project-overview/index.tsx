@@ -13,12 +13,16 @@ import ProjectMetrics from '../project-metrics';
 import {Share as ShareIcon} from '@mui/icons-material';
 import VideoPlayer from '@/features/shared/components/video-player';
 import ImageSlider from '@/features/shared/components/image-slider';
+import {useRouter} from 'next/router';
 
 type Props = {
   project: any;
 };
 
 export default function ProjectOverview({project}: Props) {
+  const router = useRouter();
+  const slug = router.query.slug!;
+
   const [showAddVolunteerDrawer, setShowAddVolunteerDrawer] = useState(false);
 
   const [_, copy] = useCopyToClipboard();
@@ -86,9 +90,11 @@ export default function ProjectOverview({project}: Props) {
             <Grid item xs={12} md={6} p={2} marginY={'auto'}>
               <VideoPlayer videoId={video} width='100%' auxClassNames={styles.videoPlayer} />
             </Grid>
-            <Grid item xs={12} md={6}>
-              <InstagramFeedWidget />
-            </Grid>
+            {slug === 'oratorio-tacuru' && (
+              <Grid item xs={12} md={6}>
+                <InstagramFeedWidget />
+              </Grid>
+            )}
           </>
         ) : (
           <>

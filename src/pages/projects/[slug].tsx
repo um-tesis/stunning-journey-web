@@ -16,6 +16,7 @@ import UpdateProjectDrawer from '@/features/our-projects/components/update-proje
 import ProjectOverview from '@/features/projects/components/project-overview';
 import Head from 'next/head';
 import getConfig from 'next/config';
+import client from '@/apollo-client';
 
 const {
   publicRuntimeConfig: {processEnv},
@@ -23,9 +24,10 @@ const {
 
 type Props = {
   user: UserData | null;
+  project: any;
 };
 
-export default function ProjectPage({user}: Props) {
+export default function ProjectPage({user, project}: Props) {
   const router = useRouter();
   const slug = router.query.slug!;
 
@@ -51,8 +53,6 @@ export default function ProjectPage({user}: Props) {
     return null;
   }
 
-  const project = data.projectBySlug;
-
   return (
     <Container className={styles.pageContainer}>
       <Head>
@@ -62,6 +62,7 @@ export default function ProjectPage({user}: Props) {
         <meta property='og:description' content={project.description} />
         <meta property='og:image' content={project.coverPhoto} />
         <meta property='og:url' content={processEnv.NEXT_PUBLIC_APP_BASE_URL + router.asPath} />
+        <link rel='icon' href={project.coverPhoto} />
       </Head>
       <Header user={user} />
 
@@ -84,9 +85,26 @@ export default function ProjectPage({user}: Props) {
 export const getServerSideProps = withIronSessionSsr(async function (ctx: GetServerSidePropsContext) {
   const userData = ctx.req.session.user as UserData;
 
-  return {
-    props: {
-      user: userData ?? null,
-    },
-  };
+  const apolloClient = client;
+  const slug = ctx.query.slug; // Make sure to get the slug similarly as you do in the component
+
+  try {
+    const {data} = await apolloClient.query({
+      query: GET_PROJECT,
+      variables: {slug},
+    });
+    const project = data?.projectBySlug;
+
+    return {
+      props: {
+        user: userData ?? null,
+        project, // pass the project data as a prop
+      },
+    };
+  } catch (error) {
+    // Handle error
+    return {
+      notFound: true, // This redirects to the 404 page
+    };
+  }
 }, ironSessionOptions);

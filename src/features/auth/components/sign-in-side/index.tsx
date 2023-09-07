@@ -57,7 +57,7 @@ export default function SignInSide() {
       await logIn(email, password);
       router.replace('/home');
     } catch (e: any) {
-      toast(e?.response?.data?.error || GENERAL_SERVER_ERROR);
+      toast('Credenciales inválidas');
     }
   };
 
