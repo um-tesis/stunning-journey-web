@@ -62,7 +62,7 @@ export default function SingleDonationTable({entityId, isProjectData}: Props) {
       return {
         donator: donation.donor.email,
         project: donation.project.name,
-        amount: donation.amount,
+        amount: donation.amount / 100,
         date: convertDateFromIso(donation.createdAt),
       };
     });

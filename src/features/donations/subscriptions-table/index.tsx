@@ -52,7 +52,7 @@ export default function SubscriptionsTable({entityId, isProjectData}: Props) {
       return {
         payerEmail: subscription.payerEmail,
         project: subscription.project.name,
-        amount: subscription.amount,
+        amount: subscription.amount / 100,
         frequencyInterval: subscription.frequencyInterval,
         status: subscription.status,
         date: convertDateFromIso(subscription.createdAt),
