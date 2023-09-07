@@ -11,6 +11,7 @@ import {UserDataIn} from '../../../shared/types';
 import {SYSTEM_ROLES} from '@/lib/utils/constants';
 import {CREATE_USER} from '@/graphql/mutation/createUser';
 import {ASSIGN_VOLUNTEER_TO_PROJECT} from '@/graphql/mutation/assignVolunteerToProject';
+import {Grid, TextField} from '@mui/material';
 
 type Props = {
   onClose: () => void;
@@ -105,33 +106,44 @@ export default function AddVolunteerDrawer({onClose, projectId, organizationId, 
       description={
         isOrgAdmin
           ? 'Añada un nuevo voluntario al proyecto. Asegúrese de proporcionar información precisa sobre el voluntario para garantizar una asignación y comunicación adecuadas dentro del proyecto.'
-          : 'Asegúrese de proporcionar información precisa para garantizar una asignación y comunicación adecuadas dentro del proyecto.'
+          : 'Desde ya, ¡muchas gracias por tu colaboración!'
       }
     >
-      <FormInput
-        name='name'
-        label='Nombre'
-        handleChange={handleChange}
-        value={watch().name}
-        error={errors.name}
-      />
-
-      <FormInput
-        name='email'
-        label='Correo Electrónico'
-        handleChange={handleChange}
-        value={watch().email}
-        error={errors.email}
-      />
-
-      <FormInput
-        name='phone'
-        label='Teléfono'
-        handleChange={handleChange}
-        value={watch().phone}
-        error={errors.phone}
-        optional
-      />
+      <Grid container spacing={3}>
+        <Grid item xs={12}>
+          <TextField
+            name='name'
+            label='Nombre'
+            fullWidth
+            onChange={handleChange}
+            value={watch().name}
+            error={!!errors.name}
+            helperText={errors.name?.message}
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <TextField
+            name='email'
+            label='Correo Electrónico'
+            fullWidth
+            onChange={handleChange}
+            value={watch().email}
+            error={!!errors.email}
+            helperText={errors.email?.message}
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <TextField
+            name='phone'
+            label='Teléfono'
+            fullWidth
+            onChange={handleChange}
+            value={watch().phone}
+            error={!!errors.phone}
+            helperText={errors.phone?.message}
+          />
+        </Grid>
+      </Grid>
     </FormDrawer>
   );
 }

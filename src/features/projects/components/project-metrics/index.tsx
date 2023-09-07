@@ -6,13 +6,16 @@ import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import QueryBuilderIcon from '@mui/icons-material/QueryBuilder';
 import CardMembershipIcon from '@mui/icons-material/CardMembership';
 import React from 'react';
-import {Grid, Typography} from '@mui/material';
+import {Grid, Typography, useMediaQuery} from '@mui/material';
+import {useTheme} from '@mui/material/styles';
 
 type Props = {
   project: any;
 };
 
 export default function ProjectMetrics({project}: Props) {
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down('md'));
   const {
     moneyEarned,
     fixedEarningsWithSubscriptions,
@@ -23,7 +26,7 @@ export default function ProjectMetrics({project}: Props) {
   } = project;
 
   return (
-    <Grid container spacing={3} px={10} py={5}>
+    <Grid container spacing={3} px={isSmallScreen ? 1 : 10} py={5}>
       <Grid item xs={12} pb={-5}>
         <Typography variant='h4' color={'white'}>
           Métricas
@@ -32,7 +35,7 @@ export default function ProjectMetrics({project}: Props) {
       <Grid item xs={12} md={6} lg={4}>
         <MetricCard
           title='Recaudación con donaciones'
-          total={`$ ${moneyEarned / 100}`}
+          total={`$ ${Math.round(moneyEarned / 100)}`}
           icon={<AttachMoneyIcon />}
         />
       </Grid>
@@ -42,7 +45,7 @@ export default function ProjectMetrics({project}: Props) {
       <Grid item xs={12} md={6} lg={4}>
         <MetricCard
           title='Recaudación este mes'
-          total={`$ ${monthlyEarnedMoney / 100}`}
+          total={`$ ${Math.round(monthlyEarnedMoney / 100)}`}
           icon={<CalendarMonthIcon />}
         />
       </Grid>
@@ -56,7 +59,7 @@ export default function ProjectMetrics({project}: Props) {
       <Grid item xs={12} md={6} lg={4}>
         <MetricCard
           title='Recaudación con subscripciones / mes'
-          total={`$ ${fixedEarningsWithSubscriptions / 100}`}
+          total={`$ ${Math.round(fixedEarningsWithSubscriptions / 100)}`}
           icon={<QueryBuilderIcon />}
         />
       </Grid>
