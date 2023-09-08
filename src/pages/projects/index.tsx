@@ -28,7 +28,7 @@ export default function ProjectsPage({user}: Props) {
         <title>Libera</title>
         <meta name='viewport' content='initial-scale=1.0, width=device-width' />
         <meta property='og:title' content='Libera' />
-        <meta property='og:description' content='Navege los proyectos de Libera!' />
+        <meta property='og:description' content='Navegue los proyectos de Libera!' />
         <meta property='og:image' content={'/collaboration.jpeg'} />
         <meta property='og:url' content={processEnv.NEXT_PUBLIC_APP_BASE_URL + router.asPath} />
       </Head>

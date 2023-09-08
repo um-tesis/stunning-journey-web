@@ -6,7 +6,7 @@ import {useState} from 'react';
 import TabBar from '@/features/shared/components/tab-bar';
 import ProjectInformationCard from '../project-information-card';
 import VolunteeringInformationCard from '../volunteering-information-card';
-import {IconButton} from '@mui/material';
+import {Box, IconButton} from '@mui/material';
 import {Share as ShareIcon} from '@mui/icons-material';
 import useCopyToClipboard from '@/lib/hooks/useCopyToClipboard';
 import ProjectMetrics from '../project-metrics';
@@ -43,7 +43,18 @@ export default function ProjectSummary({project, handleOpenUpdateProjectDrawer}:
         className={styles.projectHeader}
         sx={{backgroundImage: `url(${coverPhoto ? coverPhoto : '/collaboration.jpeg'})`}}
       >
-        <div className={styles.overlay} />
+        <Box
+          position='absolute'
+          top={0}
+          left={0}
+          right={0}
+          bottom={0}
+          bgcolor='rgba(0, 0, 0, 0.37)'
+          display='flex'
+          flexDirection='column'
+          alignItems='center'
+          justifyContent='center'
+        />
         <CardContent className={styles.content}>
           <Typography className={styles.title} variant='h6' component='h3'>
             {name}

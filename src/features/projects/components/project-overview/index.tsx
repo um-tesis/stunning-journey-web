@@ -104,7 +104,8 @@ export default function ProjectOverview({project}: Props) {
       <Grid container>
         {video ? (
           <>
-            <Grid item xs={12} md={slug === 'oratorio-tacuru' ? 6 : 12} p={2} marginY={'auto'}>
+            {slug !== 'oratorio-tacuru' && <Grid item xs={false} md={3} />}
+            <Grid item xs={12} md={6} p={2} marginY={'auto'}>
               <VideoPlayer
                 videoId={video}
                 height={isSmallScreen ? '300' : '630'}

@@ -29,6 +29,7 @@ function Footer() {
   // Effect to handle subscribe request request status
   useEffect(() => {
     if (subscribeRequest.status === 'success') {
+      console.log(subscribeRequest);
       toast.success(SUCCESSFUL_NEWSLETTER_SUBSCRIPTION);
       setEmail('');
     }
@@ -53,6 +54,8 @@ function Footer() {
           label='Correo electrónico'
           variant='standard'
           value={email}
+          error={!!subscribeRequest.error}
+          helperText={subscribeRequest.error}
           onChange={(e) => setEmail(e.target.value)}
         />
         <PrimaryButton
@@ -60,7 +63,7 @@ function Footer() {
             subscribeRequest.execute();
           }}
         >
-          Subscribe
+          Suscríbete
         </PrimaryButton>
       </Box>
       <Box className={styles.socials} my={3}>
