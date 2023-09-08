@@ -75,9 +75,11 @@ export default function SingleDonationTable({entityId, isProjectData}: Props) {
 
   const mappedDonations = donations.map((donation: any) => {
     const mappedDonation = {
-      donator: donation.donor.email,
+      donator: donation?.donor.email,
+      donatorName: donation?.donor.firstName,
+      donatorId: donation?.donor.identification,
       project: donation.project.name,
-      amount: donation.amount,
+      amount: donation.amount / 100,
       date: convertDateFromIso(donation.createdAt),
     };
     return mappedDonation;
@@ -88,7 +90,9 @@ export default function SingleDonationTable({entityId, isProjectData}: Props) {
   };
 
   const columnLabels = [
-    {label: 'Donante', key: 'donator'},
+    {label: 'Correo electrónico', key: 'donator'},
+    {label: 'Nombre', key: 'donatorName'},
+    {label: 'CI', key: 'donatorId'},
     {label: 'Proyecto', key: 'project'},
     {label: 'Monto', key: 'amount'},
     {label: 'Fecha', key: 'date'},

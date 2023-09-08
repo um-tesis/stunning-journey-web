@@ -12,6 +12,8 @@ export const GET_ORGANIZATION_DONATIONS = gql`
         amount
         donor {
           email
+          firstName
+          identification
         }
         project {
           name
